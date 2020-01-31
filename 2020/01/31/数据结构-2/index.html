@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>YijunLin | Welcome!</title>
+    <title>数据结构(2) · YijunLin | Welcome!</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -201,14 +203,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Yijun&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">数据结构(2)</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Yijun's Studio.</a>
 </header>
@@ -227,17 +238,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Yijun's Studio.
-            <!-- 文章页  -->
+            数据结构(2)
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -245,12 +256,53 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                Prepare for the WORST & Do the BEST.
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ComputerScience">ComputerScience</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DataStructure">DataStructure</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Review">Review</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">1.9k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/01/31</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -351,309 +403,101 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/11/25/19Winter/" >
-            
-                <span class="stick-top iconfont-archer">&#xe63d;</span>
-                
-                <span>19 Winter Semester</span>
-        </a>
-        <div class="abstract-content">
-            19 Winter Semester Schedule.
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Study">Study</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Schedule">Schedule</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="树和森林"><a href="#树和森林" class="headerlink" title="树和森林"></a>树和森林</h1><h2 id="树和森林的实现"><a href="#树和森林的实现" class="headerlink" title="树和森林的实现"></a>树和森林的实现</h2><h3 id="树的存储结构"><a href="#树的存储结构" class="headerlink" title="树的存储结构"></a>树的存储结构</h3><ul>
+<li><p><strong>双亲表示法</strong><br>  Data域 存储结点的数据信息<br>  Parent域 存储结点的双亲在数组中的序号。<br>  实现求双亲操作很方便，但对于求某节点的孩子节点的操作需要查询整个数组，实现求兄弟的操作也比较困难。</p>
+</li>
+<li><p><strong>孩子表示法</strong></p>
+<ol>
+<li>多重链表<br>链表中的每个结点包括一个数据域和多个指针域。数据域存储树中结点的自身信息，每个指针指向该结点的一个孩子结点。</li>
+<li>数组+单链表<br>一维数组顺序存储树中各节点的信息，并将各结点的孩子信息组成一个单链表。</li>
+</ol>
+</li>
+<li><p><strong>双亲 - 孩子表示法</strong><br>  将各结点的孩子结点组成一个单链表，同时用一维数组顺序存储树中的各节点，数组元素包括结点的自身信息、双亲结点在数组中的序号以及该结点的孩子结点链表的头指针。</p>
+</li>
+<li><p><strong>孩子 - 兄弟表示法</strong><br>  firstchild data nextsibling<br>  二重链表表示法<br>  查找某结点的孩子结点比较方便，如果在每一个结点中增加一个指向双亲的指针，就可以方便地找到各结点的祖先。</p>
+</li>
+</ul>
+<h3 id="树、森林和二叉树的转换"><a href="#树、森林和二叉树的转换" class="headerlink" title="树、森林和二叉树的转换"></a>树、森林和二叉树的转换</h3><ol>
+<li><p>树转化为二叉树<br> 把树当作有序树看待：约定树中每一个结点的孩子结点按从左到右的次序顺序编号。<br> <strong>连线</strong>：树中所有相邻兄弟结点之间加一条线。<br> <strong>删线</strong>：对树中的每一个结点，只保留它与第一个孩子结点之间的连线，删去它与其他孩子结点之间的连线。<br> <strong>美化</strong>：以树的根结点为轴心，将这棵树顺时针转动45度使其层次分明。<br> <em>树作这样的转化所构成的二叉树是唯一的。</em><br> 树转化成的二叉树，其根结点无右子树。</p>
+</li>
+<li><p>森林转化为二叉树<br> <strong>依次将森林中每棵树转化成相应的二叉树。</strong><br> <strong>从第二棵二叉树开始，依次把当前的二叉树作为前一棵二叉树根结点的右子树，此时所得到的二叉树就是由森林转化得到的二叉树。</strong><br> 森林转化成的二叉树，其根结点有右子树。</p>
+</li>
+<li><p>二叉树转化为森林<br> <strong>连线</strong>：若结点p是其双亲结点F的 左孩子，则把从结点p延沿右分支所找到的所有结点和结点F用线连起来。<br> <strong>删线</strong>：删除二叉树中所有结点和其右孩子结点之间的连线。<br> <strong>美化</strong>：整理，使结构层次分明。</p>
+</li>
+</ol>
+<h3 id="树的遍历"><a href="#树的遍历" class="headerlink" title="树的遍历"></a>树的遍历</h3><p>指按照某种顺序访问树中的每个结点，并使每个结点被访问一次且只被访问一次。</p>
+<ol>
+<li><p>树的先根遍历<br>若树为空，遍历结束。否则，<br>访问根结点；<br>按照从左到右的顺序先根遍历根结点的每一棵子树。<br>与二叉树先序遍历结果序列相同。</p>
+</li>
+<li><p>树的后根遍历<br>若树为空，遍历结束。否则，<br>按照从左到右的顺序后根遍历根结点的每一棵子树；<br>访问根结点。<br>与二叉树中序遍历结果序列相同。</p>
+</li>
+<li><p>树的层次遍历<br>又称为树的广度遍历。从树的第一层（根结点）开始，自上至下逐层遍历，在同一层中，按从左到右的顺序对结点逐个访问。<br>借助队列，结构按下述步骤层序遍历树：<br>1）初始化队列，并将根结点入队。<br>2）当队列非空时，取出队头结点p，转步骤3）；如果队列为空，则结束遍历。<br>3）访问取出的结点p；如果结点p有孩子，则依次将它们入队列。<br>4）重复步骤2）、3），直到队列为空。</p>
+</li>
+</ol>
+<h3 id="森林的遍历"><a href="#森林的遍历" class="headerlink" title="森林的遍历"></a>森林的遍历</h3><ol>
+<li><p>森林的先根遍历<br>若森林为空，返回；否则，<br>访问森林中第一棵树的根结点；<br>先根遍历第一棵树的根结点的子树森林；<br>先根遍历除第一棵外其他树组成的森林。<br>与二叉树先序遍历结果序列相同。</p>
+</li>
+<li><p>森林的中根遍历<br>若森林为空，返回；否则，<br>中根遍历第一棵树的根结点的子树森林；<br>访问森林中第一棵树的根结点；<br>中根遍历除第一棵外其他树组成的森林。<br>与二叉树中序遍历结果序列相同。</p>
+</li>
+<li><p>森林的后根遍历<br>若森林为空，返回；否则，<br>后根遍历第一棵树的根结点的子树森林；<br>后根遍历除第一棵外其他树组成的森林；<br>访问森林中第一棵树的根结点。<br>与二叉树后序遍历结果序列相同。</p>
+</li>
+</ol>
+<h2 id="等价类及其表示"><a href="#等价类及其表示" class="headerlink" title="等价类及其表示"></a>等价类及其表示</h2><h3 id="等价关系与等价类"><a href="#等价关系与等价类" class="headerlink" title="等价关系与等价类"></a>等价关系与等价类</h3><p>先把每一个对象看作是一个单元素集合，然后依次将一个等价对中两个元素所在的集合合并。</p>
+<h3 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h3><p>指能够完成查找、合并功能的集合。<br>支持以下三种操作：</p>
+<ol>
+<li>Ufsets(n)：构造函数，将并查集中n个元素初始化为n个只有一个单元素的子集合。</li>
+<li>Union(S1,S2)：把集合S2并入集合S1中。要求S1与S2互不相交，否则没有结果。</li>
+<li>Find(d)：查找单元素d所在的集合，并返回该集合的名字。</li>
+</ol>
+<p><strong>等价类问题的解法</strong><br>    对于并查集来说，每个子集（等价类）用一棵树表示，子集合中每个元素用树中的一个结点表示。用树的根结点来代表相应的等价类集合。<br>    等价类树用双亲表示法表示（当然根据需要可以建立集合名字表示该集合的树的根结点之间的对应关系）；此外，树的根结点的双亲域的值设为-k（parent=-k），其中k为该树中的结点数（即所代表等价类中的元素数目）。<br>    对于任意给定的集合元素D，只要通过双亲指针向上一直走到树的根结点，就可以得到元素D所在的等价类（用根结点代表相应的等价类）。对于两个集合的并，只要将其中一个集合的根结点设置为另一个集合的根结点的孩子即可。</p>
+<p><strong>性能改进</strong>——避免产生退化的树<br><em>Union(i,j)的加权规则WeightedUnion()</em>：合并两个集合时，先判断两集合中元素的个数，如果以i为根的树中的结点个数少于以j为根的树中的结点个数，则让j成为i的双亲；否则，让i成为j的双亲。<br>执行一次WeightedUnion()比执行一次Union()时间要多，但仍在常量界限O(1)范围内。查找操作Find()保持不变，其查找时间的上界不超过树的高度加1。</p>
+<p><em>优化查找的折叠规则</em>：设j是以i为根的树中的一个结点，则对于从j到根i的路径上的每一个结点k，如果k的双亲不等于i，则把i设置为k的双亲。<br>使用折叠规则完成一次查找，所需时间比Find()多，但是能改善树的性能，减少以后查找操作所需的时间。</p>
+<br/>
+
+<hr>
+<br/>
+
+<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/23/19Spring/" >
-            
-                <span>19 Spring Semester</span>
-        </a>
-        <div class="abstract-content">
-            19 Spring Semester Schedule.
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Study">Study</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Schedule">Schedule</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-2/" >
-            
-                <span>数据结构(2)</span>
-        </a>
-        <div class="abstract-content">
-            Data Structure 2 Final Review.
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ComputerScience">ComputerScience</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DataStructure">DataStructure</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Review">Review</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/23/%E5%9B%BE%E8%A7%A3TCP:IP/" >
-            
-                <span>【StudyNote】 图解TCP/IP</span>
-        </a>
-        <div class="abstract-content">
-            Study Note.
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ComputerScience">ComputerScience</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ComputerNetwork">ComputerNetwork</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "StudyNote">StudyNote</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/23/Hello-Hexo/" >
-            
-                <span>Hello Hexo</span>
-        </a>
-        <div class="abstract-content">
-            Build Personal Website With Hexo.
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Website">Website</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/01/22/Hello-World/" >
-            
-                <span>Hello World</span>
-        </a>
-        <div class="abstract-content">
-            Hexo Basic Reference.
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Website">Website</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/ReneeDress.jpg >
-    <div class="profile-name">YijunLin</div>
-    
-    <div class="profile-signature">
-        A STUDENT.
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2020/03/23/19Spring/" title= "19 Spring Semester">
+                    <div class="nextTitle">19 Spring Semester</div>
+                </a>
             
-                <a href="mailto:linyijun@shu.edu.cn" class="iconfont-archer email" title=email ></a>
+        </li>
+        <li class="previous">
             
-        
-    
-        
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/01/23/%E5%9B%BE%E8%A7%A3TCP:IP/" title= "【StudyNote】 图解TCP/IP">
+                    <div class="prevTitle">【StudyNote】 图解TCP/IP</div>
+                </a>
             
-                <a href="//github.com/reneedress" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
-            
-                <span class="iconfont-archer wechat" title=wechat>
-                  
-                  <img class="profile-qr" src="/assets/OfficialAccount.jpg" />
-                </span>
-            
-        
     
-        
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-        
-    
-        
-            
-                <a href="//weibo.com/reneedress" class="iconfont-archer weibo" target="_blank" title=weibo></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-            
-                <a href="//space.bilibili.com/5026889" class="iconfont-archer bilibili" target="_blank" title=bilibili></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= // target="_black">Vicky</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= // target="_black">Amanda</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -744,6 +588,24 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#树和森林"><span class="toc-number">1.</span> <span class="toc-text">树和森林</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#树和森林的实现"><span class="toc-number">1.1.</span> <span class="toc-text">树和森林的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#树的存储结构"><span class="toc-number">1.1.1.</span> <span class="toc-text">树的存储结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#树、森林和二叉树的转换"><span class="toc-number">1.1.2.</span> <span class="toc-text">树、森林和二叉树的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#树的遍历"><span class="toc-number">1.1.3.</span> <span class="toc-text">树的遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#森林的遍历"><span class="toc-number">1.1.4.</span> <span class="toc-text">森林的遍历</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#等价类及其表示"><span class="toc-number">1.2.</span> <span class="toc-text">等价类及其表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#等价关系与等价类"><span class="toc-number">1.2.1.</span> <span class="toc-text">等价关系与等价类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并查集"><span class="toc-number">1.2.2.</span> <span class="toc-text">并查集</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图"><span class="toc-number">2.</span> <span class="toc-text">图</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -962,6 +824,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
