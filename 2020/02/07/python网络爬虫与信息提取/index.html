@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="Yijun Lin">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Yijun Lin">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>python网络爬虫与信息提取 · YijunLin | Welcome!</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Yijun&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">python网络爬虫与信息提取</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Yijun's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            python网络爬虫与信息提取
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "StudyNote">StudyNote</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">2.6k</span>Reading time: <span class="post-count reading-time">11 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/02/07</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><strong>Created Date</strong>: 2020-02-07 16:30:53<br><strong>Last Upgraded Date</strong>: 2020-02-07 21:15:23</p>
+<br/>
+
+<h1 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0. 准备工作"></a>0. 准备工作</h1><h2 id="安装pip"><a href="#安装pip" class="headerlink" title="安装pip"></a>安装pip</h2><p><a href="https://www.runoob.com/w3cnote/python-pip-install-usage.html" target="_blank" rel="noopener">菜鸟教程 - 安装pip</a></p>
+<h2 id="安装Anaconda"><a href="#安装Anaconda" class="headerlink" title="安装Anaconda"></a>安装Anaconda</h2><p><a href="https://www.anaconda.com/distribution/" target="_blank" rel="noopener">Anaconda</a></p>
+<h2 id="安装PyCharm"><a href="#安装PyCharm" class="headerlink" title="安装PyCharm"></a>安装PyCharm</h2><h1 id="1-Requests库入门"><a href="#1-Requests库入门" class="headerlink" title="1. Requests库入门"></a>1. Requests库入门</h1><h2 id="Requests库的安装"><a href="#Requests库的安装" class="headerlink" title="Requests库的安装"></a>Requests库的安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m pip install requests</span><br></pre></td></tr></table></figure>
+<p>终端输入idle3打开Python IDLE</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> requests             <span class="comment">#调用Requests库</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.status_code               <span class="comment">#查看状态码</span></span><br><span class="line"><span class="number">200</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.encoding = <span class="string">'utf-8'</span>        <span class="comment">#修改编码为utf-8</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.text                      <span class="comment">#打印网页内容</span></span><br></pre></td></tr></table></figure>
+<p><strong>Requests库的7个主要方法</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>requests.request()</td>
+<td>构造一个请求，支撑以下各方法的基础方法</td>
+</tr>
+<tr>
+<td>requests.get()</td>
+<td>获取HTML网页的主要方法，对应于HTTP的GET</td>
+</tr>
+<tr>
+<td>requests.head()</td>
+<td>获取HTML网页头信息的方法，对应于HTTP的HEAD</td>
+</tr>
+<tr>
+<td>requests.post()</td>
+<td>向HTTP网页提交POST请求的方法，对应于HTTP的POST</td>
+</tr>
+<tr>
+<td>requests.put()</td>
+<td>向HTTP网页提交PUT请求的方法，对应于HTTP的PUT</td>
+</tr>
+<tr>
+<td>requests.patch()</td>
+<td>向HTTP网页提交局部修改请求，对应于HTTP的PATCH</td>
+</tr>
+<tr>
+<td>requests.delete()</td>
+<td>向HTTP网页提交删除请求，对应于HTTP的DELETE</td>
+</tr>
+</tbody></table>
+<h2 id="Requests库的get-方法"><a href="#Requests库的get-方法" class="headerlink" title="Requests库的get()方法"></a>Requests库的get()方法</h2><h3 id="获得一个网页最简单的方法"><a href="#获得一个网页最简单的方法" class="headerlink" title="获得一个网页最简单的方法"></a>获得一个网页最简单的方法</h3><p><code>r = requests.get(url)</code><br>构造一个向服务器请求资源的Request对象<br>返回一个包含服务器资源的Response对象</p>
+<h3 id="完整格式"><a href="#完整格式" class="headerlink" title="完整格式"></a>完整格式</h3><p><code>requests.get(url,params=None,**kwargs)</code><br><strong>url</strong>：拟获取页面的url链接<br><strong>params</strong>：url中的额外参数，字典或字节流格式，可选<br><strong>**kwargs</strong>：12个控制访问的参数</p>
+<p>实际上Requests库只有一个Request方法，所有其他方法都是通过调用Request来实现的。<br>get方法是使用<code>request(&#39;get&#39;,url,params=params,**kwargs)</code>进行封装的。</p>
+<h3 id="Requests库的2个重要对象：Response和Requests"><a href="#Requests库的2个重要对象：Response和Requests" class="headerlink" title="Requests库的2个重要对象：Response和Requests"></a>Requests库的2个重要对象：Response和Requests</h3><p>Response对象包含爬虫返回的内容</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> requests</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r.status_code)</span><br><span class="line"><span class="number">200</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(r)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">requests</span>.<span class="title">models</span>.<span class="title">Response</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">r</span>.<span class="title">headers</span></span></span><br><span class="line">&#123;'Cache-Control': 'private, no-cache, no-store, proxy-revalidate, no-transform', 'Connection': 'keep-alive', 'Content-Encoding': 'gzip', 'Content-Type': 'text/html', 'Date': 'Fri, 07 Feb 2020 09:55:48 GMT', 'Last-Modified': 'Mon, 23 Jan 2017 13:27:36 GMT', 'Pragma': 'no-cache', 'Server': 'bfe/1.0.8.18', 'Set-Cookie': 'BDORZ=27315; max-age=86400; domain=.baidu.com; path=/', 'Transfer-Encoding': 'chunked'&#125;</span><br></pre></td></tr></table></figure>
+
+<p>状态码为200 —— 访问成功；否则，访问失败。<br>r的type显示其为一个类——Response。<br>headers返回get请求获得页面的头部信息。</p>
+<p>Response对象包括请求的页面的信息，也包括Request的信息。</p>
+<p><strong>Response对象的属性</strong>——访问网页最常用和最必要的属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r.status_code</td>
+<td>HTTP请求的返回状态，200表示连接成功，404表示失败</td>
+</tr>
+<tr>
+<td>r.text</td>
+<td>HTTP响应内容的字符串形式，即url对应的页面内容</td>
+</tr>
+<tr>
+<td>r.encoding</td>
+<td>从HTTP header中猜测的响应内容编码方式</td>
+</tr>
+<tr>
+<td>r.apparent_encoding</td>
+<td>从内容中分析出的响应内容编码方式（备选编码方式）</td>
+</tr>
+<tr>
+<td>r.content</td>
+<td>HTTP相应内容的二进制形式</td>
+</tr>
+</tbody></table>
+<pre class="mermaid">graph TB
+    start(["Start"]) --> status_code["r.status_code"]
+    status_code --> yes["200"]
+    status_code --> no["404或其他"]
+    yes --> avi["r.text/encoding/apparent_encoding/content"]
+    no --> uavi["某些原因出错将产生异常"]</pre>
+
+<p>r.encoding：如果header中不存在charset，则认为编码为ISO-8859-1<br>r.apparent_encoding：根据网页内容分析出的编码方式</p>
+<h2 id="爬取网页的通用代码框架"><a href="#爬取网页的通用代码框架" class="headerlink" title="爬取网页的通用代码框架"></a>爬取网页的通用代码框架</h2><p><strong>Requests库的异常</strong></p>
+<table>
+<thead>
+<tr>
+<th>异常</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>requests.ConnectionError</td>
+<td>网络连接错误异常，如DNS查询失败、拒绝连接等</td>
+</tr>
+<tr>
+<td>requests.HTTPError</td>
+<td>HTTP错误异常</td>
+</tr>
+<tr>
+<td>requests.URLRequired</td>
+<td>URL缺失异常</td>
+</tr>
+<tr>
+<td>requests.TooManyRedirects</td>
+<td>超过最大重定向次数，产生重定向异常</td>
+</tr>
+<tr>
+<td>requests.ConnectTimeout</td>
+<td>连接远程服务器超时异常</td>
+</tr>
+<tr>
+<td>requests.Timeout</td>
+<td>请求URL超市，产生超时异常</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>r.raise_for_status()</td>
+<td>如果不是200，产生异常requests.HTTPError</td>
+</tr>
+</tbody></table>
+<p><strong>爬取网页的通用代码框架</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment">#======通用代码框架======#</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span><span class="params">(url)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        r = requests.get(url, timeout = <span class="number">30</span>)</span><br><span class="line">        r.raise_for_status()    <span class="comment">#如果状态不是200，引发HTTPError异常</span></span><br><span class="line">        r.encoding = r.apparent_encoding</span><br><span class="line">        <span class="keyword">return</span> r.text</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"产生异常"</span></span><br><span class="line"><span class="comment">#======通用代码框架======#</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    url = <span class="string">"http://www.baidu.com"</span></span><br><span class="line">    print(getHTMLText(url))</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTTP协议及Requests库方法"><a href="#HTTP协议及Requests库方法" class="headerlink" title="HTTP协议及Requests库方法"></a>HTTP协议及Requests库方法</h2><p><strong>Requests库的7个主要方法</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>requests.request()</td>
+<td>构造一个请求，支撑以下各方法的基础方法</td>
+</tr>
+<tr>
+<td>requests.get()</td>
+<td>获取HTML网页的主要方法，对应于HTTP的GET</td>
+</tr>
+<tr>
+<td>requests.head()</td>
+<td>获取HTML网页头信息的方法，对应于HTTP的HEAD</td>
+</tr>
+<tr>
+<td>requests.post()</td>
+<td>向HTTP网页提交POST请求的方法，对应于HTTP的POST</td>
+</tr>
+<tr>
+<td>requests.put()</td>
+<td>向HTTP网页提交PUT请求的方法，对应于HTTP的PUT</td>
+</tr>
+<tr>
+<td>requests.patch()</td>
+<td>向HTTP网页提交局部修改请求，对应于HTTP的PATCH</td>
+</tr>
+<tr>
+<td>requests.delete()</td>
+<td>向HTTP网页提交删除请求，对应于HTTP的DELETE</td>
+</tr>
+</tbody></table>
+<h3 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h3><p><strong>HTTP</strong>，Hypertext Transfer Protocol，超文本传输协议。<br>HTTP是一个基于“请求与响应”模式的、无状态的应用层协议。<br>HTTP协议采用URL作为定位网络资源的标识。</p>
+<p>URL格式 <code>http://host[:port][path]</code><br><strong>host</strong>：合法的Internet主机域名或IP地址<br><strong>port</strong>：端口号，缺省端口为80<br><strong>path</strong>：请求资源的路径</p>
+<p>HTTP URL实例：<br><a href="http://www.bit.edu.cn" target="_blank" rel="noopener">http://www.bit.edu.cn</a><br><a href="http://220.181.111.188/duty" target="_blank" rel="noopener">http://220.181.111.188/duty</a></p>
+<p>HTTP URL的理解：<br>URL是通过HTTP协议存取资源的Internet路径，一个URL对应一个数据资源。</p>
+<p><strong>HTTP协议对资源的操作</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>请求获取URL位置的资源</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td>请求获取URL位置资源的响应消息报告，即获得该资源的头部信息</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>请求向URL位置的资源后附加新的数据</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>请求向URL位置存储一个资源，覆盖原URL位置的资源</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>请求局部更新URL位置的资源，即改变该处资源的部分内容</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>请求删除URL位置存储的资源</td>
+</tr>
+</tbody></table>
+<p><strong>理解PATCH和PUT的区别</strong><br>假设URL位置有一组数据UserInfo，包括UserID、UserName等20个字段。<br>需求：用户修改了UserName，其他不变。</p>
+<ul>
+<li>采用PATCH，仅向URL提交UserName的局部更新请求。</li>
+<li>采用PUT，必须将所有20个字段一并提交到URL，未提交字段被删除。</li>
+</ul>
+<p>PATCH的最主要好处：节省网络带宽</p>
+<table>
+<thead>
+<tr>
+<th align="center">HTTP协议方法</th>
+<th align="center">Requests库方法</th>
+<th align="center">功能一致性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">GET</td>
+<td align="center">requests.get()</td>
+<td align="center">一致</td>
+</tr>
+<tr>
+<td align="center">HEAD</td>
+<td align="center">requests.head()</td>
+<td align="center">一致</td>
+</tr>
+<tr>
+<td align="center">POST</td>
+<td align="center">requests.post()</td>
+<td align="center">一致</td>
+</tr>
+<tr>
+<td align="center">PUT</td>
+<td align="center">requests.put()</td>
+<td align="center">一致</td>
+</tr>
+<tr>
+<td align="center">PATCH</td>
+<td align="center">requests.patch()</td>
+<td align="center">一致</td>
+</tr>
+<tr>
+<td align="center">DELETE</td>
+<td align="center">requests.delete()</td>
+<td align="center">一致</td>
+</tr>
+</tbody></table>
+<p>head()方法可以使用很少的网络流量获取概要信息。<br>post()方法可以根据用户提交内容的不同在服务器上会做数据的整理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>payload = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.post(<span class="string">'http://httpbin.org/post'</span>, data = payload)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r.text)</span><br><span class="line">&#123;   ...</span><br><span class="line">    <span class="string">"form"</span>: &#123;</span><br><span class="line">     <span class="string">"key2"</span>: <span class="string">"value2"</span>,</span><br><span class="line">     <span class="string">"key1"</span>: <span class="string">"value1"</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>向URL POST一个字典自动编码为form（表单）。</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.post(<span class="string">'http://httpbin.org/post'</span>, data = <span class="string">'ABC'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r.text)</span><br><span class="line">&#123;   ...</span><br><span class="line">    <span class="string">"data"</span>: <span class="string">"ABC"</span></span><br><span class="line">    <span class="string">"form"</span>: &#123;&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>向URL POST一个字符串自动编码为data。</em><br>put()方法可以将原有的数据覆盖掉，其余与post()方法相似。</p>
+<h2 id="Requests库主要方法解析"><a href="#Requests库主要方法解析" class="headerlink" title="Requests库主要方法解析"></a>Requests库主要方法解析</h2><h3 id="requests-request-method-url-kwargs"><a href="#requests-request-method-url-kwargs" class="headerlink" title="requests.request(method, url, **kwargs)"></a>requests.request(method, url, **kwargs)</h3><p><strong>method</strong>：请求方式，对应get/put/post等7种。<br>r = requests.request(‘GET’,url,<strong>kwargs)<br>r = requests.request(‘HEAD’,url,</strong>kwargs)<br>r = requests.request(‘POST’,url,<strong>kwargs)<br>r = requests.request(‘PUT’,url,</strong>kwargs)<br>r = requests.request(‘PATCH’,url,<strong>kwargs)<br>r = requests.request(‘DELETE’,url,</strong>kwargs)<br>r = requests.request(‘OPTIONS’,url,<em>*kwargs)<br>*OPTIONS向服务器获取一些能和客户端打交道的参数。</em></p>
+<p><strong>url</strong>：拟获取页面的url链接。</p>
+<p><strong>/<em>/</em>kwargs</strong>：控制访问的参数，均为可选项，共13个。<br>params：字典或字节序列，作为参数增加到url中。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>kv = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'GET'</span>, <span class="string">'http://python123.io/ws'</span>, params = kv)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r.url)</span><br><span class="line">https://python123.io/ws?key1=value1&amp;key2=value2</span><br></pre></td></tr></table></figure>
+<p><em>把一些键值对增加到url中，使得url再去访问时，不止访问资源，同时带入了一些参数。服务器可以接受这些参数，并根据这些参数，筛选部分资源返回。</em><br>data：字典字节序列或文件对象，作为Request的内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>kv = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'POST'</span>, <span class="string">'http://python123.io/ws'</span>, data = kv)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>body = <span class="string">'主体内容'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'POST'</span>, <span class="string">'http://python123.io/ws'</span>, data = body)</span><br></pre></td></tr></table></figure>
+<p><em>提交的键值对或字符串放在url链接对应的位置作为数据储存。</em><br>json：JSON格式的数据，作为Request的内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>kv = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'POST'</span>, <span class="string">'http://python123.io/ws'</span>, json = kv)</span><br></pre></td></tr></table></figure>
+<p><em>赋值到服务器对应的json位置。</em><br>headers：字典，HTTP定制头。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>hd = &#123;<span class="string">'user-agent'</span>: <span class="string">'Chrome/10'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'POST'</span>, <span class="string">'http://python123.io/ws'</span>, headers = hd)</span><br></pre></td></tr></table></figure>
+<p><em>定制访问某个url的协议头。可以模拟任何浏览器向服务器发出字段。</em><br>cookies：字典或CookieJar，Request中的cookie。<br>auth：元组，支持HTTP认证功能。<br>files：字典类型，传输文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>fs = &#123;<span class="string">'file'</span>: open(<span class="string">'data.xls'</span>, <span class="string">'rb'</span>)&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'POST'</span>, <span class="string">'http://python123.io/ws'</span>, files = fs)</span><br></pre></td></tr></table></figure>
+<p><em>用open打开文件并使其与file产生关联，同时对应到url上，可以向某一链接提交某一文件。</em><br>timeout：设定超时时间，秒为单位。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'GET'</span>, <span class="string">'http://www.baidu.com'</span>, timeout = <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p><em>在设定的timeout时间内无法返回，则会输出一个timeout信息。</em><br>proxies：字典类型，设定访问代理服务器，可以增加登录认证。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>pxs = &#123; <span class="string">'http'</span>: <span class="string">'http://user:pass@10.10.10.1:1234'</span></span><br><span class="line">            <span class="string">'https'</span>: <span class="string">'https://10.10.10.1:4321'</span>  &#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'GET'</span>, <span class="string">'http://www.baidu.com'</span>, proxies = pxs)</span><br></pre></td></tr></table></figure>
+<p><em>http访问添加代理可以增加用户名密码，https访问添加代理可以隐藏原来ip地址。</em><br>allow_redirects: True/False，默认为True，重定向开关。<br>stream：True/False，默认为True，获取内容立即下载开关。<br>verify：True/False，默认为True，认证SSL证书开关。<br>cert：本地SSL证书路径。</p>
+<h3 id="requests-get-url-params-None-kwargs"><a href="#requests-get-url-params-None-kwargs" class="headerlink" title="requests.get(url, params = None, **kwargs)"></a>requests.get(url, params = None, **kwargs)</h3><p><em>重点掌握</em></p>
+<p><strong>url</strong>：拟获取页面的url链接。</p>
+<p><strong>params</strong>：url中的额外参数，字典或字节流格式，可选。</p>
+<p><strong>**kwargs</strong>：12个控制访问的参数。（除去params）</p>
+<h3 id="requests-head-url-kwargs"><a href="#requests-head-url-kwargs" class="headerlink" title="requests.head(url, **kwargs)"></a>requests.head(url, **kwargs)</h3><p><em>重点掌握</em></p>
+<p><strong>url</strong>：拟获取页面的url链接。</p>
+<p><strong>**kwargs</strong>：13个控制访问的参数。</p>
+<h3 id="requests-post-url-data-None-json-None-kwargs"><a href="#requests-post-url-data-None-json-None-kwargs" class="headerlink" title="requests.post(url, data = None, json = None, **kwargs)"></a>requests.post(url, data = None, json = None, **kwargs)</h3><p><strong>url</strong>：拟更新页面的url链接。</p>
+<p><strong>data</strong>：字典、字节序列或文件，Request的内容。</p>
+<p><strong>json</strong>：JSON格式的数据，Request的内容。</p>
+<p><strong>**kwargs</strong>：11个控制访问的参数。（除去data、json）</p>
+<h3 id="requests-put-url-data-None-kwargs"><a href="#requests-put-url-data-None-kwargs" class="headerlink" title="requests.put(url, data = None, **kwargs)"></a>requests.put(url, data = None, **kwargs)</h3><p><strong>url</strong>：拟更新页面的url链接。</p>
+<p><strong>data</strong>：字典、字节序列或文件，Request的内容。</p>
+<p><strong>**kwargs</strong>：12个控制访问的参数。（除去data）</p>
+<h3 id="requests-patch-url-data-None-kwargs"><a href="#requests-patch-url-data-None-kwargs" class="headerlink" title="requests.patch(url, data = None, **kwargs)"></a>requests.patch(url, data = None, **kwargs)</h3><p><strong>url</strong>：拟更新页面的url链接。</p>
+<p><strong>data</strong>：字典、字节序列或文件，Request的内容。</p>
+<p><strong>**kwargs</strong>：12个控制访问的参数。（除去data）</p>
+<h3 id="requests-delete-url-kwargs"><a href="#requests-delete-url-kwargs" class="headerlink" title="requests.delete(url, **kwargs)"></a>requests.delete(url, **kwargs)</h3><p><strong>url</strong>：拟删除页面的url链接。</p>
+<p><strong>**kwargs</strong>：13个控制访问的参数。</p>
+<h1 id="2-网络爬虫的“盗亦有道”"><a href="#2-网络爬虫的“盗亦有道”" class="headerlink" title="2. 网络爬虫的“盗亦有道”"></a>2. 网络爬虫的“盗亦有道”</h1><h1 id="3-Requests库网络爬虫实战"><a href="#3-Requests库网络爬虫实战" class="headerlink" title="3. Requests库网络爬虫实战"></a>3. Requests库网络爬虫实战</h1>
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2020/03/23/19Spring/" title= "19 Spring Semester">
+                    <div class="nextTitle">19 Spring Semester</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/01/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-2/" title= "Review | 数据结构(2)">
+                    <div class="prevTitle">Review | 数据结构(2)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:linyijun@shu.edu.cn" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/reneedress" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/OfficialAccount.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="//weibo.com/reneedress" class="iconfont-archer weibo" target="_blank" title=weibo></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="//space.bilibili.com/5026889" class="iconfont-archer bilibili" target="_blank" title=bilibili></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-准备工作"><span class="toc-number">1.</span> <span class="toc-text">0. 准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装pip"><span class="toc-number">1.1.</span> <span class="toc-text">安装pip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Anaconda"><span class="toc-number">1.2.</span> <span class="toc-text">安装Anaconda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装PyCharm"><span class="toc-number">1.3.</span> <span class="toc-text">安装PyCharm</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Requests库入门"><span class="toc-number">2.</span> <span class="toc-text">1. Requests库入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Requests库的安装"><span class="toc-number">2.1.</span> <span class="toc-text">Requests库的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Requests库的get-方法"><span class="toc-number">2.2.</span> <span class="toc-text">Requests库的get()方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获得一个网页最简单的方法"><span class="toc-number">2.2.1.</span> <span class="toc-text">获得一个网页最简单的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完整格式"><span class="toc-number">2.2.2.</span> <span class="toc-text">完整格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Requests库的2个重要对象：Response和Requests"><span class="toc-number">2.2.3.</span> <span class="toc-text">Requests库的2个重要对象：Response和Requests</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#爬取网页的通用代码框架"><span class="toc-number">2.3.</span> <span class="toc-text">爬取网页的通用代码框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议及Requests库方法"><span class="toc-number">2.4.</span> <span class="toc-text">HTTP协议及Requests库方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP协议"><span class="toc-number">2.4.1.</span> <span class="toc-text">HTTP协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Requests库主要方法解析"><span class="toc-number">2.5.</span> <span class="toc-text">Requests库主要方法解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requests-request-method-url-kwargs"><span class="toc-number">2.5.1.</span> <span class="toc-text">requests.request(method, url, **kwargs)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#requests-get-url-params-None-kwargs"><span class="toc-number">2.5.2.</span> <span class="toc-text">requests.get(url, params &#x3D; None, **kwargs)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#requests-head-url-kwargs"><span class="toc-number">2.5.3.</span> <span class="toc-text">requests.head(url, **kwargs)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#requests-post-url-data-None-json-None-kwargs"><span class="toc-number">2.5.4.</span> <span class="toc-text">requests.post(url, data &#x3D; None, json &#x3D; None, **kwargs)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#requests-put-url-data-None-kwargs"><span class="toc-number">2.5.5.</span> <span class="toc-text">requests.put(url, data &#x3D; None, **kwargs)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#requests-patch-url-data-None-kwargs"><span class="toc-number">2.5.6.</span> <span class="toc-text">requests.patch(url, data &#x3D; None, **kwargs)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#requests-delete-url-kwargs"><span class="toc-number">2.5.7.</span> <span class="toc-text">requests.delete(url, **kwargs)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-网络爬虫的“盗亦有道”"><span class="toc-number">3.</span> <span class="toc-text">2. 网络爬虫的“盗亦有道”</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Requests库网络爬虫实战"><span class="toc-number">4.</span> <span class="toc-text">3. Requests库网络爬虫实战</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 7
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/23</span><a class="archive-post-title" href= "/2020/03/23/19Spring/" >19 Spring Semester</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/07</span><a class="archive-post-title" href= "/2020/02/07/python%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%8E%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" >python网络爬虫与信息提取</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/31</span><a class="archive-post-title" href= "/2020/01/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-2/" >Review | 数据结构(2)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/23</span><a class="archive-post-title" href= "/2020/01/23/%E5%9B%BE%E8%A7%A3TCP:IP/" >StudyNote | 图解TCP/IP</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/23</span><a class="archive-post-title" href= "/2020/01/23/Hello-Hexo/" >Hello Hexo</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/22</span><a class="archive-post-title" href= "/2020/01/22/Hello-World/" >Hello World</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/25</span><a class="archive-post-title" href= "/2019/11/25/19Winter/" >19 Winter Semester</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="Study"><span class="iconfont-archer">&#xe606;</span>Study</span>
+    
+        <span class="sidebar-tag-name" data-tags="Schedule"><span class="iconfont-archer">&#xe606;</span>Schedule</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="Website"><span class="iconfont-archer">&#xe606;</span>Website</span>
+    
+        <span class="sidebar-tag-name" data-tags="StudyNote"><span class="iconfont-archer">&#xe606;</span>StudyNote</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="ComputerScience"><span class="iconfont-archer">&#xe606;</span>ComputerScience</span>
+    
+        <span class="sidebar-tag-name" data-tags="ComputerNetwork"><span class="iconfont-archer">&#xe606;</span>ComputerNetwork</span>
+    
+        <span class="sidebar-tag-name" data-tags="DataStructure"><span class="iconfont-archer">&#xe606;</span>DataStructure</span>
+    
+        <span class="sidebar-tag-name" data-tags="Review"><span class="iconfont-archer">&#xe606;</span>Review</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Schedule"><span class="iconfont-archer">&#xe60a;</span>Schedule</span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo"><span class="iconfont-archer">&#xe60a;</span>Hexo</span>
+    
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机网络ComputerNetwork"><span class="iconfont-archer">&#xe60a;</span>计算机网络ComputerNetwork</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构DataStructure"><span class="iconfont-archer">&#xe60a;</span>数据结构DataStructure</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Yijun Lin"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
