@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>python网络爬虫与信息提取 · YijunLin | Welcome!</title>
+    <title>StudyNote | python网络爬虫与信息提取 · YijunLin | Welcome!</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Yijun&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">python网络爬虫与信息提取</a>
+                <a href="#" class="post-name">StudyNote | python网络爬虫与信息提取</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            python网络爬虫与信息提取
+            StudyNote | python网络爬虫与信息提取
             <!-- 404 -->
             
         </h1>
@@ -526,8 +526,8 @@ height:50vh;
 <td>请求URL超市，产生超时异常</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td>======</td>
+<td>======</td>
 </tr>
 <tr>
 <td>r.raise_for_status()</td>
@@ -661,42 +661,78 @@ height:50vh;
 <p><em>向URL POST一个字典自动编码为form（表单）。</em></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.post(<span class="string">'http://httpbin.org/post'</span>, data = <span class="string">'ABC'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r.text)</span><br><span class="line">&#123;   ...</span><br><span class="line">    <span class="string">"data"</span>: <span class="string">"ABC"</span></span><br><span class="line">    <span class="string">"form"</span>: &#123;&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em>向URL POST一个字符串自动编码为data。</em><br>put()方法可以将原有的数据覆盖掉，其余与post()方法相似。</p>
-<h2 id="Requests库主要方法解析"><a href="#Requests库主要方法解析" class="headerlink" title="Requests库主要方法解析"></a>Requests库主要方法解析</h2><h3 id="requests-request-method-url-kwargs"><a href="#requests-request-method-url-kwargs" class="headerlink" title="requests.request(method, url, **kwargs)"></a>requests.request(method, url, **kwargs)</h3><p><strong>method</strong>：请求方式，对应get/put/post等7种。<br>r = requests.request(‘GET’,url,<strong>kwargs)<br>r = requests.request(‘HEAD’,url,</strong>kwargs)<br>r = requests.request(‘POST’,url,<strong>kwargs)<br>r = requests.request(‘PUT’,url,</strong>kwargs)<br>r = requests.request(‘PATCH’,url,<strong>kwargs)<br>r = requests.request(‘DELETE’,url,</strong>kwargs)<br>r = requests.request(‘OPTIONS’,url,<em>*kwargs)<br>*OPTIONS向服务器获取一些能和客户端打交道的参数。</em></p>
+<h2 id="Requests库主要方法解析"><a href="#Requests库主要方法解析" class="headerlink" title="Requests库主要方法解析"></a>Requests库主要方法解析</h2><h3 id="requests-request-method-url-kwargs"><a href="#requests-request-method-url-kwargs" class="headerlink" title="requests.request(method, url, **kwargs)"></a>requests.request(method, url, **kwargs)</h3><p><strong>method</strong>：请求方式，对应get/put/post等7种。<br>r = requests.request(‘GET’, url, **kwargs)<br>r = requests.request(‘HEAD’, url, **kwargs)<br>r = requests.request(‘POST’, url, **kwargs)<br>r = requests.request(‘PUT’, url, **kwargs)<br>r = requests.request(‘PATCH’, url, **kwargs)<br>r = requests.request(‘DELETE’, url, **kwargs)<br>r = requests.request(‘OPTIONS’, url, **kwargs)<br><em>OPTIONS向服务器获取一些能和客户端打交道的参数。</em></p>
 <p><strong>url</strong>：拟获取页面的url链接。</p>
-<p><strong>/<em>/</em>kwargs</strong>：控制访问的参数，均为可选项，共13个。<br>params：字典或字节序列，作为参数增加到url中。</p>
+<p><strong>**kwargs</strong>：控制访问的参数，均为可选项，共13个。</p>
+<blockquote>
+<p>params：字典或字节序列，作为参数增加到url中。</p>
+</blockquote>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>kv = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'GET'</span>, <span class="string">'http://python123.io/ws'</span>, params = kv)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r.url)</span><br><span class="line">https://python123.io/ws?key1=value1&amp;key2=value2</span><br></pre></td></tr></table></figure>
-<p><em>把一些键值对增加到url中，使得url再去访问时，不止访问资源，同时带入了一些参数。服务器可以接受这些参数，并根据这些参数，筛选部分资源返回。</em><br>data：字典字节序列或文件对象，作为Request的内容。</p>
+<p><em>把一些键值对增加到url中，使得url再去访问时，不止访问资源，同时带入了一些参数。服务器可以接受这些参数，并根据这些参数，筛选部分资源返回。</em></p>
+<blockquote>
+<p>data：字典字节序列或文件对象，作为Request的内容。</p>
+</blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>kv = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'POST'</span>, <span class="string">'http://python123.io/ws'</span>, data = kv)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>body = <span class="string">'主体内容'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'POST'</span>, <span class="string">'http://python123.io/ws'</span>, data = body)</span><br></pre></td></tr></table></figure>
-<p><em>提交的键值对或字符串放在url链接对应的位置作为数据储存。</em><br>json：JSON格式的数据，作为Request的内容。</p>
+<p><em>提交的键值对或字符串放在url链接对应的位置作为数据储存。</em></p>
+<blockquote>
+<p>json：JSON格式的数据，作为Request的内容。</p>
+</blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>kv = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'POST'</span>, <span class="string">'http://python123.io/ws'</span>, json = kv)</span><br></pre></td></tr></table></figure>
-<p><em>赋值到服务器对应的json位置。</em><br>headers：字典，HTTP定制头。</p>
+<p><em>赋值到服务器对应的json位置。</em></p>
+<blockquote>
+<p>headers：字典，HTTP定制头。</p>
+</blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>hd = &#123;<span class="string">'user-agent'</span>: <span class="string">'Chrome/10'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'POST'</span>, <span class="string">'http://python123.io/ws'</span>, headers = hd)</span><br></pre></td></tr></table></figure>
-<p><em>定制访问某个url的协议头。可以模拟任何浏览器向服务器发出字段。</em><br>cookies：字典或CookieJar，Request中的cookie。<br>auth：元组，支持HTTP认证功能。<br>files：字典类型，传输文件。</p>
+<p><em>定制访问某个url的协议头。可以模拟任何浏览器向服务器发出字段。</em></p>
+<blockquote>
+<p>cookies：字典或CookieJar，Request中的cookie。<br>auth：元组，支持HTTP认证功能。<br>files：字典类型，传输文件。</p>
+</blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>fs = &#123;<span class="string">'file'</span>: open(<span class="string">'data.xls'</span>, <span class="string">'rb'</span>)&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'POST'</span>, <span class="string">'http://python123.io/ws'</span>, files = fs)</span><br></pre></td></tr></table></figure>
-<p><em>用open打开文件并使其与file产生关联，同时对应到url上，可以向某一链接提交某一文件。</em><br>timeout：设定超时时间，秒为单位。</p>
+<p><em>用open打开文件并使其与file产生关联，同时对应到url上，可以向某一链接提交某一文件。</em></p>
+<blockquote>
+<p>timeout：设定超时时间，秒为单位。</p>
+</blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'GET'</span>, <span class="string">'http://www.baidu.com'</span>, timeout = <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p><em>在设定的timeout时间内无法返回，则会输出一个timeout信息。</em><br>proxies：字典类型，设定访问代理服务器，可以增加登录认证。</p>
+<p><em>在设定的timeout时间内无法返回，则会输出一个timeout信息。</em></p>
+<blockquote>
+<p>proxies：字典类型，设定访问代理服务器，可以增加登录认证。</p>
+</blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>pxs = &#123; <span class="string">'http'</span>: <span class="string">'http://user:pass@10.10.10.1:1234'</span></span><br><span class="line">            <span class="string">'https'</span>: <span class="string">'https://10.10.10.1:4321'</span>  &#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.request(<span class="string">'GET'</span>, <span class="string">'http://www.baidu.com'</span>, proxies = pxs)</span><br></pre></td></tr></table></figure>
-<p><em>http访问添加代理可以增加用户名密码，https访问添加代理可以隐藏原来ip地址。</em><br>allow_redirects: True/False，默认为True，重定向开关。<br>stream：True/False，默认为True，获取内容立即下载开关。<br>verify：True/False，默认为True，认证SSL证书开关。<br>cert：本地SSL证书路径。</p>
+<p><em>http访问添加代理可以增加用户名密码，https访问添加代理可以隐藏原来ip地址。</em></p>
+<blockquote>
+<p>allow_redirects: True/False，默认为True，重定向开关。<br>stream：True/False，默认为True，获取内容立即下载开关。<br>verify：True/False，默认为True，认证SSL证书开关。<br>cert：本地SSL证书路径。</p>
+</blockquote>
 <h3 id="requests-get-url-params-None-kwargs"><a href="#requests-get-url-params-None-kwargs" class="headerlink" title="requests.get(url, params = None, **kwargs)"></a>requests.get(url, params = None, **kwargs)</h3><p><em>重点掌握</em></p>
+<blockquote>
 <p><strong>url</strong>：拟获取页面的url链接。</p>
 <p><strong>params</strong>：url中的额外参数，字典或字节流格式，可选。</p>
 <p><strong>**kwargs</strong>：12个控制访问的参数。（除去params）</p>
+</blockquote>
 <h3 id="requests-head-url-kwargs"><a href="#requests-head-url-kwargs" class="headerlink" title="requests.head(url, **kwargs)"></a>requests.head(url, **kwargs)</h3><p><em>重点掌握</em></p>
+<blockquote>
 <p><strong>url</strong>：拟获取页面的url链接。</p>
 <p><strong>**kwargs</strong>：13个控制访问的参数。</p>
-<h3 id="requests-post-url-data-None-json-None-kwargs"><a href="#requests-post-url-data-None-json-None-kwargs" class="headerlink" title="requests.post(url, data = None, json = None, **kwargs)"></a>requests.post(url, data = None, json = None, **kwargs)</h3><p><strong>url</strong>：拟更新页面的url链接。</p>
+</blockquote>
+<h3 id="requests-post-url-data-None-json-None-kwargs"><a href="#requests-post-url-data-None-json-None-kwargs" class="headerlink" title="requests.post(url, data = None, json = None, **kwargs)"></a>requests.post(url, data = None, json = None, **kwargs)</h3><blockquote>
+<p><strong>url</strong>：拟更新页面的url链接。</p>
 <p><strong>data</strong>：字典、字节序列或文件，Request的内容。</p>
 <p><strong>json</strong>：JSON格式的数据，Request的内容。</p>
 <p><strong>**kwargs</strong>：11个控制访问的参数。（除去data、json）</p>
-<h3 id="requests-put-url-data-None-kwargs"><a href="#requests-put-url-data-None-kwargs" class="headerlink" title="requests.put(url, data = None, **kwargs)"></a>requests.put(url, data = None, **kwargs)</h3><p><strong>url</strong>：拟更新页面的url链接。</p>
+</blockquote>
+<h3 id="requests-put-url-data-None-kwargs"><a href="#requests-put-url-data-None-kwargs" class="headerlink" title="requests.put(url, data = None, **kwargs)"></a>requests.put(url, data = None, **kwargs)</h3><blockquote>
+<p><strong>url</strong>：拟更新页面的url链接。</p>
 <p><strong>data</strong>：字典、字节序列或文件，Request的内容。</p>
 <p><strong>**kwargs</strong>：12个控制访问的参数。（除去data）</p>
-<h3 id="requests-patch-url-data-None-kwargs"><a href="#requests-patch-url-data-None-kwargs" class="headerlink" title="requests.patch(url, data = None, **kwargs)"></a>requests.patch(url, data = None, **kwargs)</h3><p><strong>url</strong>：拟更新页面的url链接。</p>
+</blockquote>
+<h3 id="requests-patch-url-data-None-kwargs"><a href="#requests-patch-url-data-None-kwargs" class="headerlink" title="requests.patch(url, data = None, **kwargs)"></a>requests.patch(url, data = None, **kwargs)</h3><blockquote>
+<p><strong>url</strong>：拟更新页面的url链接。</p>
 <p><strong>data</strong>：字典、字节序列或文件，Request的内容。</p>
 <p><strong>**kwargs</strong>：12个控制访问的参数。（除去data）</p>
-<h3 id="requests-delete-url-kwargs"><a href="#requests-delete-url-kwargs" class="headerlink" title="requests.delete(url, **kwargs)"></a>requests.delete(url, **kwargs)</h3><p><strong>url</strong>：拟删除页面的url链接。</p>
+</blockquote>
+<h3 id="requests-delete-url-kwargs"><a href="#requests-delete-url-kwargs" class="headerlink" title="requests.delete(url, **kwargs)"></a>requests.delete(url, **kwargs)</h3><blockquote>
+<p><strong>url</strong>：拟删除页面的url链接。</p>
 <p><strong>**kwargs</strong>：13个控制访问的参数。</p>
+</blockquote>
 <h1 id="2-网络爬虫的“盗亦有道”"><a href="#2-网络爬虫的“盗亦有道”" class="headerlink" title="2. 网络爬虫的“盗亦有道”"></a>2. 网络爬虫的“盗亦有道”</h1><h1 id="3-Requests库网络爬虫实战"><a href="#3-Requests库网络爬虫实战" class="headerlink" title="3. Requests库网络爬虫实战"></a>3. Requests库网络爬虫实战</h1>
     </article>
     <!-- license  -->
@@ -922,6 +958,8 @@ top:50vh;
     
     
     
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 7
@@ -945,7 +983,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/07</span><a class="archive-post-title" href= "/2020/02/07/python%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%8E%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" >python网络爬虫与信息提取</a>
+            <span class="archive-post-date">02/07</span><a class="archive-post-title" href= "/2020/02/07/python%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E4%B8%8E%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" >StudyNote | python网络爬虫与信息提取</a>
         </li>
     
     
