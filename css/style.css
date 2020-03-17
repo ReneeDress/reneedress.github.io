@@ -460,6 +460,9 @@ input[type="radio"]:not(:checked) + label:after {
   content: "\e88d";
 }
 
+.icon-bilibili:before {
+  content: "\e75c";
+}
 
 .header-logo a {
   padding: 0;
