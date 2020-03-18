@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>FN | 虚拟现实行业现状以及国内发展初探 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">FN | 虚拟现实行业现状以及国内发展初探</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 12, 2020&nbsp;&nbsp;02:03:20</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <blockquote>
+<p>2019-2020学年冬季学期《研究方法与前沿（计算机）》期末论文。</p>
+</blockquote>
+<h2 id="背景介绍与说明"><a href="#背景介绍与说明" class="headerlink" title="背景介绍与说明"></a>背景介绍与说明</h2><p>&emsp;&emsp;虚拟现实（Virtual Reality，简称VR），是对计算机图形、多媒体、人机交互等多种技术进行综合应用，从而为用户提供虚拟三维世界体验的一种技术。通过模仿真实环境下的视觉、触觉、听觉等感知效果与交互作用，具备沉浸感、交互性、多感知性、构想性和自主性五大特征，为用户提供如同在现实世界一般，移动头部来转移设置视点、使用双手操控虚拟物体，身临其境的体验。</p>
+<p>&emsp;&emsp;虚拟现实技术自20世纪初在文学作品中，由有声形动态的模拟思想诞生；经过一小部分科学家及相关者的努力后，至1973年Myron Krurger提出“Virtual Reality”概念后逐渐吸引人们的关注；1984年，VPL公司的Jaron Lanier再次提出“虚拟现实”的概念，并推出一系列VR产品；自1990年代至今，虚拟现实技术在芯片技术和制造工艺的推进下不断高速发展，逐渐具备进入民用市场的条件与基础，但仍处在进一步完善的阶段。目前VR技术被广泛用于游戏、教育、技术训练、医疗、地理、房产等诸多领域，截止到2020年3月初，在主流游戏平台Steam上有4366款应用，包括但不限于医疗场景模拟、恋爱养成游戏模拟、车辆驾驶场景模拟等应用。</p>
+<p>&emsp;&emsp;当相比于其他人机交互技术，VR产业仍然处于刚刚起步的阶段，与先前的人机交互技术完全不同的用户体验以及开发工具，使得VR应用从生产开发到市场推广都存在许多挑战。</p>
+<h2 id="国内外研究现状"><a href="#国内外研究现状" class="headerlink" title="国内外研究现状"></a>国内外研究现状</h2><p>&emsp;&emsp;20世纪50年代之前，有关虚拟现实的概念一般出现在文学创作作品中，Aldous Leonard Huxley在《美丽新世界》中描述的“头戴式设备”被公认为对“沉浸式体验”的最初描写，基本预言了现在的VR头戴式显示系统（简称VR头显）。1955年，美国摄影师Morton Heilig发明了一台能带来一些外部触感虚拟现实体验的设备，名为Sensorama。1960年，Heilig提交了“Telesphere Mask”设备的专利，设备外观似现在的VR头显，因此Heilig也被称为“虚拟现实之父”。1965年起，美国科学家Lvan Sutherland提出感觉真实、交互真实的人机协作新理论，并研发出视觉沉浸的头盔式立体显示器和头部位置跟踪系统，这之后的第二年开发了一款终极显示器——达摩克利斯之剑（Sutherland）。</p>
+<div class="image-size-300">
+<div class="image-box">
+                <img src="https://uploader.shimo.im/f/Z7GzUsaSBvcXLW4C.jpg!thumbnail" alt="Heilig的Sensorama模拟装置专利" title="" class="">
+                <p class="image-box-title">Heilig的Sensorama模拟装置专利</p>
+            </div>
+
+<div class="image-box">
+                <img src="https://uploader.shimo.im/f/dqzhEXGWpEQsJfor.jpg!thumbnail" alt="Heilig的Telesphere Mask专利" title="" class="">
+                <p class="image-box-title">Heilig的Telesphere Mask专利</p>
+            </div>
+</div>
+
+<div class="image-size-300">
+<div class="image-box">
+                <img src="https://uploader.shimo.im/f/Uj8dgPBpuyo8GOCO.jpg!thumbnail" alt="达摩克利斯之剑" title="" class="">
+                <p class="image-box-title">达摩克利斯之剑</p>
+            </div>
+
+<div class="image-box">
+                <img src="https://uploader.shimo.im/f/svIaV7GRxhouOV97.jpg!thumbnail" alt="Jaron Lanier" title="" class="">
+                <p class="image-box-title">Jaron Lanier</p>
+            </div>
+</div>
+
+<p>&emsp;&emsp;1973年，由Myron Kruger首次提出“Virtual Reality”的概念。上世纪80年代，美国科技圈进入了一阵VR狂潮，NASA开始开发用于火星探测的虚拟环境视觉显示器，“虚拟工作台”的概念被提出，裸眼3D立体显示器经研发诞生。1987年游戏公司任天堂推出Famicom 3D System眼镜，应用于其司产品电视游乐器。1984年由VR先行者Jaron Lanier创办的VPL Research公司，再次提出“Virtual Reality”一词，推出一系列包括VR手套、VR头显、环绕音响系统、VR操作系统等一系列VR产品。碍于生产工艺和芯片技术，这些设备价格高昂、普遍市场无法承担，但却是VR进入民用市场的第一步。</p>
+<p>&emsp;&emsp;90年代，VR热逐渐蔓延全球，影视公司、游戏公司、科技公司都争先恐后挤进VR产业的大门。先后有Sense8公司开发“WTK”软件开发包助力缩短VR产品开发周期，波音公司使用VR技术设计波音777飞机，游戏公司世嘉推出SEAR VR、任天堂推出革命性的游戏外设设备Virtual Boy、索尼推出类虚拟现实设备HMZ。在这期间，虚拟现实建模语言出现，为图形数据的网络传输和交互奠定基础。90年代可谓是百花齐放，但碍于技术和成本原因，大多都以失败告终，即便是现在看来革命性的产品，也难得到市场和大众的认可。但这一代VR的尝试并不是毫无作用，甚至可以说，为日后VR的爆发式发展打下了坚实的基础。</p>
+<p>&emsp;&emsp;21世纪初，移动设备、智能手机突然爆发，虚拟现实似乎直接隐退，淡出了市场。但事实上，根据前期研究的经验，商界、科学界、学术界都已经窥探到了VR技术未来极其广阔的应用前景。各公司并没有停下VR产品开发的脚步，索尼推出头盔式虚拟现实设备，Sensics公司推出高分辨率、超宽视野的显示设备piSight等。而各非民用行业，包括医疗、飞行、航空航天、制造以及军事领域逐渐深入研究VR设备与技术的应用场景。</p>
+<div class="image-size-500">
+<div class="image-box">
+                <img src="https://uploader.shimo.im/f/0gMkvcxI1qoXMMCo.jpg!thumbnail" alt="Palmer Luckey" title="" class="">
+                <p class="image-box-title">Palmer Luckey</p>
+            </div>
+</div>
+
+<p>&emsp;&emsp;2012年，VR产业元年。当年，圣丹斯电影节开始出现VR作品。时年19岁的加州州立大学学生Palmer Luckey完成其第六个VR设备原型Oculus Rift，同年在Brendan Iride第一笔投资下成立Oculus VR公司，资金紧张的情况下，一个月内在众筹网站Kickstarter筹集到了240万美金。2013年，Oculus Rift推出了售价300美元的开发者版本。2014年年初，Facebook创始人Mark Zuckerberg联系到了Luckey的团队，并在两个月内完成了20亿美金的收购协议。此事大力刺激了商界以及科学界，虚拟现实在资本的作用下终于迎来了爆发。2014年3月，索尼在游戏开发者大会上展示了PlayStation VR的原型机，正式对外界宣布正在打造自己虚拟现实头显设备；2015年3月，由HTC与Valve联合开发的虚拟现实头盔产品HTC Vive的开发者版本在MWC2015（巴塞罗拉世界移动通信大会）上发布，并带有Steam VR平台的游戏供用户体验；2016年1月，消费者版的Oculus Rift正式开启预售（599美元）；2016年3月，索尼宣布PlayStation VR“全家福”开始预售（499美元），套装中不仅包含VR硬件设备，还包括用户可以直接体验的VR游戏套装；2017年威尼斯国际电音节首次开展VR竞赛单元；另外，欧美及日本各大著名游戏大厂纷纷加入VR的硬件以及应用开发，Google和Samsung各自推出了适用于移动设备的简易虚拟现实轻设备Google Cardboard以及Gear VR。大型在线游戏应用平台，Oculus Store、PlayStation与Steam上的VR应用日益增多，一个完整的VR生态世界正在逐步形成。</p>
+<p>&emsp;&emsp;在学术界，基于各大设备产商的开发工作，国内外有不少研究人员针对某些现实问题和细节技术进行了深入的研究。Niehorster D C等人通过HTC Vive设备对科学研究系统中定位与方向跟踪的精确度进行了研究；Murray J W研究了虚拟现实的晕动症和表现问题，针对提升用户体验提供方法；Virk S等针对康复训练中平衡训练的VR应用展开了研究；Suznjevic M等人对在虚拟现实环境中进行拾取放置操作时HTC Vive和Oculus Rift的性能表现和交互体验差别进行研究；李婷婷等人利用Oculus Rift进行了沉浸式虚拟校园系统的研究；周勇对于Google Cardboard的App交互设计展开研究；范张群通过Oculus Rift对虚拟现实中的室内定位技术进行了研究。</p>
+<div class="image-size-300">
+<div class="image-box">
+                <img src="https://uploader.shimo.im/f/EQDdakI4Unocf0mt.jpg!thumbnail" alt="大朋VR产品" title="" class="">
+                <p class="image-box-title">大朋VR产品</p>
+            </div>
+
+<div class="image-box">
+                <img src="https://uploader.shimo.im/f/4kjIqhon3domFGCp.jpg!thumbnail" alt="Pico产品" title="" class="">
+                <p class="image-box-title">Pico产品</p>
+            </div>
+</div>
+
+<p>&emsp;&emsp;近年来，国产VR设备、内容公司也逐渐进入人们视野，除却互联网、通讯设备及电商巨头——如小米、华为、爱奇艺等，推出的VR相关产品，作为他们主要产品的衍生产品，有不少厂商正在专注于VR产品的开发与研发。知名度较高的有，2014年由陈朝阳及其团队创立的人工智能虚拟现实产品与内容公司大朋VR（DPVR），致力于虚拟现实技术、产品与交互技术研发设计、市场与开发者拓展、产品与内容支持、VR大规模行业应用与客户服务的Pico（小鸟看看），2014年5月成立的VR头显提供商小派科技（Pimax），以及国内最早涉足虚拟现实和混合现实（2002）的公司3Glasses（深圳市虚拟现实技术有限公司）。根据知名电商平台天猫以及京东的商品数据，国产品牌在定价上有一定优势，并且一些大厂依靠其在国内的影响力收获了相对不错的销售数据，但整体上看，整个VR行业的市场并不大，且在国际上的影响力十分有限，国际市场主要是由Sony、HTC Vive和Oculus瓜分。另外，由于国内VR软件应用生态，或者说整个VR的大应用场景——游戏产业并没有形成一个高质量、多元化产出的健康生态，因此VR软件应用项目落地十分有限，国内优质独立游戏开发者也会选择国际上影响力及自由度更大的平台，导致国产VR硬件产品对于国际平台的兼容能力成为其内容的核心支柱，使得VR产业一直处于被动状态。另外，根据可以检索到的有关人机交互或沉浸式人机交互的研究论文，国内的研究人员也很少使用国产产品进行试验或二次开发，这也侧面印证了国产VR产品存在的问题。</p>
+<h2 id="关键问题难点分析"><a href="#关键问题难点分析" class="headerlink" title="关键问题难点分析"></a>关键问题难点分析</h2><h3 id="不明朗的全球民用市场"><a href="#不明朗的全球民用市场" class="headerlink" title="不明朗的全球民用市场"></a>不明朗的全球民用市场</h3><p>&emsp;&emsp;VR产业现在遭遇的最大问题在我看来是全球性的，整个产业面对的是一个前景不明的民用市场。在移动设备、智能手机大爆发之前，头戴式显示器或许是能够替代PC、产生革命性人机交互变革的产品，而虚拟现实的加入，理应直接改变某些行业处理问题的方式方法。从目前的情况来看，虚拟现实技术确实可以改变并大大提升一些领域解决问题的能力和便捷度，比如特殊的军事领域训练（飞行、航天航空），医疗（手术方案制定模拟）、制造（产品模拟）等。然而，在民用市场，目前广泛得到认可的只有满足部分大众娱乐性的需求，包括游戏需求及影音需求，且并不是这两种需求得到满足的必需品。主机游戏、体感游戏已经满足了很大一部分游戏玩家对于真实感的需求，大众也已经习惯由影院或电子设备呈现的影音娱乐。与虚拟现实在2012-2016年受到大量目光和资本关注相比，现在的虚拟现实被轻巧便携的智能设备衬托地如庞然大物、被人工智能衬托地如普通外设，更多的人正在等待着虚拟现实的悄然落幕。</p>
+<h3 id="进一步发展的技术限制"><a href="#进一步发展的技术限制" class="headerlink" title="进一步发展的技术限制"></a>进一步发展的技术限制</h3><p>&emsp;&emsp;虚拟现实的实现依靠大量图像处理、音视频处理技术，而众所周知，图像处理、音视频处理相比于简单的文字处理、文件传输所需要的要复杂的多。以计算机PC举例，图形处理器（Graphics Processing Unit，GPU）的出现，使显卡减少了对CPU的依赖并进行部分原本CPU进行的工作，使得计算机的性能大大提升。由此可见，图像处理对于硬件设备的要求只有下限、没有上限。而VR设备进一步发展必定也需要GPU，是所有对于图像处理有需求的产品绕不开的环节。可是，GPU本身虽然一直在高速发展，但也存在发展问题：计算能力和计算模式无法满足新的应用需求；集成电路发展到纳米级工艺，逐渐逼近物理极限，出现红墙问题。这直接导致VR芯片终端技术受到阻碍。</p>
+<p>&emsp;&emsp;虚拟现实的应用都需要处理大量数据，加之少有应用是本地数据加载后运行的，排除硬件的影响，VR应用的流畅运行极大地依赖于网络状况。然而，现今在视频聊天都会出现不小卡顿的4G时代，这无疑成为了一个巨大的难题。没有流畅度就更不必谈体验。许多VR线下创业者在经营的过程中，经常碰到头晕目眩的体验者，除了少部分自身对于3D或虚拟场景有眩晕症状的体验者外，网络延迟是造成此状况的罪魁祸首。</p>
+<h3 id="国内的应用平台缺口"><a href="#国内的应用平台缺口" class="headerlink" title="国内的应用平台缺口"></a>国内的应用平台缺口</h3><p>&emsp;&emsp;先前在发展状况中提及，国内的许多厂商生产设备对于国际内容平台的兼容性成为了评判产品的一个指标，或者说至少成为了厂家生产和消费者购买的考虑元素，这很大程度是因为国内并没有完善的、开放性的VR应用内容平台，也没有鼓励内容开发者的相关展览会议或优惠政策。去年一款VR游戏《节奏光剑》风靡全球，获得TGA 2019年度最佳VR游戏后，再次收割市场，也帮助VR硬件生产商增加销量。2019年年末，游戏论坛上不少见如“想玩《节奏光剑》，有没有推荐的小白VR套装？”的提问主题。</p>
+<div class="image-size-500">
+<div class="image-box">
+                <img src="https://uploader.shimo.im/f/6YOg6LbZi1EwOKre.jpeg!thumbnail" alt="《Beat Saber》（节奏光剑）" title="" class="">
+                <p class="image-box-title">《Beat Saber》（节奏光剑）</p>
+            </div>
+</div>
+
+<p>&emsp;&emsp;国内不乏优秀的VR游戏作品，但整体水准上显然不如欧美与日本，且国内的游戏大厂也并未大力涉足VR游戏产业。本土的应用开发环境缺失，致使独立开发者流向国际平台，国内硬件厂商也不得不做出对国际平台的适配，以提升产品竞争力。</p>
+<h3 id="无法落地的行业解决方案"><a href="#无法落地的行业解决方案" class="headerlink" title="无法落地的行业解决方案"></a>无法落地的行业解决方案</h3><p>&emsp;&emsp;VR产业在2015年左右的浪潮曾经打出了“VR+教育”的招牌，并且在这几年的概念宣传上，也经常见到这样的组合。不论是高等教育，还是基础教育，亦或是职业教育，都有很美好并且见之有效的解决方案。然而，VR设备的高昂价格、各地区并未平衡的教育资源，以及目前公平但是压力较大的升学模式，使得这种接近素质教育的模式难以得到普及。“无纸化教学”仍停留在学生畅想未来的作文里，又何况是“VR教学”呢？</p>
+<p>&emsp;&emsp;如果不是2020年年初这场疫情，相信很长一段时间，大众并不认为自己会成为远程办公的体验者。在大量公司企业仍采用“坐班制”、“上下班打卡”等传统方式，记录员工出勤考核并将此作为依据计算工资的模式下，远程办公本不会在近几年进入如此庞大的数据年。虽然“VR办公”能解决这次疫情中远程办公出现的部分问题，如低效信息传达、工作环境缺失等，但是当疫情过去，远程办公又会进入“待机状态”，更不用提在实际应用方面仍存在技术限制的“VR办公”了。</p>
+<h3 id="VR应用监控测试缺失"><a href="#VR应用监控测试缺失" class="headerlink" title="VR应用监控测试缺失"></a>VR应用监控测试缺失</h3><p>&emsp;&emsp;相较于对于虚拟现实技术本身的研究，虚拟现实应用的监控及测试是更大的行业缺口。国内非常注重Unity3D移动应用的监控，对应用本身和用户行为都进行一定程度的采集和分析，但现阶段对于VR应用的监控还比较缺乏。国外近年才刚刚起步对于VR应用的监控，各个分析团队各有侧重，尚未形成完整的体系。</p>
+<h2 id="研究探索尝试"><a href="#研究探索尝试" class="headerlink" title="研究探索尝试"></a>研究探索尝试</h2><h3 id="5G技术或能助力VR再发展"><a href="#5G技术或能助力VR再发展" class="headerlink" title="5G技术或能助力VR再发展"></a>5G技术或能助力VR再发展</h3><p>&emsp;&emsp;VR作为现代比较少见的经历了几盛几衰的计算机技术，大众对其抱有的想象总是阶段性被资本或者文学影视作品激发的，但每次外界对于行业的刺激，都因为现存的无法解决和突破的技术问题，无法转化为行业内在的动力，因而在市场看来，似乎是一个难以再高速发展的行业了。但在2019年，5G技术横空出世。根据先前研究人员的探索，有一定程度的学术文献或书籍认为，VR体验中的画面滞后，即网络延迟导致的延时反馈问题，是导致VR体验性下滑和引起体验者生理不适的原因。而相比现在广泛民用的4G网络，5G最最大的优势是大宽带、低时延、大连接。根据目前的理论支持，5G网速相较于4G网络，最快会有100倍的提升，5G数据传输的延迟将不超过1毫秒（4G网络的延迟约为70毫秒），而且数据下载的峰值速度将可以高达20Gb/s（4G为1Gb/s）。5G在传输上有两个特点：高带宽、高速率特性，其峰值理论传输速度可达每8秒1GB，比4G网络的传输速度快数百倍，这能有效解决VR内容，尤其是8K及以上超高清内容的传输问题。在5G环境下，用相关VR产品下载或者在线看一部蓝光级别、标准长度的电影只需要耗时一分钟，就可以享受顺滑的观影过程，还将改善过往视听体验的尴尬现状。5G标准的低延迟特点，也对VR这个对延迟极其敏感的技术提供了巨大支持，将有效解决VR头显时间延迟的技术问题。提到5G的时候，常听一个词“智能万物互联”，将实现大规模机器间的相互通信。这样的技术与VR技术进行融合后，或许能带来不同领域的新体验，将曾经由于技术问题而搁置的行业解决方案正式落地，比如VR直播、VR电竞、VR医疗等，挖掘潜在的商业价值。</p>
+<div class="image-size-500">
+<div class="image-box">
+                <img src="https://uploader.shimo.im/f/3HhW12ldA8MofoL3.png!thumbnail" alt="大朋VR课堂行业解决方案" title="" class="">
+                <p class="image-box-title">大朋VR课堂行业解决方案</p>
+            </div>
+</div>
+
+<p>&emsp;&emsp;不难想象，在教育行业，对于理工类学科，包括土木工程、工业设计、机械工程、生物化学、医药学、临床医学等，VR在教学中的应用确实可以使本身浮于表面的理论知识，通过这种新型的教学方式，使本身需要耗费大量财力、物力、精力的实践环节简化并减少错误成本；对于人文类学科，VR技术欣赏艺术品、历史遗迹等进行初级的学术研究，不仅可以透过枯燥的论文更直接地了解现实，还可以更大限度地保护文物古迹；对于基础教育，形象化的教学设置，包括可交互的动画、可实践的理论，能够更加深入和深刻地帮助学生进行学习。在教育行业VR落地主要受限于由于成本和教学方案更改导致的性价比不佳，那么根据现有教学模式进行增添和改进的VR产品或许是方案落地的一个选择。</p>
+<h3 id="针对用户需求的产品技术改进方向"><a href="#针对用户需求的产品技术改进方向" class="headerlink" title="针对用户需求的产品技术改进方向"></a>针对用户需求的产品技术改进方向</h3><p>&emsp;&emsp;现阶段VR仍然无法普及，是因为市场并不愿意为这一项技术或者产品买单。其相对笨重的设备、使用过程中带来的不适、缺乏内容的平台应用，成为了消费者拒绝掏出金钱的强有力依据。<br>通过相关研究人员的文献及问答，了解到VR目前存在的两个重要技术难点：</p>
+<p>&emsp;&emsp;第一，影像沉浸感。“影像沉浸感”是VR最主要的特征，主要包括感知性、自主性、三维图形中的深度信息、画面的视野、实现跟踪的时间或空间响应以及交互设备的约束程度等。这涉及到VR的核心技术：tracking（追踪）和CG（计算机图形）。表现在硬件上是光学镜片技术和位置追踪技术（以前的移动端并不涉及这些技术），如三自由度的方向追踪，六自由度的位置追踪。另外，影响沉浸感的还有硬件显示方面的挑战：一方面是分辨率和刷新率方面的限制，另一方面是图像处理性能上，VR眼镜需要在正常画面中多渲染一个画面，这对于硬件图像处理性能是很大的负担。</p>
+<p>&emsp;&emsp;第二，近眼显示（Near-eye Display，简称NED）。这被认为是制约VR硬件最重要的问题，也是目前用户体验最大的痛点所在，这涉及到传统算法如何突破的问题。用户在使用VR设备时，与人眼距离很近，瞳孔和虹膜与眼球并不在摄像头的正面，通过传统的算法，很难准确获取在这种运动状态下的眼球数据。如果VR应用还有侦测行走的需求，那还需要侦测行走的距离，并立即准确地反应到虚拟世界。与此同时，头转向在现实生活中，转角造成的运动迷糊也会变大，加大图像处理的难度。这对于硬件和算法都是极大的挑战。解决眩晕从理论上来说，就是九轴动作感应器和相应算法来解决的问题，但需要想办法如何将结果完成地又“快”又“准”。有观点认为，5G成为VR设备的通讯技术后，可通过实时高清云端渲染和大幅降低设备对本地计算能力的需求，可使大量数据被实时传播，减少使用时带来的晕动症等不适的用户体验。</p>
+<p>&emsp;&emsp;除了这两个技术难点，VR的材料选用上也出现了问题。目前常用的材料对用户来说普遍偏重，且对眼球有压迫，会导致不必要的身体危险，更好的材料将导致飙升的产品价格，这对于已经属于高定价的VR产品来说，无疑是使商品里消费者更远的决策。在视图器方面，同样面临质量和成本的两难场面。再者，目前绝大多数的VR都需要配合PC，依靠有线连接进行使用，限制了用户的移动范围并可能造成不必要的损伤，而到来的5G和愈演愈烈的云计算或许可以解决有线电缆连接问题。</p>
+<h3 id="针对用户需求的产品内容改进方向"><a href="#针对用户需求的产品内容改进方向" class="headerlink" title="针对用户需求的产品内容改进方向"></a>针对用户需求的产品内容改进方向</h3><p>&emsp;&emsp;毋庸置疑的是，相对于特定场景和特定人群的专业性使用，真正能够让VR技术稳步发展，只有依靠大众广泛接受的一门技术——娱乐类应用。首先，娱乐其实是人类刚需，而娱乐本身不涉及过重的行业链条，没有过多的周边技术需要考虑。其次，对于娱乐的包容性高，对技术的稳定性和潜在风险并没有非常严苛的要求，相对而言VR医疗就会截然不同。最后，娱乐本身就带有好奇和探索精神，一个新事物的发展与进步会吸引用户加入这一过程。目前主流应用市场或平台上的应用已经在逐渐积累的轨道上，但是仍然没有出现一款或多款用户留存率极高的大型游戏，更多的是小而精的游戏。或许这个问题会随着行业生态的自信心，吸引到更多开发者后自然解决。国内已有影音娱乐公司，如爱奇艺，正在投入自己的一部分资源进入VR行业，虽然手机端宣称的VR并不符合大众对于VR既有的想象和渴望达到的标准，但是其一边在自己主流应用上埋下伏笔，一边在电商上架VR眼镜的行为，也表达了一个态度和未来的发展方向。一旦VR影音正式迈入主流视频平台，爱奇艺或许就成为行业巨头。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;&emsp;作为一名人机交互技术的关注者、一名计算机科学与技术专业的大学生，我仍旧相信未来的VR存在着曾经所畅想的可能。即便按照现在的硬件发展速度，我们可能需要近十年，甚至更久，才能将VR设备真正做到与人眼无明显差异，但我依然觉得VR，包括AR、MR，依然会在移动互联网时代拥有其独特的、不可替代的科研工具和娱乐设备功用。</p>
+<p>&emsp;&emsp;在国内，学术界有关虚拟现实技术的研究较少，在文献库内少见相关著作；与之相对的，商界，或者说资本，更加关注这项技术，虽然说这样的关注往往是阶段性的，并且是残酷的（大量VR行业创业者并没有坚持到一个浪潮的结束），但也在过程中推动了虚拟现实技术的发展。“技术总是在短期内被高估，但是在长期又被低估。”，虚拟现实技术的几次浪潮很好地印证了前半句话，希望在未来企业开发人才及科研人员的努力下，不会辜负后半句话。任何一个技术从实验室出来到应用到生活的每个角落，改变整个世界运转模式，基本上都要经历：技术突破、技术派的狂欢、潜伏期、大众认知、市场行为人认知、时代认同……虚拟现实技术只是还在最开始的起点罢了。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]邓德荣.基于Unity3D的VR交互场景设计与运行监控[D].广州:华南理工大学,2018.<br>[2]雷金树. 沉浸式手势自然交互技术研究[D].绵阳:西南科技大学,2019.<br>[3]吴南妮. 沉浸式虚拟现实交互艺术设计研究[D].北京:中央美术学院,2019.<br>[4]Murray J W. Building Virtual Reality with Unity and Steam VR[M]. Boca Raton:CRC Press,2017.<br>[5]<a href="https://www.zhihu.com/question/346865293" target="_blank" rel="noopener">知乎.为什么VR始终不能崛起呢？[EB/OL].</a><br>[6]<a href="https://www.sohu.com/a/235112586_100173153" target="_blank" rel="noopener">小宅VR. 三分钟让你了解vr眩晕？为什么我不晕车却晕VR？[EB/OL].</a><br>[7]<a href="http://www.dpvr.cn/" target="_blank" rel="noopener">大朋VR. 大朋VR官网[EB/OL].</a><br>[8]<a href="https://www.pico-interactive.com/" target="_blank" rel="noopener">Pico. Pico官网[EB/OL].</a><br>[9]<a href="https://cn.pimaxvr.com/" target="_blank" rel="noopener">Pimax. Pimax小派官网[EB/OL].</a><br>[10]<a href="https://www.3glasses.com/" target="_blank" rel="noopener">3Glasses. 3Glasses官网 [EB/OL].</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/ComputerScience/"># ComputerScience</a>
+                    
+                        <a href="/tags/SHU/"># SHU</a>
+                    
+                        <a href="/tags/ComputerVision/"># ComputerVision</a>
+                    
+                        <a href="/tags/VirtualReality/"># VirtualReality</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/03/18/%E6%96%87%E8%89%BA%E5%A4%8D%E5%85%B4%E8%AF%BE%E7%A8%8B%E4%B9%8B%E4%BA%8E%E6%88%91%E7%9A%84%E6%84%8F%E4%B9%89/">FN | 文艺复兴课程之于我的意义</a>
+            
+            
+            <a class="next" rel="next" href="/2020/03/08/%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%B8%82%E5%9C%BA%E4%B8%AD%E7%9A%84%E8%AE%A1%E7%AE%97%E6%80%9D%E7%BB%B4/">StudyNote | 网络与市场中的计算思维</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

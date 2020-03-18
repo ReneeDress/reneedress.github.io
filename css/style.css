@@ -1363,3 +1363,30 @@ header label {
 .post-content pre .javascript .function {
   color: #8959a8;
 }
+.image-size-200 img {
+  width: 200px;
+}
+.image-size-300 img {
+  width: 300px;
+}
+.image-size-400 img {
+  width: 400px;
+}
+.image-size-500 img {
+  width: 500px;
+}
+.image-size-600 img {
+  width: 600px;
+}
+.image-size-700 img {
+  width: 700px;
+}
+.image-size-800 img {
+  width: 800px;
+}
+.image-size-900 img {
+  width: 900px;
+}
+.image-size-1000 img {
+  width: 1000px;
+}
