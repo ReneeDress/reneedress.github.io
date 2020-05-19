@@ -41,7 +41,44 @@
 
     
     
-        
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
     
 
 
@@ -218,23 +255,29 @@
 <h3 id="事件关系与运算"><a href="#事件关系与运算" class="headerlink" title="事件关系与运算"></a>事件关系与运算</h3><ul>
 <li><p>事件A与B是互不相容的，或互斥的：<br>$$<br>A\cap B = \varnothing<br>$$</p>
 </li>
-<li><p>事件A、B互为逆事件，或对立事件：<br>$$<br>A\cup B = S<del>&amp;&amp; ~</del>A\cap B=\varnothing<br>$$</p>
+<li><p>事件A、B互为逆事件，或对立事件：<br>$$<br>A\cup B = S 且 A\cap B=\varnothing<br>$$</p>
 </li>
-<li><p>差事件可用对立事件表示：<br>$$<br>A-B=A\overline{B}\ \overline{A}=S-A<br>$$</p>
+<li><p>差事件可用对立事件表示：<br>$$<br>A-B=A\overline{B}<br>$$</p>
+<p>$$<br>\overline{A}=S-A<br>$$</p>
 </li>
 </ul>
 <h3 id="事件运算律"><a href="#事件运算律" class="headerlink" title="事件运算律"></a>事件运算律</h3><ul>
-<li><p>交换律：<br>$$<br>A\cup B=B\cup A<del>~</del>A\cap B=B\cap A<br>$$</p>
+<li><p>交换律：<br>$$<br>A\cup B=B\cup A<br>$$</p>
+<p>$$<br>A\cap B=B\cap A<br>$$</p>
 </li>
-<li><p>结合律：<br>$$<br>A\cup(B\cup C)=(A\cup B)\cup C<br>\A\cap(B\cap C)=(A\cap B)\cap C<br>$$</p>
+<li><p>结合律：<br>$$<br>A\cup(B\cup C)=(A\cup B)\cup C<br>$$</p>
+<p>$$<br>A\cap(B\cap C)=(A\cap B)\cap C<br>$$</p>
 </li>
-<li><p>分配率：<br>$$<br>A\cup(B\cap C)=(A\cup B)\cap(A\cup C)<br>\A\cap(B\cup C)=(A\cap B)\cup(A\cap C)<br>$$</p>
+<li><p>分配率：<br>$$<br>A\cup(B\cap C)=(A\cup B)\cap(A\cup C)<br>$$</p>
+<p>$$<br>A\cap(B\cup C)=(A\cap B)\cup(A\cap C)<br>$$</p>
 </li>
-<li><p>德摩根律：<br>$$<br>\overline{A\cup B}=\overline{A}\cap \overline{B}<del>~</del>\overline{A\cap B}=\overline{A}\cup \overline{B}<br>$$</p>
+<li><p>德摩根律：<br>$$<br>\overline{A\cup B}=\overline{A}\cap \overline{B}<br>$$</p>
+<p>$$<br>\overline{A\cap B}=\overline{A}\cup \overline{B}<br>$$</p>
 </li>
 </ul>
 <blockquote>
-<p><strong>区分<u>互逆事件</u>和<u>互斥事件</u>：</strong><br>$$<br>A与B互斥\Leftrightarrow AB=\varnothing<br>\A与B互逆\Leftrightarrow AB=\varnothing<del>且</del>A\cup B=S<br>$$</p>
+<p><strong>区分<u>互逆事件</u>和<u>互斥事件</u>：</strong><br>$$<br>A与B互斥\Leftrightarrow AB=\varnothing<br>$$</p>
+<p>$$<br>A与B互逆\Leftrightarrow AB=\varnothing 且 A\cup B=S<br>$$</p>
 </blockquote>
 <h2 id="频率、概率与等可能概形（古典概形）"><a href="#频率、概率与等可能概形（古典概形）" class="headerlink" title="频率、概率与等可能概形（古典概形）"></a>频率、概率与等可能概形（古典概形）</h2><h3 id="频率、频数"><a href="#频率、频数" class="headerlink" title="频率、频数"></a>频率、频数</h3><p>n次试验，A事件发生$n_A$次。</p>
 <p>$0\le f_n(A)\le1$。</p>
@@ -295,7 +338,7 @@
 <li>设$P(A) &gt; 0$，则有$P(AB)=P(B|A)P(A)$。</li>
 <li>若$P(AB) &gt; 0$，则有$P(ABC)=P(C|AB)P(B|A)P(A)$。</li>
 </ul>
-<p>一般地，设n个事件$A_1,A_2,\dots ,A_n$满足P(A_1A_2\dots A_{n-1} &gt; 0)，则<br>$$<br>P(A_1A_2\dots A_n)=P(A_1)P(A_2|A_1)P(A_3|A_1A_2)\dots P(A_n|A_1A_2\dots A_{n-1})。<br>$$</p>
+<p>一般地，设n个事件$A_1,A_2,\dots ,A_n$满足$P(A_1A_2\dots A_{n-1} &gt; 0)$，则<br>$$<br>P(A_1A_2\dots A_n)=P(A_1)P(A_2|A_1)P(A_3|A_1A_2)\dots P(A_n|A_1A_2\dots A_{n-1})。<br>$$</p>
 <h3 id="样本空间的划分"><a href="#样本空间的划分" class="headerlink" title="样本空间的划分"></a>样本空间的划分</h3><h3 id="全概率公式"><a href="#全概率公式" class="headerlink" title="全概率公式"></a>全概率公式</h3><p>设试验E的样本空间为S，$B_1,B_2,\dots , B_n$为S的一个划分，且$P(B_i) &gt; 0(i = 1,2,\dots , n)$，则对任意事件A，有<br>$$<br>P(A)=P(A|B_1)P(B_1)+P(A|B_2)P(B_2)+\dots+P(A|B_n)P(B_n)。<br>$$</p>
 <h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><p>设试验E的样本空间为S，$B_1,B_2,\dots , B_n$为S的一个划分，且$P(B_i) &gt; 0(i = 1,2,\dots , n)$，若事件A的概率$P(A) &gt; 0$，则<br>$$<br>P(B_i|A)=\frac{P(A|B_i)P(B_i)}{\sum_{j=1}^nP(A|B_j)P(B_j)},i=1,2,\dots,n。<br>$$</p>
 <h3 id="两个事件相互独立"><a href="#两个事件相互独立" class="headerlink" title="两个事件相互独立"></a>两个事件相互独立</h3><p>$$<br>A和B相互独立\Leftrightarrow P(AB)=P(A)P(B)<br>$$</p>
@@ -304,7 +347,7 @@
 <li>设$A,B$是两事件，且$P(A) &gt; 0$，则<br>$$<br>A和B相互独立\Leftrightarrow P(B|A)=P(B)<br>$$</li>
 </ul>
 <ul>
-<li>若事件A与B相互独立，则A与$\overline{B}$，$\overline{A}$与B和$\overline{A}$与$\overline{B}$都相互成立。</li>
+<li>若事件$A$与$B$相互独立，则$A$与$\overline{B}$，$\overline{A}$与$B$和$\overline{A}$与$\overline{B}$都相互成立。</li>
 </ul>
 <h3 id="任意n个事件相互独立（-n-ge-3-）"><a href="#任意n个事件相互独立（-n-ge-3-）" class="headerlink" title="任意n个事件相互独立（$n\ge 3$）"></a>任意n个事件相互独立（$n\ge 3$）</h3><p>事件A，B，C相互独立<br>$$<br>\Leftrightarrow \left{<br>             \begin{array}{<strong>lr</strong>}<br>             P(AB)=P(A)P(B)\<br>             P(BC)=P(B)P(C)\<br>             P(AC)=P(A)P(C)\<br>             P(ABC)=P(A)P(B)P(C)<br>             \end{array}<br>\right.<br>$$</p>
 <blockquote>
