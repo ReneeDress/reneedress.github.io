@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>Review | 概率论与数理统计 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Review | 概率论与数理统计</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 19, 2020&nbsp;&nbsp;15:32:33</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><strong>Created Date</strong>: 2020-05-19 15:32:33<br><strong>Last Upgraded Date</strong>: 2020-05-19 23:56:36</p>
+<br/>
+
+<h1 id="概率论的基本概念"><a href="#概率论的基本概念" class="headerlink" title="概率论的基本概念"></a>概率论的基本概念</h1><h2 id="随机试验、样本空间和随机事件"><a href="#随机试验、样本空间和随机事件" class="headerlink" title="随机试验、样本空间和随机事件"></a>随机试验、样本空间和随机事件</h2><h3 id="随机试验"><a href="#随机试验" class="headerlink" title="随机试验"></a>随机试验</h3><ul>
+<li>可以在相同条件下重复地进行；</li>
+<li>每次试验的可能结果不止一个，并且能事先明确试验的所有可能结果；</li>
+<li>进行一次试验之前不能确定哪一个结果会发生。</li>
+</ul>
+<h3 id="样本空间"><a href="#样本空间" class="headerlink" title="样本空间"></a>样本空间</h3><p>随机试验E的所有可能结果组成的集合，记为S。</p>
+<h3 id="样本点"><a href="#样本点" class="headerlink" title="样本点"></a>样本点</h3><p>样本空间的元素，即随机试验E的每个结果。</p>
+<h3 id="随机事件"><a href="#随机事件" class="headerlink" title="随机事件"></a>随机事件</h3><p>随机试验E的样本空间S的任一子集，简称事件。</p>
+<p>在每次试验中，当且仅当这一子集中的一个样本点出现时，称该<strong>事件发生</strong>。</p>
+<p>由一个样本点组成的单点集成为<strong>基本事件</strong>。</p>
+<p>样本空间S包含所有的样本点，它是S自身的子集，在每次试验中它总是发生的，S称为<strong>必然事件</strong>。</p>
+<p>空集∅是样板空间的子集，它在每次试验中都不发生，称为<strong>不可能事件</strong>。</p>
+<h3 id="事件关系与运算"><a href="#事件关系与运算" class="headerlink" title="事件关系与运算"></a>事件关系与运算</h3><ul>
+<li><p>事件A与B是互不相容的，或互斥的：<br>$$<br>A\cap B = \varnothing<br>$$</p>
+</li>
+<li><p>事件A、B互为逆事件，或对立事件：<br>$$<br>A\cup B = S<del>&amp;&amp; ~</del>A\cap B=\varnothing<br>$$</p>
+</li>
+<li><p>差事件可用对立事件表示：<br>$$<br>A-B=A\overline{B}\ \overline{A}=S-A<br>$$</p>
+</li>
+</ul>
+<h3 id="事件运算律"><a href="#事件运算律" class="headerlink" title="事件运算律"></a>事件运算律</h3><ul>
+<li><p>交换律：<br>$$<br>A\cup B=B\cup A<del>~</del>A\cap B=B\cap A<br>$$</p>
+</li>
+<li><p>结合律：<br>$$<br>A\cup(B\cup C)=(A\cup B)\cup C<br>\A\cap(B\cap C)=(A\cap B)\cap C<br>$$</p>
+</li>
+<li><p>分配率：<br>$$<br>A\cup(B\cap C)=(A\cup B)\cap(A\cup C)<br>\A\cap(B\cup C)=(A\cap B)\cup(A\cap C)<br>$$</p>
+</li>
+<li><p>德摩根律：<br>$$<br>\overline{A\cup B}=\overline{A}\cap \overline{B}<del>~</del>\overline{A\cap B}=\overline{A}\cup \overline{B}<br>$$</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>区分<u>互逆事件</u>和<u>互斥事件</u>：</strong><br>$$<br>A与B互斥\Leftrightarrow AB=\varnothing<br>\A与B互逆\Leftrightarrow AB=\varnothing<del>且</del>A\cup B=S<br>$$</p>
+</blockquote>
+<h2 id="频率、概率与等可能概形（古典概形）"><a href="#频率、概率与等可能概形（古典概形）" class="headerlink" title="频率、概率与等可能概形（古典概形）"></a>频率、概率与等可能概形（古典概形）</h2><h3 id="频率、频数"><a href="#频率、频数" class="headerlink" title="频率、频数"></a>频率、频数</h3><p>n次试验，A事件发生$n_A$次。</p>
+<p>$0\le f_n(A)\le1$。</p>
+<p>$f_n(S)=1$。</p>
+<p>若$A_1,A_2,\dots，A_k$是两两互不相容的事件，\则$f_n(A_1\cup A_2 \cup \dots \cup A_k)=f_n(A_1)+f_n(A_2)+\dots+f_n(A_k)$。</p>
+<p>频率的稳定性：当重复试验的次数n逐渐增大时，频率$f_n(A)$呈现出稳定性，逐渐稳定于某个常数。</p>
+<h3 id="概率的公理化定义（柯尔莫格洛夫【1993年】）"><a href="#概率的公理化定义（柯尔莫格洛夫【1993年】）" class="headerlink" title="概率的公理化定义（柯尔莫格洛夫【1993年】）"></a>概率的公理化定义（柯尔莫格洛夫【1993年】）</h3><p>设E是随机试验，S是它的样本空间。对于E的每个事件A赋予一个实数，记为$P(A)$，如果集合函数P(·)满足下列条件：</p>
+<ul>
+<li>非负性：对于每个事件A，有$P(A)\ge 0$；</li>
+<li>规范性：对于必然事件S，有$P(S)=1$；</li>
+<li>可列可加性：设$A_1,A_2,\dots$是两两互不相容的事件，即对于$A_iA_j=\varnothing$，$i\ne j$，$i,j=1,2,\dots$，有$P(A_1\cup A_2\cup \dots)=P(A_1)+P(A_2)+\dots$，则称P(A)为事件A概率。</li>
+</ul>
+<h3 id="概率的性质"><a href="#概率的性质" class="headerlink" title="概率的性质"></a>概率的性质</h3><ul>
+<li><p>$P(\varnothing)=0 \Rightarrow$有限可加性：设$A_1,A_2,\dots,A_n$是两两互不相容的事件，则有$P(A_1\cup A_2\cup \dots \cup A_n)=P(A_1)+P(A_2)+\dots+P(A_n)$。</p>
+</li>
+<li><p>设事件$A\subset B$，则$P(B-A)=P(B)-P(A)$，$P(B)\ge P(A)$。</p>
+</li>
+<li><p>对于任一事件A，$P(A)\le 1$，且$P(\overline{A})=1-P(A)$。</p>
+</li>
+<li><p>加法公式：$P(A\cup B)=P(A)+P(B)-P(AB)$，对$\forall $事件$A,B$$。</p>
+</li>
+<li><p>对$\forall n$个事件$A_1,A_2,\dots,A_n$，可归纳证明$P(A_1\cup A_2\cup \dots \cup A_n)$为$\sum_{i=1}P(A_i)-\sum_{1\le i &lt; j \le n}P(A_iA_j)+\dots + (-1)^{n-1}P(A_1A_2\dots A_n)$。</p>
+</li>
+</ul>
+<h3 id="等可能概型"><a href="#等可能概型" class="headerlink" title="等可能概型"></a>等可能概型</h3><p>$$<br>P(A)=\frac{A包含的基本事件数}{样本空间S中基本事件的总数}<br>$$</p>
+<h3 id="排列与组合公式推导的两条计数原理"><a href="#排列与组合公式推导的两条计数原理" class="headerlink" title="排列与组合公式推导的两条计数原理"></a>排列与组合公式推导的两条计数原理</h3><ul>
+<li>乘法原理</li>
+<li>加法原理</li>
+<li>排列公式</li>
+<li>组合公式</li>
+<li>重复排列</li>
+</ul>
+<blockquote>
+<p><strong>合适的样本空间</strong></p>
+<p><strong>事件的运算法则和概率的性质</strong></p>
+</blockquote>
+<h2 id="条件概率和独立性"><a href="#条件概率和独立性" class="headerlink" title="条件概率和独立性"></a>条件概率和独立性</h2><h3 id="条件概率"><a href="#条件概率" class="headerlink" title="条件概率"></a>条件概率</h3><p>$$<br>P(B|A)=\dfrac{P(AB)}{P(A)}<br>$$</p>
+<p>事件A（$P(A) &gt; 0$）发生的条件下，事件B的条件概率。</p>
+<h4 id="满足概率的公理化定义"><a href="#满足概率的公理化定义" class="headerlink" title="满足概率的公理化定义"></a>满足概率的公理化定义</h4><ul>
+<li>非负性：对于任一事件B，有$P(B|A)\ge 0$；</li>
+<li>规范性：对于必然事件S，有$P(S|A)=1$；</li>
+<li>可列可加性：设$B_1,B_2,\dots$是两两互不相容的事件，则有$P(\bigcup^\infty_{i=1} B_i|A)=\Sigma^\infty_{i=1}P(B_i|A)$。</li>
+</ul>
+<h3 id="条件概率的性质"><a href="#条件概率的性质" class="headerlink" title="条件概率的性质"></a>条件概率的性质</h3><p>设事件A的概率$P(A) &gt; 0$，则$P(\varnothing|A)=0$，以及</p>
+<ul>
+<li><p>有限可加性：对任意两两互不相容的事件$B_1,B_2,\dots , B_n$，有<br>$$<br>P[(B_1\cup B_2\cup \dots \cup B_n)|A]=P(B_1|A)+P(B_2|A)+\dots+P(B_n|A)。<br>$$</p>
+</li>
+<li><p>若$B\subset C$，则有$P[(C-B)|A]=P(C|A)-P(B|A)$。由条件概率的非负性，可知$P(C|A)\ge P(B|A)$。</p>
+</li>
+<li><p>对于任意的事件B，有$P(B|A)+P(\overline{B}|A)=1$。</p>
+</li>
+<li><p>加法公式：对于任意两个事件B和C，有<br>$$<br>P[(B\cup C)|A]=P(B|A)+P(C|A)-P(BC|A)。<br>$$</p>
+</li>
+<li><p>对$\forall n$个事件$B_1,B_2,\dots , B_n$，$P[(B_1\cup B_2\cup \dots \cup B_n)|A]$等于<br>$$<br>\sum_{i=1}^nP(B_i|A)-\sum_{1\le i &lt; j\le n}P(B_iB_j|A)+\sum_{1\le i&lt;j&lt;k\le n}P(B_iB_jB_k|A)+\dots+(-1)^{n-1}P(B_1B_2\dots B_n|A)。<br>$$</p>
+</li>
+</ul>
+<h3 id="乘法定理"><a href="#乘法定理" class="headerlink" title="乘法定理"></a>乘法定理</h3><ul>
+<li>设$P(A) &gt; 0$，则有$P(AB)=P(B|A)P(A)$。</li>
+<li>若$P(AB) &gt; 0$，则有$P(ABC)=P(C|AB)P(B|A)P(A)$。</li>
+</ul>
+<p>一般地，设n个事件$A_1,A_2,\dots ,A_n$满足P(A_1A_2\dots A_{n-1} &gt; 0)，则<br>$$<br>P(A_1A_2\dots A_n)=P(A_1)P(A_2|A_1)P(A_3|A_1A_2)\dots P(A_n|A_1A_2\dots A_{n-1})。<br>$$</p>
+<h3 id="样本空间的划分"><a href="#样本空间的划分" class="headerlink" title="样本空间的划分"></a>样本空间的划分</h3><h3 id="全概率公式"><a href="#全概率公式" class="headerlink" title="全概率公式"></a>全概率公式</h3><p>设试验E的样本空间为S，$B_1,B_2,\dots , B_n$为S的一个划分，且$P(B_i) &gt; 0(i = 1,2,\dots , n)$，则对任意事件A，有<br>$$<br>P(A)=P(A|B_1)P(B_1)+P(A|B_2)P(B_2)+\dots+P(A|B_n)P(B_n)。<br>$$</p>
+<h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><p>设试验E的样本空间为S，$B_1,B_2,\dots , B_n$为S的一个划分，且$P(B_i) &gt; 0(i = 1,2,\dots , n)$，若事件A的概率$P(A) &gt; 0$，则<br>$$<br>P(B_i|A)=\frac{P(A|B_i)P(B_i)}{\sum_{j=1}^nP(A|B_j)P(B_j)},i=1,2,\dots,n。<br>$$</p>
+<h3 id="两个事件相互独立"><a href="#两个事件相互独立" class="headerlink" title="两个事件相互独立"></a>两个事件相互独立</h3><p>$$<br>A和B相互独立\Leftrightarrow P(AB)=P(A)P(B)<br>$$</p>
+<p>两事件其中一个已发生，不影响另一个发生的概率。</p>
+<h3 id="事情独立性的两个定理"><a href="#事情独立性的两个定理" class="headerlink" title="事情独立性的两个定理"></a>事情独立性的两个定理</h3><ul>
+<li>设$A,B$是两事件，且$P(A) &gt; 0$，则<br>$$<br>A和B相互独立\Leftrightarrow P(B|A)=P(B)<br>$$</li>
+</ul>
+<ul>
+<li>若事件A与B相互独立，则A与$\overline{B}$，$\overline{A}$与B和$\overline{A}$与$\overline{B}$都相互成立。</li>
+</ul>
+<h3 id="任意n个事件相互独立（-n-ge-3-）"><a href="#任意n个事件相互独立（-n-ge-3-）" class="headerlink" title="任意n个事件相互独立（$n\ge 3$）"></a>任意n个事件相互独立（$n\ge 3$）</h3><p>事件A，B，C相互独立<br>$$<br>\Leftrightarrow \left{<br>             \begin{array}{<strong>lr</strong>}<br>             P(AB)=P(A)P(B)\<br>             P(BC)=P(B)P(C)\<br>             P(AC)=P(A)P(C)\<br>             P(ABC)=P(A)P(B)P(C)<br>             \end{array}<br>\right.<br>$$</p>
+<blockquote>
+<p>若事件$A_1,A_2,\dots ,A_n(n \ge 2)$相互独立，则其中任意$k(2\le k \le n)$个事件也是相互独立的，并且若将$A_1,A_2,\dots ,A_n$中任意多个事件换成他们的逆事件，所得的$n$个事件仍相互独立。</p>
+</blockquote>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Review/"># Review</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/03/23/19Spring/">19 Spring Semester</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
