@@ -344,15 +344,164 @@
 <h3 id="两个事件相互独立"><a href="#两个事件相互独立" class="headerlink" title="两个事件相互独立"></a>两个事件相互独立</h3><p>$$<br>A和B相互独立\Leftrightarrow P(AB)=P(A)P(B)<br>$$</p>
 <p>两事件其中一个已发生，不影响另一个发生的概率。</p>
 <h3 id="事情独立性的两个定理"><a href="#事情独立性的两个定理" class="headerlink" title="事情独立性的两个定理"></a>事情独立性的两个定理</h3><ul>
-<li>设$A,B$是两事件，且$P(A) &gt; 0$，则<br>$$<br>A和B相互独立\Leftrightarrow P(B|A)=P(B)<br>$$</li>
-</ul>
-<ul>
-<li>若事件$A$与$B$相互独立，则$A$与$\overline{B}$，$\overline{A}$与$B$和$\overline{A}$与$\overline{B}$都相互成立。</li>
+<li><p>设$A,B$是两事件，且$P(A) &gt; 0$，则<br>$$<br>A和B相互独立\Leftrightarrow P(B|A)=P(B)<br>$$</p>
+</li>
+<li><p>若事件$A$与$B$相互独立，则$A$与$\overline{B}$，$\overline{A}$与$B$和$\overline{A}$与$\overline{B}$都相互成立。</p>
+</li>
 </ul>
 <h3 id="任意n个事件相互独立（-n-ge-3-）"><a href="#任意n个事件相互独立（-n-ge-3-）" class="headerlink" title="任意n个事件相互独立（$n\ge 3$）"></a>任意n个事件相互独立（$n\ge 3$）</h3><p>事件A，B，C相互独立<br>$$<br>\Leftrightarrow \left{<br>             \begin{array}{<strong>lr</strong>}<br>             P(AB)=P(A)P(B)\<br>             P(BC)=P(B)P(C)\<br>             P(AC)=P(A)P(C)\<br>             P(ABC)=P(A)P(B)P(C)<br>             \end{array}<br>\right.<br>$$</p>
 <blockquote>
 <p>若事件$A_1,A_2,\dots ,A_n(n \ge 2)$相互独立，则其中任意$k(2\le k \le n)$个事件也是相互独立的，并且若将$A_1,A_2,\dots ,A_n$中任意多个事件换成他们的逆事件，所得的$n$个事件仍相互独立。</p>
 </blockquote>
+<h1 id="随机变量及其分布"><a href="#随机变量及其分布" class="headerlink" title="随机变量及其分布"></a>随机变量及其分布</h1><h2 id="离散型随机变量及其分布律"><a href="#离散型随机变量及其分布律" class="headerlink" title="离散型随机变量及其分布律"></a>离散型随机变量及其分布律</h2><h3 id="随机变量"><a href="#随机变量" class="headerlink" title="随机变量"></a>随机变量</h3><p>设随机试验E的样本空间为S，X是定义在样本空间S上的实值单值函数。</p>
+<p>设X是一随机变量，L是一个实数集合，将X在L上取值写成${x \in L}$，表示事件$B={e \in S | X(e) \in L}$<br>$$<br>P{X\in L}=P(B)=P{e|X(e)\in L}<br>$$</p>
+<h3 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h3><p>全部可能取到的值是有限个或者可列无限多个的随机变量。</p>
+<blockquote>
+<p>随机变量的取值随随机试验的结果而定，在试验之前不能预知它取什么值，且它的取值有一定的概率。</p>
+<p>随机变量的引入，使我们能用随机变量来描述各种随机现象，并能利用数学分析的方法对随机试验的结果进行深入研究和讨论。</p>
+</blockquote>
+<h3 id="离散型随机变量X的分布律"><a href="#离散型随机变量X的分布律" class="headerlink" title="离散型随机变量X的分布律"></a>离散型随机变量X的分布律</h3><h3 id="0-1-分布——两点分布"><a href="#0-1-分布——两点分布" class="headerlink" title="(0-1)分布——两点分布"></a>(0-1)分布——两点分布</h3><p>$$<br>P{X=k}=p^k(1-p)^{1-k}, k=0,1,(0&lt;p&lt;1)<br>$$</p>
+<h3 id="伯努利试验"><a href="#伯努利试验" class="headerlink" title="伯努利试验"></a>伯努利试验</h3><p>设随机试验$E$只有两个可能结果：$A$及$\bar{A}$，则称$E$为伯努利试验。将$E$独立重复地进行n次，则称这一串重复的独立试验位n重伯努利试验。重复指的是每次试验中$P(A)=p$保持不变；独立指的是各次试验的结果互不影响，若以$C_i$记第i次试验的结果，则$P(C_1C_2\dots C_n)=P(C_1)P(C_2)\dots P(C_n)$。</p>
+<h3 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h3><p>$$<br>P{X=k}=C^k_np^kq^{n-k}, k=0,1,2,\dots ,n\<br>X\sim b(n,p)<br>$$</p>
+<h3 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h3><p>$$<br>P{X=k}=\frac{\lambda^ke^{-\lambda}}{k!}, k=0,1,2,\dots ,n, (\lambda&gt;0)\<br>X\sim \pi(\lambda)<br>$$</p>
+<h3 id="泊松定理"><a href="#泊松定理" class="headerlink" title="泊松定理"></a>泊松定理</h3><p>设$\lambda&gt;0$是一个常数，n是任意正整数，设$np_n=\lambda$，则对于任一固定的非负整数k，有<br>$$<br>{lim}_{n\to \infty}C^k_np^k_n(1-p_n)^{n-k}=\frac{\lambda^ke^{-\lambda}}{k!}<br>$$<br>泊松定理表明当n很大，p很小$(np=\lambda)$时有以下近似式<br>$$<br>C^k_np^k_n(1-p_n)^{n-k}\approx \frac{\lambda^ke^{-\lambda}}{k!}\(其中\lambda=np)<br>$$<br>以n,p为参数的二项分布的概率值可由参数为$\lambda=np$的泊松分布的概率值近似。</p>
+<h3 id="负二项分布——出现r次成功为止"><a href="#负二项分布——出现r次成功为止" class="headerlink" title="负二项分布——出现r次成功为止"></a>负二项分布——出现r次成功为止</h3><p>$$<br>P{Y=k}=C^{r-1}_{k-1}p^r(1-p)^{k-r}, k=r,r+1,\dots<br>$$</p>
+<h3 id="几何分布——出现1次成功为止"><a href="#几何分布——出现1次成功为止" class="headerlink" title="几何分布——出现1次成功为止"></a>几何分布——出现1次成功为止</h3><p>$$<br>P{X=k}=p(1-p)^{k-1}, k=0,1,2,\dots<br>$$</p>
+<h3 id="超几何分布——总量N特殊D抽取n"><a href="#超几何分布——总量N特殊D抽取n" class="headerlink" title="超几何分布——总量N特殊D抽取n"></a>超几何分布——总量N特殊D抽取n</h3><p>$$<br>P{Y=k}=\frac{C^k_DC^{n-k}_{N-D}}{C^n_N}<br>$$</p>
+<h2 id="随机变量的分布函数"><a href="#随机变量的分布函数" class="headerlink" title="随机变量的分布函数"></a>随机变量的分布函数</h2><h3 id="分布函数"><a href="#分布函数" class="headerlink" title="分布函数"></a>分布函数</h3><ul>
+<li>不减函数</li>
+<li>$0\le F(x)\le 1$，且$F(-\infty)={lim}_x\to -\infty F(x)=0, F(\infty)={lim}_x\to \infty F(x)=1$</li>
+<li>右连续的 $F(x+0)=F(x)$</li>
+</ul>
+<h3 id="离散型随机变量的分布函数"><a href="#离散型随机变量的分布函数" class="headerlink" title="离散型随机变量的分布函数"></a>离散型随机变量的分布函数</h3><p>$$<br>F(x)=P{X\le x}=\sum_{x_k \le x}P{X=x_k}<br>$$</p>
+<h2 id="连续型随机变量及其概率密度"><a href="#连续型随机变量及其概率密度" class="headerlink" title="连续型随机变量及其概率密度"></a>连续型随机变量及其概率密度</h2><p>$$<br>F(x)=\int^x_{-\infty}f(t)dt<br>$$</p>
+<ul>
+<li>X的分布函数F(x)是连续函数</li>
+<li>对于任一实数值a，X取值为a的概率为零，即$P{X=a}=0$</li>
+<li>计算连续型随机变量落在某一区间的概率时，可不区分该区间是开区间或闭区间或半闭区间</li>
+<li>A是不可能事件$\Rightarrow P(A)=0$</li>
+</ul>
+<h3 id="概率密度函数"><a href="#概率密度函数" class="headerlink" title="概率密度函数"></a>概率密度函数</h3><ul>
+<li>$f(x)\le 0$</li>
+<li>$\int^{\infty}_{-\infty}f(x)dx=1$</li>
+<li>$P{x_1 &lt; X\le x_2}=F(x_2)-F(x_1)=\int^{x_2}_{x_1}f(x)dx$</li>
+<li>若f(x)在点x处连续，则有$F^’(x)=f(x)$</li>
+</ul>
+<h3 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a>均匀分布</h3><p>![image-20200602220909149](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602220909149.png)</p>
+<p>![image-20200602220956668](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602220956668.png)</p>
+<h3 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h3><p>![image-20200602221143504](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602221143504.png)</p>
+<p>![image-20200602221158976](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602221158976.png)</p>
+<h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><p>![image-20200602221235743](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602221235743.png)</p>
+<p>![image-20200602221333466](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602221333466.png)</p>
+<p>![image-20200602221351494](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602221351494.png)</p>
+<p>![image-20200602221528227](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602221528227.png)</p>
+<h2 id="随机变量的函数的分布"><a href="#随机变量的函数的分布" class="headerlink" title="随机变量的函数的分布"></a>随机变量的函数的分布</h2><p>![image-20200602221714699](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602221714699.png)</p>
+<p>![image-20200602221945002](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602221945002.png)</p>
+<p>![image-20200602222011184](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602222011184.png)</p>
+<p>![image-20200602222100413](/Users/reneelin/Library/Application Support/typora-user-images/image-20200602222100413.png)</p>
+<h1 id="多维随机变量及其分布"><a href="#多维随机变量及其分布" class="headerlink" title="多维随机变量及其分布"></a>多维随机变量及其分布</h1><h2 id="二维随机变量"><a href="#二维随机变量" class="headerlink" title="二维随机变量"></a>二维随机变量</h2><p>![image-20200603002626806](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603002626806.png)</p>
+<p>![image-20200603002652847](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603002652847.png)</p>
+<p>![image-20200603002708905](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603002708905.png)</p>
+<p>![image-20200603002722897](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603002722897.png)</p>
+<p>![image-20200603002739928](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603002739928.png)</p>
+<p>![image-20200603002752851](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603002752851.png)</p>
+<h2 id="边缘分布、条件分布"><a href="#边缘分布、条件分布" class="headerlink" title="边缘分布、条件分布"></a>边缘分布、条件分布</h2><p>![image-20200603002838394](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603002838394.png)</p>
+<p>![image-20200603002852021](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603002852021.png)</p>
+<p>![image-20200603002916045](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603002916045.png)</p>
+<p>![image-20200603002928374](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603002928374.png)</p>
+<p>![image-20200603002940979](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603002940979.png)![image-20200603003004062](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003004062.png)</p>
+<h2 id="相互独立的随机变量"><a href="#相互独立的随机变量" class="headerlink" title="相互独立的随机变量"></a>相互独立的随机变量</h2><p>![image-20200603003043159](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003043159.png)</p>
+<p>![image-20200603003058084](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003058084.png)</p>
+<h2 id="两个随机变量的函数的分布"><a href="#两个随机变量的函数的分布" class="headerlink" title="两个随机变量的函数的分布"></a>两个随机变量的函数的分布</h2><p>![image-20200603003114033](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003114033.png)</p>
+<p>![image-20200603003125404](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003125404.png)</p>
+<p>![image-20200603003136701](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003136701.png)</p>
+<p>![image-20200603003147015](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003147015.png)</p>
+<p>![image-20200603003200860](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003200860.png)</p>
+<p>![image-20200603003220659](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003220659.png)</p>
+<p>![image-20200603003235160](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003235160.png)</p>
+<p>![image-20200603003249522](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003249522.png)</p>
+<h1 id="随机变量的数字特征"><a href="#随机变量的数字特征" class="headerlink" title="随机变量的数字特征"></a>随机变量的数字特征</h1><h2 id="数学期望"><a href="#数学期望" class="headerlink" title="数学期望"></a>数学期望</h2><p>![image-20200603003356689](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003356689.png)</p>
+<p>![image-20200603003412502](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003412502.png)</p>
+<p>![image-20200603003425733](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003425733.png)</p>
+<p>![image-20200603003443070](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003443070.png)</p>
+<p>![image-20200603003504412](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603003504412.png)</p>
+<h2 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h2><p>![image-20200603011111731](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603011111731.png)</p>
+<p>![image-20200603011126936](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603011126936.png)</p>
+<p>![image-20200603011217090](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603011217090.png)</p>
+<p>![image-20200603011237802](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603011237802.png)</p>
+<p>![image-20200603011249286](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603011249286.png)</p>
+<h2 id="协方差和相关系数"><a href="#协方差和相关系数" class="headerlink" title="协方差和相关系数"></a>协方差和相关系数</h2><p>![image-20200603011301659](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603011301659.png)</p>
+<p>![image-20200603011347938](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603011347938.png)</p>
+<p>![image-20200603011400452](/Users/reneelin/Library/Application Support/typora-user-images/image-20200603011400452.png)</p>
+<h1 id="大数定理和中心极限定理"><a href="#大数定理和中心极限定理" class="headerlink" title="大数定理和中心极限定理"></a>大数定理和中心极限定理</h1><h2 id="大数定理"><a href="#大数定理" class="headerlink" title="大数定理"></a>大数定理</h2><p>![image-20200604004202619](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604004202619.png)</p>
+<p>![image-20200604004215339](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604004215339.png)</p>
+<p>![image-20200604004227984](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604004227984.png)</p>
+<h2 id="中心极限定理"><a href="#中心极限定理" class="headerlink" title="中心极限定理"></a>中心极限定理</h2><p>![image-20200604004251180](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604004251180.png)</p>
+<p>![image-20200604004304441](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604004304441.png)</p>
+<p>![image-20200604004317185](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604004317185.png)</p>
+<p>![image-20200604004331471](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604004331471.png)</p>
+<p>![image-20200604004345076](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604004345076.png)</p>
+<h1 id="样本及抽样分布"><a href="#样本及抽样分布" class="headerlink" title="样本及抽样分布"></a>样本及抽样分布</h1><h2 id="随机样本"><a href="#随机样本" class="headerlink" title="随机样本"></a>随机样本</h2><h2 id="统计量"><a href="#统计量" class="headerlink" title="统计量"></a>统计量</h2><p>![image-20200604011408928](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011408928.png)</p>
+<p>![image-20200604011420564](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011420564.png)</p>
+<p>![image-20200604011441430](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011441430.png)</p>
+<p>![image-20200604011526289](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011526289.png)</p>
+<p>![image-20200604011538320](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011538320.png)</p>
+<p>![image-20200604011549449](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011549449.png)</p>
+<h2 id="抽样分布"><a href="#抽样分布" class="headerlink" title="抽样分布"></a>抽样分布</h2><p>![image-20200604011608017](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011608017.png)</p>
+<p>![image-20200604011619176](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011619176.png)</p>
+<p>![image-20200604011646472](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011646472.png)</p>
+<p>![image-20200604011658693](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011658693.png)</p>
+<p>![image-20200604011714089](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011714089.png)</p>
+<p>![image-20200604011742034](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011742034.png)</p>
+<p>![image-20200604011753218](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011753218.png)</p>
+<p>![image-20200604011806335](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011806335.png)</p>
+<p>![image-20200604011822200](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011822200.png)</p>
+<p>![image-20200604011835463](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011835463.png)</p>
+<p>![image-20200604011851392](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011851392.png)</p>
+<p>![image-20200604011905047](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604011905047.png)</p>
+<h1 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h1><h2 id="点估计"><a href="#点估计" class="headerlink" title="点估计"></a>点估计</h2><p>![image-20200604012046137](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012046137.png)</p>
+<p>![image-20200604012055905](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012055905.png)</p>
+<p>![image-20200604012108019](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012108019.png)</p>
+<p>![image-20200604012121034](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012121034.png)</p>
+<p>![image-20200604012139633](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012139633.png)</p>
+<p>![image-20200604012156389](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012156389.png)</p>
+<p>![image-20200604012208127](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012208127.png)</p>
+<h2 id="估计量的评选标准"><a href="#估计量的评选标准" class="headerlink" title="估计量的评选标准"></a>估计量的评选标准</h2><p>![image-20200604012220772](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012220772.png)</p>
+<p>![image-20200604012232143](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012232143.png)</p>
+<p>![image-20200604012244302](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012244302.png)</p>
+<h2 id="区间估计"><a href="#区间估计" class="headerlink" title="区间估计"></a>区间估计</h2><p>![image-20200604012301481](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012301481.png)</p>
+<p>![image-20200604012314475](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012314475.png)</p>
+<p>![image-20200604012333390](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012333390.png)</p>
+<p>![image-20200604012343695](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012343695.png)</p>
+<h2 id="正态总体的均值和方差的区间估计"><a href="#正态总体的均值和方差的区间估计" class="headerlink" title="正态总体的均值和方差的区间估计"></a>正态总体的均值和方差的区间估计</h2><p>![image-20200604012357058](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012357058.png)</p>
+<p>![image-20200604012820183](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012820183.png)</p>
+<p>![image-20200604012833521](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012833521.png)</p>
+<h2 id="单侧置信区间"><a href="#单侧置信区间" class="headerlink" title="单侧置信区间"></a>单侧置信区间</h2><p>![image-20200604012852243](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012852243.png)</p>
+<p>![image-20200604012910708](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604012910708.png)</p>
+<h1 id="假设检验"><a href="#假设检验" class="headerlink" title="假设检验"></a>假设检验</h1><h2 id="假设检验-1"><a href="#假设检验-1" class="headerlink" title="假设检验"></a>假设检验</h2><p>![image-20200604013040253](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013040253.png)</p>
+<p>![image-20200604013053053](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013053053.png)</p>
+<p>![image-20200604013108533](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013108533.png)</p>
+<p>![image-20200604013122046](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013122046.png)</p>
+<p>![image-20200604013135125](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013135125.png)</p>
+<p>![image-20200604013146512](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013146512.png)</p>
+<p>![image-20200604013203608](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013203608.png)</p>
+<p>![image-20200604013217335](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013217335.png)</p>
+<p>![image-20200604013237668](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013237668.png)</p>
+<h2 id="正态总体均值的假设检验"><a href="#正态总体均值的假设检验" class="headerlink" title="正态总体均值的假设检验"></a>正态总体均值的假设检验</h2><p>![image-20200604013253348](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013253348.png)</p>
+<p>![image-20200604013304212](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013304212.png)</p>
+<p>![image-20200604013314966](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013314966.png)</p>
+<p>![image-20200604013324875](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013324875.png)</p>
+<h2 id="正态总体方差的假设检验"><a href="#正态总体方差的假设检验" class="headerlink" title="正态总体方差的假设检验"></a>正态总体方差的假设检验</h2><p>![image-20200604013338031](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013338031.png)</p>
+<p>![image-20200604013350266](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013350266.png)</p>
+<p>![image-20200604013405163](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013405163.png)</p>
+<p>![image-20200604013417135](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013417135.png)</p>
+<p>![image-20200604013428289](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013428289.png)</p>
+<h2 id="置信区间与假设检验的关系"><a href="#置信区间与假设检验的关系" class="headerlink" title="置信区间与假设检验的关系"></a>置信区间与假设检验的关系</h2><p>![image-20200604013443202](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013443202.png)</p>
+<p>![image-20200604013453699](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013453699.png)</p>
+<h2 id="分布拟合试验"><a href="#分布拟合试验" class="headerlink" title="分布拟合试验"></a>分布拟合试验</h2><p>![image-20200604013518871](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013518871.png)</p>
+<p>![image-20200604013529077](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013529077.png)</p>
+<p>![image-20200604013543331](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013543331.png)</p>
+<p>![image-20200604013556200](/Users/reneelin/Library/Application Support/typora-user-images/image-20200604013556200.png)</p>
 
         </div>
 
@@ -398,6 +547,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/07/20Fall/">20 Fall Semester</a>
             
             
             <a class="next" rel="next" href="/2020/03/23/19Spring/">19 Spring Semester</a>
