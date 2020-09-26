@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>StudyNote | Python实现Mac OS X下无线AP操作 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">StudyNote | Python实现Mac OS X下无线AP操作</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 25, 2020&nbsp;&nbsp;13:46:12</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9CComputerNetwork/">计算机网络ComputerNetwork</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><strong>Created Date</strong>: 2020-09-25 13:46:12<br><strong>Last Upgraded Date</strong>: 2020-09-25 13:46:12</p>
+<br/>
+
+
+
+<h1 id="操作环境"><a href="#操作环境" class="headerlink" title="操作环境"></a>操作环境</h1><blockquote>
+<p>macOS Catalina Version 10.15.5</p>
+<p>Python 3.7</p>
+<p>Pycharm Professional  2020.1.3</p>
+</blockquote>
+<h1 id="networksetup命令"><a href="#networksetup命令" class="headerlink" title="networksetup命令"></a>networksetup命令</h1><p>networksetup命令可以在Terminal操作电脑的网络连接状态，其中涉及到无线网络的主要有以下几种：</p>
+<p>显示所有网络硬件端口，可获取网络设备名称</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">networksetup -listallhardwareports</span><br><span class="line">-------------------------------------------------------</span><br><span class="line">Hardware Port: Wi-Fi</span><br><span class="line">Device: en0</span><br><span class="line">Ethernet Address: 88:e9:fe:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Bluetooth PAN</span><br><span class="line">Device: en6</span><br><span class="line">Ethernet Address: 88:e9:fe:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Thunderbolt 1</span><br><span class="line">Device: en1</span><br><span class="line">Ethernet Address: 82:87:0f:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Thunderbolt 2</span><br><span class="line">Device: en2</span><br><span class="line">Ethernet Address: 82:87:0f:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Thunderbolt 3</span><br><span class="line">Device: en3</span><br><span class="line">Ethernet Address: 82:87:0f:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Thunderbolt 4</span><br><span class="line">Device: en4</span><br><span class="line">Ethernet Address: 82:87:0f:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Thunderbolt Bridge</span><br><span class="line">Device: bridge0</span><br><span class="line">Ethernet Address: 82:87:0f:手:动:马赛克</span><br><span class="line"></span><br><span class="line">VLAN Configurations</span><br><span class="line">===================</span><br></pre></td></tr></table></figure>
+
+<p>启用或禁用Wi-Fi</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -setairportpower en0 on (or off)</span><br></pre></td></tr></table></figure>
+
+<p>使用Terminal加入一个Wi-Fi网络</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -setairportnetwork en0 WIFI_SSID_I_WANT_TO_JOIN WIFI_PASSWORD</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Terminal-Airport模块"><a href="#Terminal-Airport模块" class="headerlink" title="Terminal Airport模块"></a>Terminal Airport模块</h1><h2 id="为Airport模块建立软链接"><a href="#为Airport模块建立软链接" class="headerlink" title="为Airport模块建立软链接"></a>为Airport模块建立软链接</h2><p>Terminal输入以下命令 建立软链接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport /usr/local/bin/airport</span><br></pre></td></tr></table></figure>
+
+<p>后续在Terminal直接键入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airport</span><br></pre></td></tr></table></figure>
+
+<p>即可使用Airport模块</p>
+<h2 id="Airport模块常用参数"><a href="#Airport模块常用参数" class="headerlink" title="Airport模块常用参数"></a>Airport模块常用参数</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">LEGACY COMMANDS:</span><br><span class="line">Supported arguments:</span><br><span class="line"> -c[&lt;arg&gt;] --channel=[&lt;arg&gt;]    Set arbitrary channel on the card</span><br><span class="line"> -z        --disassociate       Disassociate from any network</span><br><span class="line"> -I        --getinfo            Print current wireless status, e.g. signal info, BSSID, port type etc.</span><br><span class="line"> -s[&lt;arg&gt;] --scan=[&lt;arg&gt;]       Perform a wireless broadcast scan.</span><br><span class="line">				   Will perform a directed scan if the optional &lt;arg&gt; is provided</span><br><span class="line"> -x        --xml                Print info as XML</span><br><span class="line"> -P        --psk                Create PSK from specified pass phrase and SSID.</span><br><span class="line">				   The following additional arguments must be specified with this command:</span><br><span class="line">                                  --password=&lt;arg&gt;  Specify a WPA password</span><br><span class="line">                                  --ssid=&lt;arg&gt;      Specify SSID when creating a PSK</span><br><span class="line"> -h        --help               Show this help</span><br></pre></td></tr></table></figure>
+
+<p>Terminal键入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aiport scan</span><br></pre></td></tr></table></figure>
+
+<p>可获取如下输出</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">                      SSID BSSID             RSSI CHANNEL HT CC SECURITY (auth/unicast/group)</span><br><span class="line">                   HONGSHI b0:95:8e:8a:60:ab -75  11,-1   Y  CN WPA(PSK/AES/AES) WPA2(PSK/AES/AES) </span><br><span class="line">                     NSTOR dc:fe:18:25:54:2b -87  157     Y  -- WPA(PSK/TKIP,AES/TKIP) WPA2(PSK/TKIP,AES/TKIP) </span><br><span class="line">         Ulstein-Secondary d0:76:e7:c6:d5:cd -78  153     Y  CN WPA(PSK/AES/AES) WPA2(PSK/AES/AES) </span><br><span class="line">           5G-Greenland_LH 64:05:e9:1e:b7:7a -88  153     Y  CN WPA2(PSK/AES/AES) </span><br><span class="line">绿地滨江Club Free WiFi 64:05:e9:1e:b7:79 -89  153     Y  CN NONE</span><br><span class="line">              Greenland_LH 64:05:e9:1e:b7:78 -88  153     Y  CN WPA(PSK/AES,TKIP/TKIP) WPA2(PSK/AES,TKIP/TKIP) </span><br><span class="line">                      HHDS 8c:fd:f0:60:97:a5 -85  108,+1  Y  US WPA2(PSK/AES/AES) </span><br><span class="line">                    DaHua1 9c:b7:93:ef:60:90 -88  100     Y  DB WPA2(PSK/AES/AES) </span><br><span class="line">       DIRECT-HMKIRKDUmsLi a2:af:bd:e8:72:f4 -67  11      Y  -- WPA2(PSK/AES/AES) </span><br><span class="line">           DIRECT-27666458 fa:d0:27:66:e4:58 -56  7       Y  -- WPA2(PSK/AES/AES) </span><br><span class="line">                   KASAKII 74:05:a5:8f:db:f8 -50  7,-1    Y  -- WPA(PSK/AES,TKIP/TKIP) WPA2(PSK/AES,TKIP/TKIP) </span><br><span class="line">             ChinaNet-qnpj 02:0e:5e:4c:21:2a -74  1       Y  CN WPA2(PSK/TKIP,AES/TKIP) </span><br><span class="line">         Ulstein-Secondary d0:76:e7:c6:d5:cb -62  1,+1    Y  CN WPA(PSK/AES/AES) WPA2(PSK/AES/AES) </span><br><span class="line">                 KASAKII5G 74:05:a5:8f:db:fd -55  36      Y  -- WPA(PSK/AES,TKIP/TKIP) WPA2(PSK/AES,TKIP/TKIP) </span><br><span class="line">                    H3C_5G 4c:e9:e4:b8:6d:dd -72  36      Y  -- WPA(PSK/AES/AES) WPA2(PSK/AES/AES)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="无线AP常用术语详解"><a href="#无线AP常用术语详解" class="headerlink" title="无线AP常用术语详解"></a>无线AP常用术语详解</h1><h2 id="无线AP-无线访问接入点-Wireless-Access-Point"><a href="#无线AP-无线访问接入点-Wireless-Access-Point" class="headerlink" title="无线AP - 无线访问接入点 - Wireless Access Point"></a>无线AP - 无线访问接入点 - Wireless Access Point</h2><p>无线AP是移动计算机用户进入有线网络的接入点，主要用于宽带家庭、大楼内部以及园区内部，可以覆盖几十米至上百米。无线AP（又称会话点或存取桥接器）是一个包含很广的名称，它不仅包含单纯性无线接入点（无线AP），同样也是无线路由器（含无线网关、无线网桥）等类设备的统称。</p>
+<h3 id="单纯型AP-一般指无线AP"><a href="#单纯型AP-一般指无线AP" class="headerlink" title="单纯型AP - 一般指无线AP"></a>单纯型AP - 一般指无线AP</h3><p>缺少路由功能，相当于无线交换机；</p>
+<p>仅有无线信号发射功能，将双绞线传来的电信号转换为无线电讯号；</p>
+<p>功率影响网络覆盖程度。</p>
+<h3 id="扩展型AP-一般指无线路由器"><a href="#扩展型AP-一般指无线路由器" class="headerlink" title="扩展型AP - 一般指无线路由器"></a>扩展型AP - 一般指无线路由器</h3><p>带有无线覆盖功能的路由器；</p>
+<p>实现家庭无线网络中的Internet连接共享；</p>
+<p>实现ADSL和小区宽带的无线共享接入；</p>
+<p>短距离可用。</p>
+<h2 id="802-11x"><a href="#802-11x" class="headerlink" title="802.11x"></a>802.11x</h2><h3 id="2-4GHz-802-11b-g-n-ax"><a href="#2-4GHz-802-11b-g-n-ax" class="headerlink" title="2.4GHz - 802.11b/g/n/ax"></a>2.4GHz - 802.11b/g/n/ax</h3><p><img src="/Users/reneelin/Desktop/Programmer/Markdown/_posts/pics/799px-2.4_GHz_Wi-Fi_channels_(802.11b,g_WLAN).svg.png" alt="Graphical representation of overlapping 20 MHz channels within the 2.4 GHz band"></p>
+<p><img src="/Users/reneelin/Desktop/Programmer/Markdown/_posts/pics/425px-NonOverlappingChannels2.4GHzWLAN-en.svg.png" alt="**Most countries** Graphical representation of Wireless LAN channels in 2.4 GHz band. Note &quot;channel 3&quot; in the 40 MHz diagram above is often labelled with the 20 MHz channel numbers &quot;1+5&quot; or &quot;1&quot; with &quot;+ Upper&quot; or &quot;5&quot; with &quot;+ Lower&quot; in router interfaces, and &quot;11&quot; as &quot;9+13&quot; or &quot;9&quot; with &quot;+ Upper&quot; or &quot;13&quot; with &quot;+ Lower&quot;"></p>
+<h3 id="5-GHz-or-5-9-GHz-802-11a-h-j-n-ac-ax"><a href="#5-GHz-or-5-9-GHz-802-11a-h-j-n-ac-ax" class="headerlink" title="5 GHz or 5.9 GHz - 802.11a/h/j/n/ac/ax"></a>5 GHz or 5.9 GHz - 802.11a/h/j/n/ac/ax</h3><p>为满足移动宽带通信的发展需求，根据《中华人民共和国无线电频率划分规定》及我国频谱使用情况，参照国际电信联盟《无线电规则》，经研究，现规划5150-5350兆赫兹（MHz）频段用于无线接入系统。</p>
+<p>工作频率范围：5150-5350MHz； 最大等效全向辐射功率（EIRP）:200mW；最大等效全向功率谱密度:10dBm/MHz……</p>
+<p>为与无线电测定等其他业务共存，工作于 5250-5350MHz频段的无线接入设备应采用发射功率控制（TPC）及动态频率选择（DFS）干扰抑制技术。TPC范围不小于6dB；如无TPC，则发射功率、等效全向辐射功率和最大功率谱密度均应降低3dB。</p>
+<p>上述频段的无线接入系统仅限室内使用，且距离同频段的卫星无线电测定（空对地）业务和卫星固定（空对地）业务的地球站大于3km。</p>
+<p>无限制信道：36（5180，5170-5190）、40（5200，5190-5210）、44（5220，5210-5230）、48（5240，4230-5250）；DFC/TPC信道：52（5260，5250-5270）、56（5280，5270-5290）、60（5300，5290-5310）、64（5320，5310-5330）。</p>
+<h2 id="SSID-Service-Set-IDentifier"><a href="#SSID-Service-Set-IDentifier" class="headerlink" title="SSID - Service Set IDentifier"></a>SSID - Service Set IDentifier</h2><p>无线网络名称。</p>
+<p>SSID = name of Network</p>
+<h3 id="An-SSID-is-the-Name-of-a-Network"><a href="#An-SSID-is-the-Name-of-a-Network" class="headerlink" title="An SSID is the Name of a Network"></a>An SSID is the Name of a Network</h3><p>Because multiple WLANs can coexist in one airspace, each WLAN needs a unique name—this name is the service set ID (SSID) of the network. Your wireless device can see the SSIDs for all available networks—therefore, when you click a wireless icon, the SSIDs recognized by device are listed. For example, suppose your wireless list consists of three SSIDs named Student, Faculty, and Voice. This means that an administrator has created three WLAN Service profiles and, as part of each WLAN service profile, provided the SSID name Student, Faculty, or Voice. </p>
+<p>As a WLAN user, you are concerned only with the SSIDs. You select one from the list on your laptop or other device, provide your username and a password, and use the SSID. You might not have access to all SSIDs—the authentication and access privileges are usually different for different WLANs and their associated SSIDs.</p>
+<h2 id="BSSID-Basic-Service-Set-IDentifier"><a href="#BSSID-Basic-Service-Set-IDentifier" class="headerlink" title="BSSID - Basic Service Set IDentifier"></a>BSSID - Basic Service Set IDentifier</h2><p>如果在一个基础架构网络中，该BSSID的默认是对应的网卡的MAC地址，如果增加出来的虚拟BSSID就是在其对应MAC地址上进行增加。如果在一个IBSS网络（也就是Ad-hoc）模式，BSSID是一个随机值，与本地MAC地址无关。</p>
+<p>BSSID = AP MAC Address</p>
+<h3 id="BSSIDs-Identify-Access-Points-and-Their-Clients"><a href="#BSSIDs-Identify-Access-Points-and-Their-Clients" class="headerlink" title="BSSIDs Identify Access Points and Their Clients"></a>BSSIDs Identify Access Points and Their Clients</h3><p>Packets bound for devices within the WLAN need to go to the correct destination. The SSID keeps the packets within the correct WLAN, even when overlapping WLANs are present. However, there are usually multiple access points within each WLAN, and there has to be a way to identify those access points and their associated clients. This identifier is called a basic service set identifier (BSSID) and is included in all wireless packets.</p>
+<p>As a user, you are usually unaware of which basic service set (BSS) you currently belong to. When you physically move your laptop from one room to another, the BSS you use can change because you moved from the area covered by one access point to the area covered by another access point, but this does not affect the connectivity of your laptop.</p>
+<p>As an administrator, you are interested in the activity within each BSS. This tells you what areas of the network might be overloaded, and it helps you locate a particular client. By convention, an access point’s MAC address is used as the ID of a BSS (BSSID). Therefore, if you know the MAC address, you know the BSSID—and, because all packets contain the originator’s BSSID, you can trace a packet. This works fine for an access point with one radio and one WLAN configured.</p>
+<p>Most often, there are different BSSIDs on an access point for each WLAN configured on a radio. If you have an access point with 2 radios and 32 WLANs configured on each, you would have 64 BSSIDs plus the base access point BSSID. To accommodate the multiple BSSIDs, each access point is assigned a unique block of 64 MAC addresses. Each radio has 32 MAC addresses and supports up to 32 service set identifiers (SSIDs), with one MAC address assigned to each SSID as a basic service set identification (BSSID). All MAC addresses for an access point are assigned based on the base MAC address of the access point.</p>
+<blockquote>
+<p><strong>NOTE</strong> </p>
+<p>The access point MAC address block is listed on a label on the back of the access point.</p>
+<p>To view a list of SSIDs for a network, look at the list of WLAN Service Profiles in Network Director.</p>
+</blockquote>
+<h4 id="Ad-Hoc-Networks-Do-Not-Have-a-MAC-Address"><a href="#Ad-Hoc-Networks-Do-Not-Have-a-MAC-Address" class="headerlink" title="Ad-Hoc Networks Do Not Have a MAC Address"></a>Ad-Hoc Networks Do Not Have a MAC Address</h4><p>Every BSS needs a BSSID, and using the access point’s MAC address works fine most of the time. However, an ad-hoc network, a network that forwards traffic from node to node, has no access point. When a BSS does not have a physical access point, in an ad-hoc network for example, the network generates a 48-bit string of numbers that looks and functions just like a MAC address, and that BSSID goes in every packet.</p>
+<h2 id="ESSID-Extended-Service-Set-IDentifier"><a href="#ESSID-Extended-Service-Set-IDentifier" class="headerlink" title="ESSID - Extended Service Set IDentifier"></a>ESSID - Extended Service Set IDentifier</h2><p>ESSID是在漫游的时候才会出现。在无线基本架构中，存在单cell的情况，即IBSS情况，只有一个AP，并且在这个AP身上只有一个SSID。也存在扩展BSS的情况，应该就是EBSS，扩展服务集的模式。那么就有多个AP，并且这些AP身上都布置了相同的SSID，故由于每一个设备不同，这里BSSID就会不同，但是由于SSID相同，那么其还是可以进行漫游的。</p>
+<h3 id="An-ESS-Consists-of-BSSs"><a href="#An-ESS-Consists-of-BSSs" class="headerlink" title="An ESS Consists of BSSs"></a>An ESS Consists of BSSs</h3><p>An extended basic service set (ESS) consists of all of the BSSs in the network. For all practical purposes, the ESSID identifies the same network as the SSID does. The term SSID is used most often.</p>
+<h2 id="RSSI-Received-Signal-Strength-Indication"><a href="#RSSI-Received-Signal-Strength-Indication" class="headerlink" title="RSSI - Received Signal Strength Indication"></a>RSSI - Received Signal Strength Indication</h2><p>接收的信号强度指示。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://www.techopedia.com/definition/508/ieee-80211x#:~:text=802.11x%20is%20generic%20term,or%20between%20two%20wireless%20clients." target="_blank" rel="noopener">Techopedia: IEEE-802.11x</a></p>
+<p><a href="https://www.zhihu.com/question/35339958" target="_blank" rel="noopener">Zhihu: 多个无线路由应该怎样设置WiFi 信道？</a></p>
+<p><a href="https://www.zhihu.com/question/24362037" target="_blank" rel="noopener">Zhihu: SSID、BSSID、ESSID区别？</a></p>
+<p><a href="https://www.juniper.net/documentation/en_US/junos-space-apps/network-director3.7/topics/concept/wireless-ssid-bssid-essid.html" target="_blank" rel="noopener">Juniper: Understanding the Network Terms SSID, BSSID, and ESSID</a></p>
+<h1 id="无线路由器加密办法"><a href="#无线路由器加密办法" class="headerlink" title="无线路由器加密办法"></a>无线路由器加密办法</h1><h2 id="WEP-Wired-Equivalent-Privacy"><a href="#WEP-Wired-Equivalent-Privacy" class="headerlink" title="WEP - Wired Equivalent Privacy"></a>WEP - Wired Equivalent Privacy</h2><h2 id="WPA-Wi-Fi-Protected-Access"><a href="#WPA-Wi-Fi-Protected-Access" class="headerlink" title="WPA - Wi-Fi Protected Access"></a>WPA - Wi-Fi Protected Access</h2><h2 id="WPA2-Wi-Fi-Protected-Access-version-2"><a href="#WPA2-Wi-Fi-Protected-Access-version-2" class="headerlink" title="WPA2 - Wi-Fi Protected Access version 2"></a>WPA2 - Wi-Fi Protected Access version 2</h2><h2 id="WPA3-Wi-Fi-Protected-Access-version-3"><a href="#WPA3-Wi-Fi-Protected-Access-version-3" class="headerlink" title="WPA3 - Wi-Fi Protected Access version 3"></a>WPA3 - Wi-Fi Protected Access version 3</h2><h2 id="Reference-1"><a href="#Reference-1" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://www.netspotapp.com/wifi-encryption-and-security.html" target="_blank" rel="noopener">NetSpot: Wireless Security Protocols: WEP, WPA, WPA2, and WPA3</a></p>
+<h1 id="无线密码破解"><a href="#无线密码破解" class="headerlink" title="无线密码破解"></a>无线密码破解</h1><h2 id="使用Airport开启无线网卡监听"><a href="#使用Airport开启无线网卡监听" class="headerlink" title="使用Airport开启无线网卡监听"></a>使用Airport开启无线网卡监听</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airport en0 sniff CHANNEL</span><br></pre></td></tr></table></figure>
+
+<p>其中CHANNEL是你想要监听的信道，与想要破解的wifi一致。</p>
+<p>如果手贱不小心没有退出监听就关闭Terminal，可以使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -A|grep airport</span><br></pre></td></tr></table></figure>
+
+<p>找到进程，从大杀到小，直到恢复。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kill -9 进程号</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用Aircrack-ng"><a href="#使用Aircrack-ng" class="headerlink" title="使用Aircrack-ng"></a>使用Aircrack-ng</h2><h3 id="Aircrack-ng简介"><a href="#Aircrack-ng简介" class="headerlink" title="Aircrack-ng简介"></a>Aircrack-ng简介</h3><p>Aircrack-ng是一个与802.11标准的无线网络分析有关的安全软件，主要功能有：网络侦测，数据包嗅探，WEP和WPA/WPA2-PSK破解。Aircrack-ng可以工作在任何支持监听模式的无线网卡上（设备列表请参阅其官方网站）并嗅探802.11a，802.11b，802.11g的数据。</p>
+<h3 id="安装aircrack-ng"><a href="#安装aircrack-ng" class="headerlink" title="安装aircrack-ng"></a>安装aircrack-ng</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install aircrack-ng</span><br></pre></td></tr></table></figure>
+
+<h3 id="打开监听获得的cap文件"><a href="#打开监听获得的cap文件" class="headerlink" title="打开监听获得的cap文件"></a>打开监听获得的cap文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aircrack-ng /tmp/airportSniff[某个自动生成的字段].cap</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用字典破解"><a href="#使用字典破解" class="headerlink" title="使用字典破解"></a>使用字典破解</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aircrack-ng -w PycharmProjects/WLAN/dict.txt -b [BSSID] /tmp/airportSniff[某个自动生成的字段].cap</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用CUPP生成字典"><a href="#使用CUPP生成字典" class="headerlink" title="使用CUPP生成字典"></a>使用CUPP生成字典</h2><p>其实并不是很好用。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/StudyNote/"># StudyNote</a>
+                    
+                        <a href="/tags/ComputerScience/"># ComputerScience</a>
+                    
+                        <a href="/tags/ComputerNetwork/"># ComputerNetwork</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/09/07/20Fall/">20 Fall Semester</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
