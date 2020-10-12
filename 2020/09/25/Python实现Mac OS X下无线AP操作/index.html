@@ -228,6 +228,8 @@
                         <span class="post-category">
                     Category:
                             
+                                <a href="/categories/SHU/">SHU</a>
+                            
                                 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
                             
                                 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9CComputerNetwork/">计算机网络ComputerNetwork</a>
@@ -239,11 +241,10 @@
         </header>
 
         <div class="post-content">
-            <p><strong>Created Date</strong>: 2020-09-25 13:46:12<br><strong>Last Upgraded Date</strong>: 2020-09-25 13:46:12</p>
+            <p><strong>Created Date</strong>: 2020-09-25 13:46:12<br><strong>Last Upgraded Date</strong>: 2020-09-27 16:16:10</p>
 <br/>
 
-
-
+<p>[TOC]</p>
 <h1 id="操作环境"><a href="#操作环境" class="headerlink" title="操作环境"></a>操作环境</h1><blockquote>
 <p>macOS Catalina Version 10.15.5</p>
 <p>Python 3.7</p>
@@ -253,13 +254,14 @@
 <p>显示所有网络硬件端口，可获取网络设备名称</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">networksetup -listallhardwareports</span><br><span class="line">-------------------------------------------------------</span><br><span class="line">Hardware Port: Wi-Fi</span><br><span class="line">Device: en0</span><br><span class="line">Ethernet Address: 88:e9:fe:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Bluetooth PAN</span><br><span class="line">Device: en6</span><br><span class="line">Ethernet Address: 88:e9:fe:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Thunderbolt 1</span><br><span class="line">Device: en1</span><br><span class="line">Ethernet Address: 82:87:0f:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Thunderbolt 2</span><br><span class="line">Device: en2</span><br><span class="line">Ethernet Address: 82:87:0f:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Thunderbolt 3</span><br><span class="line">Device: en3</span><br><span class="line">Ethernet Address: 82:87:0f:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Thunderbolt 4</span><br><span class="line">Device: en4</span><br><span class="line">Ethernet Address: 82:87:0f:手:动:马赛克</span><br><span class="line"></span><br><span class="line">Hardware Port: Thunderbolt Bridge</span><br><span class="line">Device: bridge0</span><br><span class="line">Ethernet Address: 82:87:0f:手:动:马赛克</span><br><span class="line"></span><br><span class="line">VLAN Configurations</span><br><span class="line">===================</span><br></pre></td></tr></table></figure>
 
+<p>查看Wi-Fi状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -getairportpower en0</span><br></pre></td></tr></table></figure>
+
 <p>启用或禁用Wi-Fi</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -setairportpower en0 on (or off)</span><br></pre></td></tr></table></figure>
 
 <p>使用Terminal加入一个Wi-Fi网络</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -setairportnetwork en0 WIFI_SSID_I_WANT_TO_JOIN WIFI_PASSWORD</span><br></pre></td></tr></table></figure>
-
-
 
 <h1 id="Terminal-Airport模块"><a href="#Terminal-Airport模块" class="headerlink" title="Terminal Airport模块"></a>Terminal Airport模块</h1><h2 id="为Airport模块建立软链接"><a href="#为Airport模块建立软链接" class="headerlink" title="为Airport模块建立软链接"></a>为Airport模块建立软链接</h2><p>Terminal输入以下命令 建立软链接</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport /usr/local/bin/airport</span><br></pre></td></tr></table></figure>
@@ -286,8 +288,8 @@
 <p>实现家庭无线网络中的Internet连接共享；</p>
 <p>实现ADSL和小区宽带的无线共享接入；</p>
 <p>短距离可用。</p>
-<h2 id="802-11x"><a href="#802-11x" class="headerlink" title="802.11x"></a>802.11x</h2><h3 id="2-4GHz-802-11b-g-n-ax"><a href="#2-4GHz-802-11b-g-n-ax" class="headerlink" title="2.4GHz - 802.11b/g/n/ax"></a>2.4GHz - 802.11b/g/n/ax</h3><p><img src="/Users/reneelin/Desktop/Programmer/Markdown/_posts/pics/799px-2.4_GHz_Wi-Fi_channels_(802.11b,g_WLAN).svg.png" alt="Graphical representation of overlapping 20 MHz channels within the 2.4 GHz band"></p>
-<p><img src="/Users/reneelin/Desktop/Programmer/Markdown/_posts/pics/425px-NonOverlappingChannels2.4GHzWLAN-en.svg.png" alt="**Most countries** Graphical representation of Wireless LAN channels in 2.4 GHz band. Note &quot;channel 3&quot; in the 40 MHz diagram above is often labelled with the 20 MHz channel numbers &quot;1+5&quot; or &quot;1&quot; with &quot;+ Upper&quot; or &quot;5&quot; with &quot;+ Lower&quot; in router interfaces, and &quot;11&quot; as &quot;9+13&quot; or &quot;9&quot; with &quot;+ Upper&quot; or &quot;13&quot; with &quot;+ Lower&quot;"></p>
+<h2 id="802-11x"><a href="#802-11x" class="headerlink" title="802.11x"></a>802.11x</h2><h3 id="2-4GHz-802-11b-g-n-ax"><a href="#2-4GHz-802-11b-g-n-ax" class="headerlink" title="2.4GHz - 802.11b/g/n/ax"></a>2.4GHz - 802.11b/g/n/ax</h3><p><img src="./pics/799px-2.4_GHz_Wi-Fi_channels_(802.11b,g_WLAN).svg.png" alt="Graphical representation of overlapping 20 MHz channels within the 2.4 GHz band"></p>
+<p><img src="./pics/425px-NonOverlappingChannels2.4GHzWLAN-en.svg.png" alt="**Most countries** Graphical representation of Wireless LAN channels in 2.4 GHz band. Note &quot;channel 3&quot; in the 40 MHz diagram above is often labelled with the 20 MHz channel numbers &quot;1+5&quot; or &quot;1&quot; with &quot;+ Upper&quot; or &quot;5&quot; with &quot;+ Lower&quot; in router interfaces, and &quot;11&quot; as &quot;9+13&quot; or &quot;9&quot; with &quot;+ Upper&quot; or &quot;13&quot; with &quot;+ Lower&quot;"></p>
 <h3 id="5-GHz-or-5-9-GHz-802-11a-h-j-n-ac-ax"><a href="#5-GHz-or-5-9-GHz-802-11a-h-j-n-ac-ax" class="headerlink" title="5 GHz or 5.9 GHz - 802.11a/h/j/n/ac/ax"></a>5 GHz or 5.9 GHz - 802.11a/h/j/n/ac/ax</h3><p>为满足移动宽带通信的发展需求，根据《中华人民共和国无线电频率划分规定》及我国频谱使用情况，参照国际电信联盟《无线电规则》，经研究，现规划5150-5350兆赫兹（MHz）频段用于无线接入系统。</p>
 <p>工作频率范围：5150-5350MHz； 最大等效全向辐射功率（EIRP）:200mW；最大等效全向功率谱密度:10dBm/MHz……</p>
 <p>为与无线电测定等其他业务共存，工作于 5250-5350MHz频段的无线接入设备应采用发射功率控制（TPC）及动态频率选择（DFS）干扰抑制技术。TPC范围不小于6dB；如无TPC，则发射功率、等效全向辐射功率和最大功率谱密度均应降低3dB。</p>
@@ -384,8 +386,10 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2020/09/30/%E4%BD%9C%E4%B8%9A%E4%B8%80/">HOMEWORK | 计算机网络课程作业一</a>
             
-            <a class="next" rel="next" href="/2020/09/07/20Fall/">20 Fall Semester</a>
+            
+            <a class="next" rel="next" href="/2020/09/25/%E9%85%8D%E7%BD%AESVI%E5%AE%9E%E7%8E%B0VLAN%E9%97%B4%E8%B7%AF%E7%94%B1/">StudyNote | 配置SVI实现VLAN间路由</a>
             
         </section>
 

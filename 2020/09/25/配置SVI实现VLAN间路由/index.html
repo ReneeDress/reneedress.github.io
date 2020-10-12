@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>StudyNote | 配置SVI实现VLAN间路由 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">StudyNote | 配置SVI实现VLAN间路由</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 25, 2020&nbsp;&nbsp;13:46:12</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9CComputerNetwork/">计算机网络ComputerNetwork</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><strong>Created Date</strong>: 2020-10-12 15:11:08<br><strong>Last Upgraded Date</strong>: 2020-10-12 16:53:56</p>
+<br/>
+
+
+
+<h1 id="操作环境"><a href="#操作环境" class="headerlink" title="操作环境"></a>操作环境</h1><blockquote>
+<p>计708实验室电脑</p>
+<p>Windows 7</p>
+<p>cmd telnet</p>
+</blockquote>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="修改配置机本地连接4中本机IPv4地址"><a href="#修改配置机本地连接4中本机IPv4地址" class="headerlink" title="修改配置机本地连接4中本机IPv4地址"></a>修改配置机本地连接4中本机IPv4地址</h2><p>打开网络与共享中心，点击“本地连接4”，右键选择“属性”，选择“Internet 协议版本 4（TCP/IPv4）”，点击面板中“属性”。</p>
+<p>将交换机配置机本地连接4的IPv4地址，由“自动获取IP地址”改为“使用下面的IP地址”，设置为如下参数，其中IPv4地址与网络中其它主机无冲突即可。此处修改为了实验室主机编号。</p>
+<blockquote>
+<p>IP地址：192.168.0.23</p>
+<p>子网掩码：255.255.255.0</p>
+<p>默认网关：192.168.0.1</p>
+</blockquote>
+<p><img src="./pics/CN-Switch/0.JPG" alt="IP"></p>
+<h2 id="连接上海大学网络实验室实验平台"><a href="#连接上海大学网络实验室实验平台" class="headerlink" title="连接上海大学网络实验室实验平台"></a>连接上海大学网络实验室实验平台</h2><p>打开浏览器，在地址栏输入：http:// 192.168.10.44:8080，连接至上海大学网络实验室第四组实验平台。现场照片拍摄如下。</p>
+<p><img src="./pics/CN-Switch/1.JPG" alt="Platform"></p>
+<h2 id="获取三层交换机端口号并使用telnet连接"><a href="#获取三层交换机端口号并使用telnet连接" class="headerlink" title="获取三层交换机端口号并使用telnet连接"></a>获取三层交换机端口号并使用telnet连接</h2><p>选用S3760-2三层交换机进行实验。点击链接获取IP地址及端口：192.168.10.44:2006。</p>
+<p>打开cmd命令行，使用telnet连接。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet 192.168.10.44 2006</span><br></pre></td></tr></table></figure>
+
+<p>进入后回车，返回显示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">S3760-2&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>表示已成功进入交换机EXEC模式的用户模式。</p>
+<h2 id="设置实验设备密码权限"><a href="#设置实验设备密码权限" class="headerlink" title="设置实验设备密码权限"></a>设置实验设备密码权限</h2><p>实验室学生使用14级密码。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">S3760-2&gt;</span><span class="bash"><span class="built_in">enable</span> 14</span></span><br><span class="line"></span><br><span class="line">Password: 123456</span><br><span class="line"><span class="meta">S3760-2#</span></span><br></pre></td></tr></table></figure>
+
+<p>表示已成功进入交换机EXEC模式的特权模式。</p>
+<h1 id="三层交换机配置"><a href="#三层交换机配置" class="headerlink" title="三层交换机配置"></a>三层交换机配置</h1><h2 id="在三层交换机上创建VLAN"><a href="#在三层交换机上创建VLAN" class="headerlink" title="在三层交换机上创建VLAN"></a>在三层交换机上创建VLAN</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">S3760-2#</span><span class="bash">configure terminal</span></span><br><span class="line"><span class="meta">S3760-2(config)#</span><span class="bash">vlan 10</span></span><br><span class="line"><span class="meta">S3760-2(config-vlan)#</span><span class="bash">vlan 20</span></span><br><span class="line"><span class="meta">S3760-2(config-vlan)#</span><span class="bash"><span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="在三层交换机上将端口划分到相应的VLAN"><a href="#在三层交换机上将端口划分到相应的VLAN" class="headerlink" title="在三层交换机上将端口划分到相应的VLAN"></a>在三层交换机上将端口划分到相应的VLAN</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">S3760-2(config)#</span><span class="bash">interface fastEthernet 0/1</span></span><br><span class="line">S3760-2(config-FastEthernet 0/1)#switchport access vlan 10</span><br><span class="line">S3760-2(config-FastEthernet 0/1)#exit</span><br><span class="line"><span class="meta">S3760-2(config)#</span><span class="bash">interface fastEthernet 0/2</span></span><br><span class="line">S3760-2(config-FastEthernet 0/2)#switchport access vlan 20</span><br><span class="line">S3760-2(config-FastEthernet 0/2)#exit</span><br></pre></td></tr></table></figure>
+
+<h2 id="在三层交换机上给VLAN配置IP地址"><a href="#在三层交换机上给VLAN配置IP地址" class="headerlink" title="在三层交换机上给VLAN配置IP地址"></a>在三层交换机上给VLAN配置IP地址</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">S3760-2(config)#</span><span class="bash">interface vlan 10</span></span><br><span class="line">S3760-2(config-VLAN 10)#ip address 192.168.10.1 255.255.255.0</span><br><span class="line">S3760-2(config-VLAN 10)#no shutdown</span><br><span class="line">S3760-2(config-VLAN 10)#exit</span><br><span class="line"><span class="meta">S3760-2(config)#</span><span class="bash">interface vlan 20</span></span><br><span class="line">S3760-2(config-VLAN 20)#ip address 192.168.20.1 255.255.255.0</span><br><span class="line">S3760-2(config-VLAN 20)#no shutdown</span><br><span class="line">S3760-2(config-VLAN 20)#exit</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看VLAN信息及路由表"><a href="#查看VLAN信息及路由表" class="headerlink" title="查看VLAN信息及路由表"></a>查看VLAN信息及路由表</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">S3760-2(config)#</span><span class="bash">show vlan id 10</span></span><br><span class="line"></span><br><span class="line"><span class="meta">S3760-2(config)#</span><span class="bash">show vlan id 20</span></span><br><span class="line"></span><br><span class="line"><span class="meta">S3760-2(config)#</span><span class="bash">show ip route</span></span><br><span class="line"></span><br><span class="line">Codes:	C - connected, S - static, R - RIP, B - BGP</span><br><span class="line">				O - OSPF, IA - OSPF inter area</span><br><span class="line">				N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">				E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">				i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">				ia - IS-IS inter area, * - candidate default</span><br><span class="line">				</span><br><span class="line">Gateway of last resort is no set</span><br><span class="line">C	192.168.10.0/24 is directly connected, VLAN 10</span><br><span class="line">C	192.168.10.1/32 is local host.</span><br><span class="line">C	192.168.20.0/24 is directly connected, VLAN 20</span><br><span class="line">C	192.168.20.1/32 is local host.</span><br></pre></td></tr></table></figure>
+
+<h2 id="现场运行照片"><a href="#现场运行照片" class="headerlink" title="现场运行照片"></a>现场运行照片</h2><p><img src="./pics/CN-Switch/2.JPG" alt="Switcher"></p>
+<h1 id="线路连接"><a href="#线路连接" class="headerlink" title="线路连接"></a>线路连接</h1><p><img src="./pics/CN-Switch/30.JPG" alt="Link"></p>
+<p>根据实验拓扑图：H5为配置机网线口；G3为PC1，应配置在VLAN10下，连接VLAN10端口Fa0/1（Fa0/5）；H1为PC2，应配置在VLAN20下，连接VLAN20端口Fa0/2（Fa0/15）。</p>
+<h1 id="测试机配置"><a href="#测试机配置" class="headerlink" title="测试机配置"></a>测试机配置</h1><h2 id="启用本地连接3并手动配置IPv4地址及默认网关"><a href="#启用本地连接3并手动配置IPv4地址及默认网关" class="headerlink" title="启用本地连接3并手动配置IPv4地址及默认网关"></a>启用本地连接3并手动配置IPv4地址及默认网关</h2><h3 id="PC1-G3-VLAN10"><a href="#PC1-G3-VLAN10" class="headerlink" title="PC1 - G3 - VLAN10"></a>PC1 - G3 - VLAN10</h3><p>打开网络与共享中心，点击“本地连接3”，右键选择“属性”，选择“Internet 协议版本 4（TCP/IPv4）”，点击面板中“属性”。</p>
+<p>将测试机PC1本地连接3的IPv4地址，由“自动获取IP地址”改为“使用下面的IP地址”，设置为如下参数，其中IPv4地址与网络中其它主机无冲突即可。默认网关为交换机配置中为VLAN10设置的网关地址：192.168.10.1。</p>
+<blockquote>
+<p>IP地址：192.168.10.10</p>
+<p>子网掩码：255.255.255.0</p>
+<p>默认网关：192.168.10.1</p>
+</blockquote>
+<p><img src="./pics/CN-Switch/4.JPG" alt="PC1IP"></p>
+<h3 id="PC2-H1-VLAN20"><a href="#PC2-H1-VLAN20" class="headerlink" title="PC2 - H1 - VLAN20"></a>PC2 - H1 - VLAN20</h3><p>打开网络与共享中心，点击“本地连接3”，右键选择“属性”，选择“Internet 协议版本 4（TCP/IPv4）”，点击面板中“属性”。</p>
+<p>将测试机PC2本地连接3的IPv4地址，由“自动获取IP地址”改为“使用下面的IP地址”，设置为如下参数，其中IPv4地址与网络中其它主机无冲突即可。默认网关为交换机配置中为VLAN20设置的网关地址:192.168.20.1。</p>
+<blockquote>
+<p>IP地址：192.168.20.2</p>
+<p>子网掩码：255.255.255.0</p>
+<p>默认网关：192.168.20.1</p>
+</blockquote>
+<p><img src="./pics/CN-Switch/5.JPG" alt="PC2IP"></p>
+<h2 id="尝试ping"><a href="#尝试ping" class="headerlink" title="尝试ping"></a>尝试ping</h2><h3 id="PC1-G3-VLAN-10"><a href="#PC1-G3-VLAN-10" class="headerlink" title="PC1 - G3 - VLAN 10"></a>PC1 - G3 - VLAN 10</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ping 192.168.10.1</span><br><span class="line">成功</span><br><span class="line">ping 192.168.20.1</span><br><span class="line">成功</span><br><span class="line">ping 192.168.20.2</span><br><span class="line">连接超时</span><br></pre></td></tr></table></figure>
+
+<h3 id="PC2-H1-VLAN-20"><a href="#PC2-H1-VLAN-20" class="headerlink" title="PC2 - H1 - VLAN 20"></a>PC2 - H1 - VLAN 20</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ping 192.168.20.1</span><br><span class="line">成功</span><br><span class="line">ping 192.168.10.1</span><br><span class="line">成功</span><br><span class="line">ping 192.168.10.10</span><br><span class="line">连接超时</span><br></pre></td></tr></table></figure>
+
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>能ping通自己的网关及对方的网关，但无法ping到对方主机。</p>
+<h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><p>搜索了近一小时的资料，终于发现问题所在，ping请求被防火墙拦截。</p>
+<p>打开控制面板，进入“系统和安全”，关闭Windows防火墙。</p>
+<p><img src="./pics/CN-Switch/6.JPG" alt="Firewall"></p>
+<h1 id="最终测试"><a href="#最终测试" class="headerlink" title="最终测试"></a>最终测试</h1><h2 id="PC1-ping-192-168-20-2"><a href="#PC1-ping-192-168-20-2" class="headerlink" title="PC1 ping 192.168.20.2"></a>PC1 ping 192.168.20.2</h2><p><img src="./pics/CN-Switch/70.JPG" alt="PC1Sucess"></p>
+<h2 id="PC2-ping-192-168-10-10"><a href="#PC2-ping-192-168-10-10" class="headerlink" title="PC2 ping 192.168.10.10"></a>PC2 ping 192.168.10.10</h2><p><img src="./pics/CN-Switch/8.JPG" alt="PC2Sucess"></p>
+<p>从上述测试结果可以看到通过三层交换机上配置SVI接口实现了不同VLAN之间的主机通信。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/StudyNote/"># StudyNote</a>
+                    
+                        <a href="/tags/ComputerScience/"># ComputerScience</a>
+                    
+                        <a href="/tags/ComputerNetwork/"># ComputerNetwork</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/25/Python%E5%AE%9E%E7%8E%B0Mac%20OS%20X%E4%B8%8B%E6%97%A0%E7%BA%BFAP%E6%93%8D%E4%BD%9C/">StudyNote | Python实现Mac OS X下无线AP操作</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/07/20Fall/">20 Fall Semester</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
