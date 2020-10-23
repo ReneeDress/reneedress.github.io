@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>HOMEWORK | 计算机网络课程作业二 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">HOMEWORK | 计算机网络课程作业二</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 19, 2020&nbsp;&nbsp;08:17:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9CComputerNetwork/">计算机网络ComputerNetwork</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <ol>
+<li><p>写出下列缩略语的英文全称和中文含义</p>
+<p>CRC、FEC、ARQ、HDLC、SLIP、PPP、LCP、NCP</p>
+<p>CSMA/CD、MAC、LLC、NIC、VLAN、10BASE5、10BASE2、10BASE-T、1BASE5</p>
+<table>
+<thead>
+<tr>
+<th>缩略语</th>
+<th>英文全称</th>
+<th>中文含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CRC</td>
+<td>Cyclic Redundancy Check</td>
+<td>循环冗余检验</td>
+</tr>
+<tr>
+<td>FEC</td>
+<td>Forwarding Equivalence Class</td>
+<td>转发等价类</td>
+</tr>
+<tr>
+<td>ARQ</td>
+<td>Automatic Repeat reQuest</td>
+<td>自动重传请求</td>
+</tr>
+<tr>
+<td>HDLC</td>
+<td>High-level Data Link Control</td>
+<td>高级数据链路控制</td>
+</tr>
+<tr>
+<td>SLIP</td>
+<td>Serial Line Internet Protocol</td>
+<td>串行线路网际协议</td>
+</tr>
+<tr>
+<td>PPP</td>
+<td>Point-to-Point Protocol</td>
+<td>点对点协议</td>
+</tr>
+<tr>
+<td>LCP</td>
+<td>Link Control Protocol</td>
+<td>链路控制协议</td>
+</tr>
+<tr>
+<td>NCP</td>
+<td>Network Control Protocol</td>
+<td>网络控制协议</td>
+</tr>
+<tr>
+<td>CSMA/CD</td>
+<td>Carrier Sense Multiple Access/Collision Detection</td>
+<td>载波监听多点接入/冲突检测</td>
+</tr>
+<tr>
+<td>MAC</td>
+<td>Medium Access Control</td>
+<td>介质访问控制</td>
+</tr>
+<tr>
+<td>LLC</td>
+<td>Logical Link Control</td>
+<td>逻辑链路控制</td>
+</tr>
+<tr>
+<td>NIC</td>
+<td>Network Interface Card</td>
+<td>网络接口卡、网卡</td>
+</tr>
+<tr>
+<td>VLAN</td>
+<td>Virtual Local Area Network</td>
+<td>虚拟局域网</td>
+</tr>
+<tr>
+<td>10BASE5</td>
+<td>10 Mbps (theoretical transmission rate), Baseband (one transmission at a time over a single, shared channel), and 500 meters maximum segment length.</td>
+<td>粗缆以太网</td>
+</tr>
+<tr>
+<td>10BASE2</td>
+<td>10 Mbps (theoretical transmission rate), Baseband (one transmission at a time over a single, shared channel), and 200 meters maximum segment length (actually 185 meters, rounded up).</td>
+<td>细缆以太网</td>
+</tr>
+<tr>
+<td>10BASE-T</td>
+<td>10 Mbps (theoretical transmission rate), Baseband (one transmission at a time over a single, shared channel) transmission, and over Twisted pair media.</td>
+<td>双绞线以太网——10Mbps的数据率，BASE表示连接线上的信号是基带信号，T代表双绞线。</td>
+</tr>
+<tr>
+<td>1BASE5</td>
+<td>1 Mbps (theoretical transmission rate), Baseband (one transmission at a time over a single, shared channel), and 500 meters maximum segment length.</td>
+<td>最大网段长度为500m，传输速度为1Mbps的基带以太网。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>若生成多项式$X^3+1$，信息位多项式$X^6+X^4+1$，则CRC冗余多项式是什么？传输帧多项式是什么？（要求写出详细的计算过程）</p>
+<p>$$<br>P(X)=X^3+1\<br>除数P=1001\n=3\<br>M(X)=X^6+X^4+1\<br>被除数2^nM=1010001000\<br>Q=1010001000/1001=1011010\<br>R=010\<br>R(X)=X\<br>T=1010001010\<br>T(X)=X^9+X^7+X^3+X\<br>$$</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>若生成多项式$P(X)=X^5+X^4+X+1$，若接收方收到码字为1010110001101问传输中是否有错？</p>
+<p>$$<br>T(X)=X^{12}+X^{10}+X^8+X^7+X^3+X^2+1\<br>P(X)=X^5+X^4+X+1\<br>P=110001\<br>n=5\<br>T(X)/P(X)≠0\<br>R=00001\<br>$$<br>传输中有错。</p>
+</li>
+</ol>
+<ol start="4">
+<li>设计一个对16比特信息串的单比特纠错海明码需多少冗余校验位？<br>$$<br>K=16\<br>2^r-1\ge K+r\<br>r\ge 5<br>$$<br>需5位冗余校验位。</li>
+</ol>
+<ol start="5">
+<li><p>海明码计算题目：设所发送的比特序列为1001011，求其单比特纠错海明码。（要求写出详细的计算过程）</p>
+<p>$$<br>K=7\<br>2^r-1\ge K+r\<br>r\ge 4\<br>n=K+r=11\<br>I_7I_6I_5R_3I_4I_3I_2R_2I_1R_1R_0\<br>11<del>10</del>9<del>8</del>7<del>6</del>5<del>4</del>3<del>2</del>1\<br>I_7:11=2^3+2^1+2^0(R_3、R_1、R_0)\<br>I_6:10=2^3+2^1(R_3、R_1)\<br>I_5:9=2^3+2^0(R_3、R_0)\<br>I_4:7=2^2+2^1+2^0(R_2、R_1、R_0)\<br>I_3:6=2^2+2^1(R_2、R_1)\<br>I_2:5=2^2+2^0(R_2、R_0)\<br>I_1:3=2^1+2^0(R_1、R_0)\<br>R_3=I_7\oplus I_6\oplus I_5=1\oplus 0\oplus 0=1\<br>R_2=I_4\oplus I_3\oplus I_2=1\oplus 0\oplus 1=0\<br>R_1=I_7\oplus I_6\oplus I_4\oplus I_3\oplus I_1=1\oplus 0\oplus 1\oplus 0\oplus 1=1\<br>R_0=I_7\oplus I_5\oplus I_4\oplus I_2\oplus I_1=1\oplus 0\oplus 1\oplus 1\oplus 1=0\<br>发送码字10011010110<br>$$</p>
+</li>
+</ol>
+<ol start="6">
+<li><p>数据率为10Mb/s的以太网在物理媒体上的码元传输速率是多少码元每秒？【3-16】</p>
+<p>以太网采用曼彻斯特编码，每发送一位数据都有两个信号周期。因此，码元传输速率为以太网数据率的两倍，为20M码元每秒。</p>
+</li>
+</ol>
+<ol start="7">
+<li><p>以太网交换机有何特点？它和集线器有何区别？【3-29】</p>
+<p>以太网交换机实质上就是一个多接口的网桥 ，通常都有十几个或更多的接口；以太网交换机的接口有存储器，能在输出端口繁忙时把到来的帧进行缓存；以太网交换机是一种即插即用设备，使用了专用的交换结构芯片，用硬件转发，其转发速率要比使用软件转发的网桥快很多；一个用户在通信时是独占而不是和其他网络用户共享传输媒体的带宽；从共享总线以太网转到交换式以太网时，所有接入设备的软件和硬件、适配器等都不需要作任何改动；以太网交换机一般都具有多种速率的接口。</p>
+<p>以太网交换机的性能远远超过普通的集线器，而且价格并不贵。使用集线器的以太网在逻辑上仍是一个总线网，各站共享逻辑上的总线，使用的还是CSMA/CD协议 （更具体些说，是各站中的适配器 执行CSMA/CD协议）。网络中的各站必须竞争对传输媒体的控制，并且在同一时刻至多只允许一个站发送数据 。</p>
+<blockquote>
+<p>以太网交换机实质上就是一个多接口的网桥 ，通常都有十几个或更多的接口，和工作在物理层的转发器、集线器有很大的差别。以太网交换机的每个接口都直接与一个单台主机或另一个以太网交换机相连，并且一般都工作在全双工方式。以太网交换机还具有并行性，即能同时连通多对接口，使多对主机能同时通信（而网桥只能一次分析和转发一个帧）。相互通信的主机都是独占传输媒体，无碰撞地传输数据 。</p>
+<p>以太网交换机的接口还有存储器，能在输出端口繁忙时把到来的帧进行缓存。因此，如果连接在以太网交换机上的两台主机，同时向另一台主机发送帧，那么当这台主机的接口繁忙时，发送帧的这两台主机的接口会把收到的帧暂存一下，以后再发送出去。</p>
+<p>以太网交换机是一种即插即用设备，其内部的帧交换表 （又称为地址表 ）是通过自学习算法自动地逐渐建立起来的。以太网交换机由于使用了专用的交换结构芯片，用硬件转发，其转发速率要比使用软件转发的网桥快很多。</p>
+<p>以太网交换机的性能远远超过普通的集线器，而且价格并不贵，这就使工作在物理层的集线器逐渐地退出了市场。</p>
+<p>对于传统的10Mbit/s的共享式以太网，若共有10个用户，则每个用户占有的平均带宽只有1Mbit/s。若使用以太网交换机来连接这些主机，虽然在每个接口到主机的带宽还是10Mbit/s，但由于一个用户在通信时是独占而不是和其他网络用户共享传输媒体的带宽，因此对于拥有10个接口的交换机的总容量则为100Mbit/s。这正是交换机的最大优点。</p>
+<p>从共享总线以太网转到交换式以太网时，所有接入设备的软件和硬件、适配器等都不需要作任何改动。</p>
+<p>以太网交换机一般都具有多种速率的接口，例如，可以具有10Mbit/s、100Mbit/s和1Gbit/s的接口的各种组合，这就大大方便了各种不同情况的用户。</p>
+<p>虽然许多以太网交换机对收到的帧采用存储转发方式进行转发，但也有一些交换机采用直通 （cut-through）的交换方式。直通交换不必把整个数据帧先缓存后再进行处理，而是在接收数据帧的同时就立即按数据帧的目的MAC地址决定该帧的转发接口，因而提高了帧的转发速度。如果在这种交换机的内部采用基于硬件的交叉矩阵，交换时延就非常小。直通交换的一个缺点是它不检查差错就直接将帧转发出去，因此有可能也将一些无效帧转发给其他的站。在某些情况下，仍需要采用基于软件的存储转发方式进行交换，例如，当需要进行线路速率匹配、协议转换或差错检测时。现在有的厂商已生产出能支持两种交换方式的以太网交换机。以太网交换机的发展与建筑物结构化布线系统的普及应用密切相关。在结构化布线系统中，广泛地使用了以太网交换机。</p>
+</blockquote>
+</li>
+</ol>
+<ol start="8">
+<li><p>网桥的工作原理和特点是什么？主要有哪几大类网桥？各自的特点如何？网桥与转发器以及以太网交换机有何异同？</p>
+<p>网桥的工作原理：网桥从端口接收网段上传送的各种帧；每当收到一个帧时，先暂存在缓存中。若此帧未出错，且欲发送的目的站的MAC地址属于另外一个网段，则通过查找“转发表”，将收到的帧送往对应的端口转发。若此帧出错，则丢弃该帧。同一个网段内的帧，不会被网桥转发，不会增加网络负担。</p>
+<p>网桥的特点：网桥用于在数据链路层上，实现在数据链路层以上使用相同协议的局域网的互连。它负责完成物理层和数据链路层协议的转换。 网桥具有路由选择功能，可提高网络的整体效率。</p>
+<table>
+<thead>
+<tr>
+<th>固定路由网桥</th>
+<th>透明网桥</th>
+<th>源路由网桥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不能适应动态改变的网络互连环境，路由表的维护困难。</td>
+<td>能适应动态改变的网络环境；确定路由的负担在网桥</td>
+<td>能适应动态改变的网络环境；确定路由的负担在站点</td>
+</tr>
+</tbody></table>
+<p>网桥对收到的帧根据其MAC帧的目的地址进行转发和过滤 。当网桥收到一个帧时，并不是向所有的接口转发此帧，而是根据此帧的目的MAC地址，查找网桥中的地址表，然后确定将该帧转发到哪一个接口，或者是把它丢弃（即过滤）。</p>
+</li>
+</ol>
+<blockquote>
+<p>网桥对收到的帧根据其MAC帧的目的地址进行转发和过滤 。当网桥收到一个帧时，并不是向所有的接口转发此帧，而是根据此帧的目的MAC地址，查找网桥中的地址表，然后确定将该帧转发到哪一个接口，或者是把它丢弃（即过滤）。</p>
+<p>网桥的工作原理：网桥从端口接收网段上传送的各种帧；每当收到一个帧时，先暂存在缓存中。若此帧未出错，且欲发送的目的站的MAC地址 属于另外一个网段，则通过查找“转发表”，将 收到的帧送往对应的端口转发。若此帧出错，则丢弃该帧。同一个网段内的帧，不会被网桥转发，不会增加网络负担。</p>
+<p>优点</p>
+<p>过滤通信量、扩大了物理范围、提高了可靠性。</p>
+<p>可互连不同物理层、不同 MAC 子层和不同速率（如10 Mb/s 和 100 Mb/s 以太网）的局域网。</p>
+<p>缺点</p>
+<p>存储转发增加了时延。</p>
+<p>在MAC 子层并没有流量控制功能。</p>
+<p>具有不同 MAC 子层的网段桥接在一起时时延更大。</p>
+<p>网桥只适合于用户数不太多(不超过几百个)和通信 量不太大的局域网，否则有时还会因传播过多的广 播信息而产生网络拥塞。这就是所谓的广播风暴。</p>
+<p>网桥的特点</p>
+<p>网桥用于在数据链路层上，实现在数据链路层以上使用相同协议的局域网的互连。</p>
+<p>它负责完成物理层和数据链路层协议的转换。 </p>
+<p>网桥具有路由选择功能，可提高网络的整体效率。</p>
+<p>固定路由网桥</p>
+<p>根据网络的互连环境，人工为每个网桥针对它 所连接的每个局域网分别建立一张路由表。当 一个帧到达时，网桥就根据预先设计好的路由 表来决定如何进行转发。</p>
+<p>缺点：不能适应动态改变的网络互连环境，路由表的维护困难。</p>
+<p>透明网桥</p>
+<p>能生成和修改自己路由表的网桥。</p>
+<p>目前使用得最多的网桥是透明网桥 (transparent bridge)。</p>
+<p>“透明”是指局域网上的站点并不知道所发送 的帧将经过哪几个网桥，因为网桥对各站来说 是看不见的。</p>
+<p>透明网桥是一种即插即用设备，其标准是 IEEE 802.1D。</p>
+<p>特点:</p>
+<p>能适应动态改变的网络环境</p>
+<p>确定路由的负担在网桥</p>
+<p>源路由网桥</p>
+<p>由发送站点确定到达目的地的路由，并将它存 储在所发送的帧中;网桥接收帧后按其指示的 路由将它转发到下一个局域网上。</p>
+<p>特点</p>
+<p>能适应动态改变的网络环境</p>
+<p>确定路由的负担在站点</p>
+</blockquote>
+<ol start="9">
+<li><p>【3-09】一个PPP帧的数据部分（用十六进制写出）是7D 5E FE 27 7D 5D 7D 5D 65 7D 5E。试问真正的数据是什么（用十六进制写出）？</p>
+<p>信息字段中出现的每一个0x7E字节转变成为2字节序列（0x7D，0x5E）</p>
+<p>信息字段中出现一个0x7D的字节（即出现了和转义字符一样的比特组合），则把0x7D转变成为2字节序列（0x7D，0x5D）</p>
+<p>信息字段中出现ASCII码的控制字符（即数值小于0x20的字符），则在该字符前面要加入一个0x7D字节，同时将该字符的编码加以改变。例如，出现0x03（在控制字符中是“传输结束”ETX）就要把它转变为2字节序列（0x7D，0x23）</p>
+</li>
+</ol>
+<p>   <strong>7D 5E</strong> FE 27 7D 5D 7D 5D 65 <strong>7D 5E</strong></p>
+<p>   7E FE 27 <strong>7D 5D 7D 5D</strong> 65 7E</p>
+<p>   7E FE 27 7D 7D 65 7E</p>
+<p>   【3-10】PPP协议使用同步传输技术传送比特串0110111111111100。试问经过零比特填充后变成怎样的比特串？若接收端收到的PPP帧的数据部分是0001110111110111110110，问删除发送端加入的零比特后变成怎样的比特串？</p>
+<p>   零比特填充的具体做法是：在发送端，先扫描整个信息字段（通常用硬件实现，但也可用软件实现，只是会慢些）。只要发现有5个连续1，则立即填入一个0。因此经过这种零比特填充后的数据，就可以保证在信息字段中不会出现6个连续1。接收端在收到一个帧时，先找到标志字段F以确定一个帧的边界，接着再用硬件对其中的比特流进行扫描。每当发现5个连续1时，就把这5个连续1后的一个0删除，以还原成原来的信息比特流（图3-11）。这样就保证了透明传输：在所传送的数据比特流中可以传送任意组合的比特流，而不会引起对帧边界的错误判断。</p>
+<p>   经过零比特填充后变成011011111<strong>0</strong>11111<strong>0</strong>00；</p>
+<p>   删除发送端加入的零比特后变成000111011111 11111 110。</p>
+<p>   【3-20】假定1km长的CSMA/CD网络的数据率为1Gbit/s。设信号在网络上的传播速率为200000km/s。求能够使用此协议的最短帧长。</p>
+<p>   单程的传播时间$t_s=1km/(200000km/s)=5\times 10^{-6}=5\mu s$</p>
+<p>   往返的传播时间$t_d=5\mu s*2=10\mu s$</p>
+<p>   最短帧长$f=10\mu s\times 1Gbit/s=10\times 10^{-6}\times 10^9 bit=10000bit=1250byte$</p>
+<p>   【3-22】假定在使用CSMA/CD协议的10Mbit/s以太网中某个站在发送数据时检测到碰撞，执行退避算法时选择了随机数r ＝100。试问这个站需要等待多长时间后才能再次发送数据？如果是100Mbit/s的以太网呢？</p>
+<p>   对于10Mbit/s以太网，争用期为51.2µs，退后100个争用期，需等待$51.2µs\times 100=5120µs$</p>
+<p>   对于100Mbit/s以太网，争用期为5.12µs，退后100个争用期，需等待$5.12µs\times 100=512µs$</p>
+<p>   【3-28】10Mbit/s以太网升级到100Mbit/s、1Gbit/s和10Gbit/s时，都需要解决哪些技术问题？为什么以太网能够在发展的过程中淘汰掉自己的竞争对手，并使自己的应用范围从局域网一直扩展到城域网和广域网？</p>
+<p>   以太网有一个重要的参数a ，它必须保持为很小的数值。<br>   $$<br>   a=\dfrac{\tau}{T_0}<br>   $$<br>   $\tau$是以太网单程端到端时延，$T_0$是帧的发送时间。$T_0$是帧长与发送速率之比，可见为了保持参数a不变，可以使τ与发送速率的乘积不变。在帧长一定的条件下，若数据率提高到10倍，可把网络电缆长度（因而使τ）减小到原有数值的十分之一。</p>
+<p>   在100Mbit/s的以太网中采用的方法是保持最短帧长不变。对于铜缆100Mbit/s以太网，一个网段的最大长度是100m，采用了“载波延伸”的方法，其最短帧长仍为64字节，即512比特。另外使用“分组突发”减小开销。</p>
+<p>   以太网是一种经过实践证明的成熟技术。以太网的互操作性很好，不同厂商生产的以太网都能可靠地进行互操作。在广域网中使用以太网时，其价格大约只有同步光纤网SONET的五分之一和异步传递方式ATM的十分之一。以太网还能够适应多种传输媒体，如铜缆、双绞线以及各种光缆。端到端的以太网连接使帧的格式全都是以太网的格式，而不需要再进行帧的格式转换。</p>
+<ol start="10">
+<li><p>现有五个站分别连接在三个局域网上，并且用两个网桥连接起来，如图1所示。<br>每一个网桥的两个端口号都标注在图上。在一开始，两个网桥中的转发表都是空的。以后有以下各站向其他站发送了数据帧，即H1发送给H5，H3发给H2，H4 发送给H3，H2发送给H1。请将有关数据填入下表中。</p>
+<p><img src="./pics/CN2-10.png" alt="10"></p>
+<p><img src="./pics/CN2-10-2.png" alt="10-Ans"></p>
+</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/StudyNote/"># StudyNote</a>
+                    
+                        <a href="/tags/ComputerScience/"># ComputerScience</a>
+                    
+                        <a href="/tags/ComputerNetwork/"># ComputerNetwork</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/10/15/mongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">StudyNote | mongoDB学习笔记</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
