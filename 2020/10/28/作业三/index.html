@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>HOMEWORK | 计算机网络课程作业三 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">HOMEWORK | 计算机网络课程作业三</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 28, 2020&nbsp;&nbsp;13:54:01</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9CComputerNetwork/">计算机网络ComputerNetwork</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <ol>
+<li><p>写出下列缩略语的英文全称和中文含义</p>
+<p>CIDR、IP、ICMP、IGMP、ARP、RARP、RIP、OSPF、IGP、BGP、NAT、TTL</p>
+<table>
+<thead>
+<tr>
+<th>缩略语</th>
+<th>英文全称</th>
+<th>中文含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CIDR</td>
+<td>Classless InterDomain Routing</td>
+<td>无分类域间路由选择</td>
+</tr>
+<tr>
+<td>IP</td>
+<td>Internet Protocol</td>
+<td>网际协议</td>
+</tr>
+<tr>
+<td>ICMP</td>
+<td>Internet Control Message Protocol</td>
+<td>网际控制报文协议</td>
+</tr>
+<tr>
+<td>IGMP</td>
+<td>Internet Group Management Protocol</td>
+<td>网际组管理协议</td>
+</tr>
+<tr>
+<td>ARP</td>
+<td>Address Resolution Protocol</td>
+<td>地址解析协议</td>
+</tr>
+<tr>
+<td>RARP</td>
+<td>Reverse Address Resolution Protocol</td>
+<td>逆地址解析协议</td>
+</tr>
+<tr>
+<td>RIP</td>
+<td>Routing Information Protocol</td>
+<td>路由信息协议</td>
+</tr>
+<tr>
+<td>OSPF</td>
+<td>Open Shortest Path First</td>
+<td>开放最短通路优先</td>
+</tr>
+<tr>
+<td>IGP</td>
+<td>Interior Gateway Protocol</td>
+<td>内部网关协议</td>
+</tr>
+<tr>
+<td>BGP</td>
+<td>Border Gateway Protocol</td>
+<td>边界网关协议</td>
+</tr>
+<tr>
+<td>NAT</td>
+<td>Network Address Translation</td>
+<td>网络地址转换</td>
+</tr>
+<tr>
+<td>TTL</td>
+<td>Time To Live</td>
+<td>生存时间，或寿命</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ol start="2">
+<li><p>找出不能分配给主机的IP地址，并说明原因：</p>
+<p>（A）131.107.256.80</p>
+<p>（B）231.222.0.11</p>
+<p>（C）126.0.0.0</p>
+<p>（D）198.121.254.255</p>
+<p>（E）202.117.34.32</p>
+<p>（A）中256不合法；（B）中231是组播地址，不能用于主机；（C）全0结尾为网络地址，不能用于主机；（D）全1，即255，为广播地址，不能用于主机。</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>网络193.1.1.0，子网掩码是255. 255. 255. 224。问：这个子网掩码可划分几个子网，每个子网的子网地址和主机IP地址范围是什么？</p>
+<p>子网掩码是255.255.255.11100000，采用3位子网号，支持$2^3-2=6$个子网（全0和全1的子网不用）。</p>
+<p>每个子网可有$2^5-2=30$台主机（全0为网络地址，全1为广播地址）。</p>
+<p>子网地址为193.1.1.32的主机IP地址范围为193.1.1.33-193.1.1.62；</p>
+<p>子网地址为193.1.1.64的主机IP地址范围为193.1.1.65-193.1.1.94；</p>
+<p>子网地址为193.1.1.96的主机IP地址范围为193.1.1.97-193.1.1.126；</p>
+<p>子网地址为193.1.1.128的主机IP地址范围为193.1.1.129-193.1.1.158；</p>
+<p>子网地址为193.1.1.160的主机IP地址范围为193.1.1.161-193.1.1.190；</p>
+<p>子网地址为193.1.1.192的主机IP地址范围为193.1.1.193-193.1.1.222。</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>【4-09】</p>
+<p>（1）子网掩码为255.255.255.0代表什么意思？</p>
+<p>对于A类地址与B类地址来说，子网掩码255.255.255.0为普通掩码；而对于C类地址来说，子网掩码255.255.255.0为子网掩码默认值。</p>
+<p>（2）一个网络的现在掩码为255.255.255.248，问该网络能够连接多少台主机？</p>
+<p>子网掩码为255.255.255.11111000，则该网络能连接$2^3-2=6$台主机。</p>
+<p>（3）一个A类网络和一个B类网络的子网号subnet-id分别为16个1和8个1，问这两个网络的子网掩码有何不同？</p>
+<p>A类网络的子网掩码为11111111.11111111.11111111.00000000；</p>
+<p>B类网络的子网掩码为11111111.11111111.11111111.00000000。</p>
+<p>这两个网络的子网掩码一样，但子网数目并不相同。</p>
+<p>（4）一个B类地址的子网掩码是255.255.240.0。试问在其中每一个子网上的主机数最多是多少？</p>
+<p>子网掩码为255.255.11110000.00000000，在其中每一个子网上的主机数最多是$2^12-2=4094$个。</p>
+<p>（5）一个A类网络的子网掩码为255.255.0.255，它是否为有效的子网掩码？</p>
+<p>是一个有效的子网掩码。</p>
+<p>（6）某个IP地址的十六进制表示是C2.2F.14.81，试将其转换为点分十进制的形式。这个地址是哪一类IP地址？</p>
+<p>IP地址转换为二进制为11000010.00101111.00010100.10000001，转换为点分十进制的形式为194.47.20.129，这个地址是C类IP地址。</p>
+<p>（7）C类网络使用子网掩码有无实际意义？为什么？</p>
+<p>有实际意义。因为C类网络使用子网掩码依然可以划分子网。</p>
+</li>
+</ol>
+<ol start="5">
+<li><p>【4-10】试辨认以下IP地址的网络类别：</p>
+<p>（1）128.36.199.3</p>
+<p>10000000，B类地址。</p>
+<p>（2）21.12.240.17</p>
+<p>00010101，A类地址。</p>
+<p>（3）183.194.76.253</p>
+<p>10110111，B类地址。</p>
+<p>（4）192.12.69.248</p>
+<p>11000000，C类地址。</p>
+<p>（5）89.3.0.1</p>
+<p>01011001，A类地址。</p>
+<p>（6）200.3.6.2</p>
+<p>11001000，C类地址。</p>
+</li>
+</ol>
+<ol start="6">
+<li><p>【4-13】设IP数据报使用固定首部，其各字段的具体数值如图所示（除IP地址外，均为十进制表示）。试用二进制运算方法计算应当写入到首部检验和字段中的数值（用二进制表示）。<img src="./pics/CN413.PNG" alt="CN413"></p>
+<p>转换成二进制后，按16位对齐，计算和的反码：</p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>0</strong></td>
+<td><strong>1</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>1</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>首部检验和为1000101110110001。</p>
+</li>
+</ol>
+<ol start="7">
+<li><p>【4-20】设某路由器建立了如下路由表：</p>
+<p><img src="./pics/CN420.PNG" alt="CN420"></p>
+<p>现共收到5个分组，其目的地址分别为：</p>
+<p>（1）128.96.39.10</p>
+<p>（2）128.96.40.12</p>
+<p>（3）128.96.40.151</p>
+<p>（4）192.4.153.17</p>
+<p>（5）192.4.153.90</p>
+<p>试分别计算其下一跳。</p>
+<p>由题可知有子网掩码$M_1$=255.255.255.128，$M_2$=255.255.255.128，$M_3$=255.255.255.128，$M_4$=255.255.255.192。对5个目的地址和4种子网掩码进行AND运算，得出其所在的网络地址。</p>
+<p>（1）128.96.39.10与$M_1$。</p>
+<p>00001010 AND 10000000 = 000000000</p>
+<p>即128.96.39.0，与目的网络地址1匹配，下一跳为接口m0。</p>
+<p>（2）128.96.40.12与$M_1$。</p>
+<p>00001100 AND 10000000  = 00000000 </p>
+<p>即128.96.40.0，与目标网络地址1不匹配。</p>
+<p>128.96.40.12与$M_2$。</p>
+<p>00001100 AND 10000000  = 00000000 </p>
+<p>即128.96.40.0，与目标网络地址2不匹配。</p>
+<p>128.96.40.12与$M_3$。</p>
+<p>00001100 AND 10000000  = 00000000 </p>
+<p>即128.96.40.0，与目标网络地址3匹配，下一跳为$R_2$。</p>
+<p>（3）128.96.40.151与$M_1$。</p>
+<p>10010111 AND 10000000  = 10000000 </p>
+<p>即128.96.40.128，与目标网络地址1不匹配。</p>
+<p>128.96.40.151与$M_2$。</p>
+<p>10010111 AND 10000000  = 10000000 </p>
+<p>即128.96.40.128，与目标网络地址2不匹配。</p>
+<p>128.96.40.151与$M_3$。</p>
+<p>10010111 AND 10000000  = 10000000 </p>
+<p>即128.96.40.128，与目标网络地址3不匹配。</p>
+<p>128.96.40.151与$M_4$。</p>
+<p>10010111 AND 11000000  = 10000000 </p>
+<p>即128.96.40.128，与目标网络地址4不匹配。</p>
+<p>下一跳为默认$R_4$。</p>
+<p>（4）192.4.153.17与$M_1$。</p>
+<p>00010001 AND 10000000  = 00000000 </p>
+<p>即192.4.153.0，与目标网络地址1不匹配。</p>
+<p>192.4.153.17与$M_2$。</p>
+<p>00010001 AND 10000000  = 00000000 </p>
+<p>即192.4.153.0，与目标网络地址2不匹配。</p>
+<p>192.4.153.17与$M_3$。</p>
+<p>00010001 AND 10000000  = 00000000 </p>
+<p>即192.4.153.0，与目标网络地址3不匹配。</p>
+<p>192.4.153.17与$M_4$。</p>
+<p>00010001 AND 11000000  = 00000000</p>
+<p>即192.4.153.0，与目标网络地址4匹配，下一跳为$R_3$。</p>
+<p>（5）192.4.153.90与$M_1$。</p>
+<p>01011010 AND 10000000  = 00000000 </p>
+<p>即192.4.153.0，与目标网络地址1不匹配。</p>
+<p>192.4.153.90与$M_2$。</p>
+<p>01011010 AND 10000000  = 00000000 </p>
+<p>即192.4.153.0，与目标网络地址2不匹配。</p>
+<p>192.4.153.90与$M_3$。</p>
+<p>01011010 AND 10000000  = 00000000 </p>
+<p>即192.4.153.0，与目标网络地址3不匹配。</p>
+<p>192.4.153.90与$M_4$。</p>
+<p>01011010 AND 11000000  = 01000000</p>
+<p>即192.4.153.64，与目标网络地址4不匹配。</p>
+<p>下一跳为默认$R_4$。</p>
+</li>
+</ol>
+<ol start="8">
+<li><p>【4-21】某单位分配到一个B类IP地址，其net-id为129.250.0.0。该单位有4000台机器，平均分布在16个不同的地点。如选用子网掩码为255.255.255.0，试给每一个地点分配一个子网号码，并算出每个地点主机号码的最小值和最大值。</p>
+<p>$4000/16=250$台机器/地点，需要8位主机号。</p>
+<p>由子网掩码为255.255.255.0，说明已分配8位给子网，只需使用00000001-00010000的子网号即可。每个地点主机号码为00000001-11111010这250个号码。</p>
+</li>
+</ol>
+<ol start="9">
+<li><p>【4-25】以下有4个子网掩码，哪些是不推荐使用的？为什么？</p>
+<p>（1）176.0.0.0；（2）96.0.0.0；（3）127.192.0.0；（4）255.128.0.0。</p>
+<p>（1）第一个字节转换为二进制为10110000，其中“1”不连续，不推荐使用；</p>
+<p>（2）第一个字节转换为二进制为01100000，其中“1”前有“0”，不推荐使用；</p>
+<p>（3）第一个字节转换为二进制为01111111，其中“1”前有“0”，不推荐使用；</p>
+<p>（4）前两字节转换为二进制为11111111.10000000，“1”连续且前无“0”，推荐使用。</p>
+</li>
+</ol>
+<ol start="10">
+<li><p>【4-26】有如下的4个/24地址块，试进行最大可能的聚合。</p>
+<p>212.56.132.0/24</p>
+<p>212.56.133.0/24</p>
+<p>212.56.134.0/24</p>
+<p>212.56.135.0/24</p>
+<p>212.56.132.0 = 212.56.<strong>100001</strong>00.0</p>
+<p>212.56.133.0 = 212.56.<strong>100001</strong>01.0</p>
+<p>212.56.134.0 = 212.56.<strong>100001</strong>10.0</p>
+<p>212.56.135.0 = 212.56.<strong>100001</strong>11.0</p>
+<p>可聚合为212.56.132.0/22。</p>
+</li>
+</ol>
+<ol start="11">
+<li><p>【4-27】有两个CIDR地址块208.128/11和208.130.28/22。是否有哪一个地址块包含了另一个地址？如果有，请指出，并说明理由。</p>
+<p>地址块208.128/11 = <strong>208</strong>.<strong>100</strong>00000.00000000.00000000</p>
+<p>地址块208.130.28/22 = <strong>208</strong>.<strong>10000010</strong>.<strong>000111</strong>00.00000000</p>
+<p>有，地址块208.128/11包含了208.130.28/22。</p>
+</li>
+</ol>
+<ol start="12">
+<li><p>【4-30】一个大公司有一个总部和三个下属部门。公司分配到的网络前缀是192.77.33/24。公司的网络布局如图所示。总部共有5个局域网，其中的$LAN_1$～$LAN_4$都连接到路由器R 1 上，$R_1$再通过$LAN_5$与路由器$R_2$相连。$R_2$和远地的三个部门的局域网$LAN_6$～$LAN_8$通过广域网相连。每一个局域网旁边标明的数字是局域网上的主机数。试给每一个局域网分配一个合适的网络前缀。</p>
+<p><img src="./pics/CN3-4-30.png" alt="4-30"></p>
+<p>依照所需的主机数量从大到小分配网络前缀。</p>
+<p>LAN1上有50台主机，所需62个主机号，即6位主机号，需要前缀/26；</p>
+<p>LAN3上有30台主机，所需30个主机号，即5位主机号，需要前缀/27；</p>
+<p>LAN8上有25台主机和1台路由器，所需30个主机号，即5位主机号，需要前缀/27；</p>
+<p>LAN6、7上有20台主机和1台路由器，所需30个主机号，即5位主机号，需要前缀/27；</p>
+<p>LAN2、4上有10台主机，所需16个主机号，即4位主机号，需要前缀/28；</p>
+<p>LAN5上有10台路由器，所需2个主机号，即2位主机号，需要前缀/30；</p>
+<p>WAN1-3各有2个端点，所需2个主机号，即2位主机号，需要前缀/30。</p>
+</li>
+</ol>
+<ol start="13">
+<li><p>【4-37】某单位分配到一个地址块136.23.12.64/26。现在需要进一步划分为4个一样大的子网。试问：</p>
+<p>（1）每个子网的网络前缀有多长？</p>
+<p>所需4个子网，需要另外增加2位地址前缀，即28位。</p>
+<p>（2）每一个子网中有多少个地址？</p>
+<p>每个子网中有32-28=4位给主机用，即$2^4-2=14$个地址。</p>
+<p>（3）每一个子网的地址块是什么？</p>
+<p>01000000    136.23.12.64/28</p>
+<p>01010000    136.23.12.80/28</p>
+<p>01100000    136.23.12.96/28</p>
+<p>01110000    136.23.12.112/28</p>
+<p>（4）每一个子网可分配给主机使用的最小地址和最大地址是什么？</p>
+<p>地址块为136.23.12.64/28的子网</p>
+<p>最小地址 136.23.12.65/28</p>
+<p>最大地址 136.23.12.78/28</p>
+<p>地址块为136.23.12.80/28的子网</p>
+<p>最小地址 136.23.12.81/28</p>
+<p>最大地址 136.23.12.94/28</p>
+<p>地址块为136.23.12.96/28的子网</p>
+<p>最小地址 136.23.12.97/28</p>
+<p>最大地址 136.23.12.110/28</p>
+<p>地址块为136.23.12.112/28的子网</p>
+<p>最小地址 136.23.12.113/28</p>
+<p>最大地址 136.23.12.126/28</p>
+</li>
+</ol>
+<ol start="14">
+<li><p>【4-42】假定网络中的路由器A的路由表有如下的项目（这三列分别表示“目的网络”、“距离”和“下一跳路由器”）：</p>
+<table>
+<thead>
+<tr>
+<th>N1</th>
+<th>4</th>
+<th>B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>N2</td>
+<td>2</td>
+<td>C</td>
+</tr>
+<tr>
+<td>N3</td>
+<td>1</td>
+<td>F</td>
+</tr>
+<tr>
+<td>N4</td>
+<td>5</td>
+<td>G</td>
+</tr>
+</tbody></table>
+<p>现在A收到从C发来的路由信息（这两列分别表示“目的网络”和“距离”）：</p>
+<table>
+<thead>
+<tr>
+<th>N1</th>
+<th>2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>N2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>N3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>N4</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<p>试求出路由器A更新后的路由表（详细说明每一个步骤）。</p>
+<p>先把A收到从C发来的路由信息距离加1：</p>
+<table>
+<thead>
+<tr>
+<th>N1</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>N2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>N3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>N4</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<p>再与原始路由器A的路由表进行比较：</p>
+<table>
+<thead>
+<tr>
+<th>N1</th>
+<th>3</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>N2</td>
+<td>2</td>
+<td>C</td>
+</tr>
+<tr>
+<td>N3</td>
+<td>1</td>
+<td>F</td>
+</tr>
+<tr>
+<td>N4</td>
+<td>5</td>
+<td>G</td>
+</tr>
+</tbody></table>
+<p>其中目的网络为N1的信息，由于下一跳路由器不同且距离更短，所以进行更新；目的网络N2，下一跳路由器相同且距离相同，不更新；目的网络N3、4，距离更长，不更新。</p>
+</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/ComputerScience/"># ComputerScience</a>
+                    
+                        <a href="/tags/ComputerNetwork/"># ComputerNetwork</a>
+                    
+                        <a href="/tags/StudyNote/"># StudyNote</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/10/25/DoS%E7%9B%B8%E5%85%B3%E7%90%86%E8%AE%BA%E4%B8%8E%E5%AE%9E%E8%B7%B5/">StudyNote | DoS相关理论与实践</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
