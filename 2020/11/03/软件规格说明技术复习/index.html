@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>软件规格说明技术复习 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件规格说明技术复习</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 3, 2020&nbsp;&nbsp;15:34:08</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="软件规格说明技术"><a href="#软件规格说明技术" class="headerlink" title="软件规格说明技术"></a>软件规格说明技术</h1><h2 id="第1章-绪论"><a href="#第1章-绪论" class="headerlink" title="第1章 绪论"></a>第1章 绪论</h2><p>软件工程是研究大规模程序设计的方法、工具和管理的工程科学。软件工程的要点是大规模程序设计。</p>
+<p>20世纪60年代末出现的“软件危机”，其主要表现在于软件质量差，可靠性难以保证；软件成本增长难以控制，只有极少软件能在预订的成本预算内完成；软件开发进度难以控制，周期拖得很长；软件的维护很困难，维护人员和费用不断增加。</p>
+<p>造成软件危机的主要原因在于软件开发过程本身的复杂性以及软件工程作为一个职业相对还不够成熟。</p>
+<p>IEEE给出的软件工程的定义：</p>
+<p>软件工程是：（1）将系统化的、严格约束的、可量化的方法应用于软件的开发、运行和维护，即将工程化应用于软件。（2）在（1）中所述方法的研究。</p>
+<h3 id="1-1-软件生命周期"><a href="#1-1-软件生命周期" class="headerlink" title="1.1 软件生命周期"></a>1.1 软件生命周期</h3><p>Pressman给出了关于软件的一个较为综合的定义：软件是①当它被执行时提供希望功能和性能的指令；②使得程序能够适当地操作信息的数据；③描述程序的操作和使用文档。简而言之，软件=程序+数据+文档。</p>
+<p>软件开发的过程包括把用户的需求（Requirements）转化为软件需求规格说明（Specification），把软件需求规格说明转化为设计，用代码来实现设计，对代码进行测试，文档编制并确认它可以投入使用的过程。</p>
+<p>典型的软件生命周期，通常称之为瀑布模型。几乎其他的软件开发模型，如螺旋模型、演化模型、原型模型等都使用了瀑布模型作为基础。</p>
+<p>典型的瀑布模型生命周期模型由下面5个阶段组成：需求分析和规格说明，设计，实现，测试以及交付与维护阶段。</p>
+<p>有两种不通的方法可以进行程序测试：功能测试和结构测试。这两种测试方法是按照他们的目的以及产生测试用例的不同的方法区分的。功能测试，同样也被称为“黑盒测试”，目的是为了发现导致违反规格说明与程序之间一致性的故障，并且测试用例通常是基于功能规格说明（需求规格说明或者是设计规格说明或者两者）产生的。结构测试，则被称为“白盒测试”，这种方法按照程序内部的逻辑测试程序，检验程序中的每条路径是否都能按照规定的要求正确工作。白盒测试的测试用例是根据程序的结构产生的。对于程序测试而言，功能测试和结构测试都是必需的，因为两者在发现故障方面是互补的。从本质上而言，测试是一个交互的过程，因此测试是一个劳动密集型的过程。</p>
+<h3 id="1-2-存在的问题"><a href="#1-2-存在的问题" class="headerlink" title="1.2 存在的问题"></a>1.2 存在的问题</h3><p>Davis等人指出：高质量的软件需求规格说明能提高软件开发的质量并且节省软件的开发费用。主要有以下三个重要原因：需求错误通常比其他错误多花费10倍时间来修复；需求错误通常占软件项目总错误的40%以上；需求错误的稍微减少能显著地降低返工成本和日程延期。</p>
+<h3 id="1-3-形式方法"><a href="#1-3-形式方法" class="headerlink" title="1.3 形式方法"></a>1.3 形式方法</h3><p>形式方法包含两种技术：形式规格说明技术和形式验证技术。</p>
+<p>软件开发的形式方法是一种提供了描述软件产品，如规格说明、设计和源代码的形式语言，并支持对描述的产品的性质进行推理和验证的方法。</p>
+<p>形式验证的主要技术包括定理和模型检查。定理证明技术是形式方法的核心，定理证明系统是由一个形式语言和推理机制构成的形式系统。模型检查是一种自动验证系统正确性的方法，它已经被成功地应用到许多实际问题中，包括硬件设计、协议分析、交互式系统分析等问题。</p>
+<p>形式规格说明语言的分类：基于模型的方法，面向模型的形式方法有时也称基于状态的形式方法；代数方法，为目标软件系统的规格说明提供了一些特殊的机制，以允许对目标软件系统描述的结构化，并支持目标软件系统中公共元素的重用；进程代数方法。</p>
+<p>形式方法的优点：形式规格说明是精确的；由误解引起的错误减少；形式规格说明利于系统实现；能够对形式规格说明进行正确性证明。</p>
+<p>形式方法的缺点：形式规格说明难以阅读；形式方法并不能对客观世界的所有方面进行模型化；形式规格说明的正确性证明费时费力；尚未出现支持形式方法全过程的软件环境。</p>
+<h2 id="第2章-一阶逻辑与集合论"><a href="#第2章-一阶逻辑与集合论" class="headerlink" title="第2章 一阶逻辑与集合论"></a>第2章 一阶逻辑与集合论</h2><p>Z语言是基于一阶逻辑和集合论的形式规格说明语言。</p>
+<h3 id="2-1-命题逻辑"><a href="#2-1-命题逻辑" class="headerlink" title="2.1 命题逻辑"></a>2.1 命题逻辑</h3><p>命题是具有确定真假意义的陈述句。</p>
+<p><strong>命题与连接词</strong></p>
+<p>若公式G在所有的解释I下，其真值都为T，则称该公式是永真式，又称重言式（tautology）；如果公式G在所有的解释I下，其真值都为F，则称该公式是永假式；如果公式G不是永假式，则称该公式是可满足的。</p>
+<h3 id="2-2-谓词逻辑"><a href="#2-2-谓词逻辑" class="headerlink" title="2.2 谓词逻辑"></a>2.2 谓词逻辑</h3><p>带有参数的命题称为谓词。如果一个谓词带有n个参数，则称该谓词是n元谓词。</p>
+<p>“对任意x”在谓词逻辑中记作“$\forall x$”，其中”$\forall$“称为全称量词；”存在一个x“在谓词逻辑中记作”$\exists x$“，其中”$\exists$“称为存在量词。而x是一个变量，称为约束变量。</p>
+<p>通常称变量x在谓词公式($\exists x$)A和($\forall x$)A中的出现为约束出现；并称A为($\exists x$)A和($\forall x$)A的作用域（或辖域）。如果变量x在公式A中的某次出现是在A的分子公式中的约束出现，则称x的该次出现是约束出现；若变量x在公式A的某次出现不是约束出现，就称该出现为自由出现。在公式A中自由出现的变量称为自由变量，在公式A中约束出现的变量称为约束变量。</p>
+<h3 id="2-3-一阶逻辑中的证明"><a href="#2-3-一阶逻辑中的证明" class="headerlink" title="2.3 一阶逻辑中的证明"></a>2.3 一阶逻辑中的证明</h3><p>一个形如$\Gamma \vdash A$的符号相继式（简称相继式），其中$\Gamma$是一阶逻辑中的公式集合，$\vdash$称为“推出”符号，A是公式，$\Gamma \vdash A$就可读作：“$\Gamma$推出A”或“A由$\Gamma$推出”。通常称集合$\Gamma$为前提，而A为结论。经过证明的这个相继式就称为定理。</p>
+<p>点规则（One-point Rule）：即若已有一个含存在量词的命题公式，其中对量词变量给定了一个确定值，则可以消去量词，用已知值来替换所出现的量词变量。<br>$$<br>\exists n:N \bullet (n&lt;10<del>\land</del>n=2<em>3)等价于2</em>3\in N<del>\land</del>2<em>3&lt;10<br>$$<br>式子的第一部分确保这一项是自然数集的一个元素，第二部分即对谓词进行替换，得$2</em>3&lt;10$。</p>
+<h3 id="2-4-集合论"><a href="#2-4-集合论" class="headerlink" title="2.4 集合论"></a>2.4 集合论</h3><p>“$==$”是定义符号，可读作“定义为”。例如，$A=={x|x是能被3整除的自然数}$、$B=={y|y^3+y^2-y=80}$等。</p>
+<p>集合谓词：属于$\in$、包含$\subset \supset$、真包含$\subsetq \supsetq$。</p>
+<p>集合运算：并$\cup$、交$\cap$、差$\setminus$、广义并$\bigcup$、广义交$\bigcap$。</p>
+<p>设A、B是任意两个集合，若序偶的第一元素是A的一个元素，第二个元素是B的一个元素，则所有这样的序偶集合，称为“集合A、B的笛卡尔积”，记作“$A\times B$”。即$A\times B=={(x, y)|x\in A，且y\in B}$。</p>
+<p>设任由任意n个集合$A_1$、$A_2$、$\dots$、$A_n$构成的新集合${(a_1, a_2, \dots, a_n)|a_i \in A_i, i=1, 2, \dots, n}$称为$A_1$、$A_2$、$\dots$、$A_n$的笛卡儿积，记作“$A_1\times A_2 \times \dots \times A_n$”。</p>
+<h2 id="第3章-Z的类型与构造单元"><a href="#第3章-Z的类型与构造单元" class="headerlink" title="第3章 Z的类型与构造单元"></a>第3章 Z的类型与构造单元</h2><h3 id="3-1-Z的类型系统"><a href="#3-1-Z的类型系统" class="headerlink" title="3.1 Z的类型系统"></a>3.1 Z的类型系统</h3><p>基本类型是Z的类型系统中的重要组成部分，对基本类型重复使用类型构造符，可构造出其他的类型。现介绍两个复合类型：幂集类型和笛卡儿积类型。另外还有两个符合类型：序列和包（第6章）。</p>
+<h3 id="3-2-扩充表示法"><a href="#3-2-扩充表示法" class="headerlink" title="3.2 扩充表示法"></a>3.2 扩充表示法</h3><p>表示“集合中元素的个数”的操作符，在Z中，使用操作符“#”可得到集合中的元素个数。</p>
+<p>用声明加限制的组合表示集合，其一般形式为：</p>
+<p>$${Decls|Pred}$$</p>
+<p>有时并不希望集合的元素是由声明Decls的表所确定的元组，而想自由地选择某些元素。Z扩充了集合表达式原有的表示，增加了一个指明集合元素形式的部分。扩充后的集合表达式定义形如：</p>
+<p>$${Decls|Pred\bullet ExPr}$$</p>
+<p>它表示了所有这样的值的集合，这些值是由Decls中满足限制Pred的变量以ExPr项的形式确定的。竖线“|”将声明和限制分割开来，称为“限制条”（ConstraintBar），黑原点将限制与表达式项分隔开来。整个表示以一对花括号括起。</p>
+<p>![image-20201108154440097](/Users/reneelin/Library/Application Support/typora-user-images/image-20201108154440097.png)</p>
+<p>若想定义a到b之间（包括a和b）的所有整数的集合，就可以直接使用a..b的表示。“..”称做数域。</p>
+<p>![image-20201108154756062](/Users/reneelin/Library/Application Support/typora-user-images/image-20201108154756062.png)</p>
+<h3 id="3-3-Z规格说明的构造单元"><a href="#3-3-Z规格说明的构造单元" class="headerlink" title="3.3 Z规格说明的构造单元"></a>3.3 Z规格说明的构造单元</h3><p>公理定义（Axiomatic Definition），引入了一个或多个全程变量和关于它们的谓词，这些谓词给出了进一步的信息。这些变量不能是前面已经定义的变量。它们的作用域为它们的声明出现处至整个规格说明的结束处。而谓词也具有全程的性质。</p>
+<p>图3-1声明部分和谓词部分都可以不出现。</p>
+<p>![image-20201108154835230](/Users/reneelin/Library/Application Support/typora-user-images/image-20201108154835230.png)</p>
+<p>Z的模式的两个主要用途：①说明软件系统的状态；②说明状态的转化。</p>
+<p>通用式定义（Generic Definition），又叫通用式常量。</p>
+<p>![image-20201108155207631](/Users/reneelin/Library/Application Support/typora-user-images/image-20201108155207631.png)</p>
+<p>![image-20201108155228041](/Users/reneelin/Library/Application Support/typora-user-images/image-20201108155228041.png)</p>
+<p>![image-20201108155238734](/Users/reneelin/Library/Application Support/typora-user-images/image-20201108155238734.png)</p>
+<h2 id="第4章-关系和函数"><a href="#第4章-关系和函数" class="headerlink" title="第4章 关系和函数"></a>第4章 关系和函数</h2><h3 id="4-1-关系"><a href="#4-1-关系" class="headerlink" title="4.1 关系"></a>4.1 关系</h3><p>X到Y的所有关系的类型被写成$X\leftrightarrow Y$，事实上它就是$ℙ(X\times Y)$。这样定义X到Y的所有关系类型的标准写法为：</p>
+<p>$$X\leftrightarrow Y==ℙ(X\times Y)$$</p>
+<p>即集合X到集合Y的任一关系是$ℙ(X\times Y)$的一个元素。这里X和Y可以是相同的集合，$X\leftrightarrow Y$是$ℙ(X\times Y)$的简写形式。可用这种表达形式来声明关系。在Z中，$(x,y)$经常被写成$x\mapsto y$，读作“x映射到y”。</p>
+<p>如果R是一个类型为$X\leftrightarrow Y$的关系，通常可以dom R来表示R的定义域，以ran R来表示R的值域。对于任何关系R、dom R和ran R可以用集合表达式形式地表示为：</p>
+<p>$$dom R == {x:X | \exists y: Y \bullet x \mapsto y \in R} \ ran R == {y: Y | \exists x:X \bullet x \mapsto y \in R}$$</p>
+<h3 id="4-2-关系的运算"><a href="#4-2-关系的运算" class="headerlink" title="4.2 关系的运算"></a>4.2 关系的运算</h3><p>恒等关系的一般定义：设X是任意的集合类型。$id X=={x:X\bullet x \mapsto x}$</p>
+<p>整数集Z上的“等于”是恒等关系中的一个典型例子。</p>
+<p>关系逆的一般定义为：对任何类型为$X\leftrightarrow Y$的关系R，它的逆关系为：$R^~=={x:X; y:Y | x\mapsto y \in R \bullet y\mapsto x}$。</p>
+<p>对任何类型为$X\leftrightarrow Y$的关系R，设S是定义域类型X的一个集合，则</p>
+<p>$$S\triangleleft R =={x:X; y:Y | x\in S <del>\land</del>x\mapsto y \in R \bullet x\mapsto y}$$</p>
+<p>可简写为：$S\triangleleft R =={x:X; y:Y | x\in S <del>\land</del> x\mapsto y \in R}$</p>
+<p>对任何类型为$X\leftrightarrow Y$的关系R，设T是定义域类型Y的一个集合，则</p>
+<p>$$R\triangleright T =={x:X; y:Y | y\in T <del>\land</del>x\mapsto y \in R}$$</p>
+<p>与限定运算相类似，定义域限定减和值域限定减的运算可以被一般地描述为：</p>
+<p>$$S⩤R =={x:X; y:Y | x\notin S <del>\land</del> x\mapsto y \in R} \ R⩥T =={x:X; y:Y | y\notin T <del>\land</del>x\mapsto y \in R}$$</p>
+<p>![image-20201108170445962](/Users/reneelin/Library/Application Support/typora-user-images/image-20201108170445962.png)</p>
+<h3 id="4-3-函数"><a href="#4-3-函数" class="headerlink" title="4.3 函数"></a>4.3 函数</h3><p>![image-20201108170654626](/Users/reneelin/Library/Application Support/typora-user-images/image-20201108170654626.png)</p>
+<p>函数的性质可以形式地描述为：设R是一个类型为$X\leftrightarrow Y$的关系，则</p>
+<p>$$(x\mapstp y)\in R <del>\land</del> (x\mapsto z)\in R \Rightarrow y=z$$。它说的是，如果x既关联y又关联z，那么y和z是同一个元素。</p>
+<p>部分函数的一般定义：<br>$$<br>X⇸Y=={R:X\leftrightarrow Y | (\forall x:X; y; z:Y \bullet (x\mapsto y)\in R <del>\land</del> (x\mapsto z)\in R \Rightarrow y=z}<br>$$<br>全函数是一个函数，且其定义域是整个源集。<br>$$<br>X\rightarrow Y == {f:X⇸Y<del>|</del>dom f = X}<br>$$<br>函数叠加的形式定义可叙述为：设f和g都是类型为X⇸Y的函数，这里X是源集，Y是目标集，则$f\oplus g==((dom g)⩤f)\cup g$。其含义表明，对一个dom f或dom g中的元素x: X，如果$x\in dom g$，则$(f\oplus g)x=g x$；如果$x\notin dom g$但$x\in dom f, (f\oplus g) x = f x$。“$f\oplus g$”可读作“g叠加到f”。</p>
+<p>![image-20201108175612288](/Users/reneelin/Library/Application Support/typora-user-images/image-20201108175612288.png)</p>
+<p>𝜆-表达式采用的是人们较熟悉的形式，由声明加上谓词在跟上一个项的结构组成。其一般形式为：$\lamda decls <del>|</del> pred \bullet term$，该表达式以decls | pred为自变量，将它们映射到由term所定义的值。因此，𝜆-表达式$\lamda x_1: X_1; \dots; x_n: X_n <del>|</del>P\bullet t$就等价于由集合表达式描述的函数${x_1: X_1; \dots; x_n: X_n <del>|</del> P\bullet (x_1, \dots, x_n)\mapsto t}$，谓词部分是任选的。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/11/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)/">Review | 操作系统(1)</a>
+            
+            
+            <a class="next" rel="next" href="/2020/10/28/%E4%BD%9C%E4%B8%9A%E5%9B%9B/">HOMEWORK | 计算机网络课程作业四</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

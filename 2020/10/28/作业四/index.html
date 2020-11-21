@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>HOMEWORK | 计算机网络课程作业四 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">HOMEWORK | 计算机网络课程作业四</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 28, 2020&nbsp;&nbsp;13:59:25</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9CComputerNetwork/">计算机网络ComputerNetwork</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <ol>
+<li><p>写出下列缩略语的英文全称和中文含义</p>
+<p>TCP、UDP、MSS、ARQ、RTT、RTO</p>
+<table>
+<thead>
+<tr>
+<th>缩略语</th>
+<th>英文全称</th>
+<th>中文含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TCP</td>
+<td>Transmission Control Protocol</td>
+<td>传输控制协议</td>
+</tr>
+<tr>
+<td>UDP</td>
+<td>User Datagram Protocol</td>
+<td>用户数据报协议</td>
+</tr>
+<tr>
+<td>MSS</td>
+<td>Maximum Segment Size</td>
+<td>最长报文段</td>
+</tr>
+<tr>
+<td>ARQ</td>
+<td>Automatic Repeat reQuest</td>
+<td>自动重传请求</td>
+</tr>
+<tr>
+<td>RTT</td>
+<td>Round-Trip Time</td>
+<td>往返时间</td>
+</tr>
+<tr>
+<td>RTO</td>
+<td>Retransmission Time-Out</td>
+<td>超时重传时间</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ol start="2">
+<li><p>写出下列应用程序的熟知端口号以及传输层采用的协议TCP/UDP</p>
+<p>FTP、TELNET、SMTP、DNS、TFTP、HTTP、SNMP</p>
+<table>
+<thead>
+<tr>
+<th>应用程序</th>
+<th>端口号</th>
+<th>传输层协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FTP</td>
+<td>21</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>TELNET</td>
+<td>23</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>SMTP</td>
+<td>25</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>53</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>TFTP</td>
+<td>69</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>HTTP</td>
+<td>80</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>SNMP</td>
+<td>161</td>
+<td>UDP</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ol start="3">
+<li><p>【5-13】一个UDP用户数据报的数据字段为8192字节。在链路层要使用以太网来传送。试问应当划分为几个IP数据报片？说明每一个IP数据报片的数据字段长度和片偏移字段的值。</p>
+<p>UDP用户数据报的首部为8个字节，所以UDP用户数据报总共为8200字节。以太网数据字段最大长度是1500字节，IP首部为20字节，因此每个IP数据报片只能容纳1480字节数据。8200/1480 = 5…800，因此需要6个IP数据报片。</p>
+<p>第1个IP数据报片，长度为1480字节，片偏移字节为0字节，值为0；</p>
+<p>第2个IP数据报片，长度为1480字节，片偏移字节为1480字节，值为185；</p>
+<p>第3个IP数据报片，长度为1480字节，片偏移字节为2960字节，值为370；</p>
+<p>第4个IP数据报片，长度为1480字节，片偏移字节为4440字节，值为555；</p>
+<p>第5个IP数据报片，长度为1480字节，片偏移字节为5920字节，值为740；</p>
+<p>第6个IP数据报片，长度为800字节，片偏移字节为7400字节，值为925。</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>【5-23】主机A向主机B连续发送了两个TCP报文段，其序号分别是70和100。试问：</p>
+<p>（1）第一个报文段携带了多少字节的数据？</p>
+<p>数据序号是70到99，共30字节的数据。</p>
+<p>（2）主机B收到第一个报文段后发回的确认中的确认号应当是多少？</p>
+<p>下一个期待收到的序号应该是100，因此主机B收到第一个报文段后发回的确认中的确认号应当是100。</p>
+<p>（3）如果B收到第二个报文段后发回的确认中的确认号是180，试问A发送的第二个报文段中的数据有多少字节？</p>
+<p>B收到第二个报文段后发回的确认中的确认号是180，因此第二个报文段数据序号是100到179，共80字节的数据。</p>
+<p>（4）如果A发送的第一个报文段丢失了，但第二个报文段到达了B。B在第二个报文段到达后向A发送确认。试问这个确认号应为多少？</p>
+<p>因为A发送的第一个报文段丢失了，这个确认号应为70。</p>
+</li>
+</ol>
+<ol start="5">
+<li><p>【5-30】设TCP使用的最大窗口为65535字节，而传输信道不产生差错，带宽也不受限制。若报文段的平均往返时间为20ms，问所能得到的最大吞吐量是多少？</p>
+<p>最大吞吐量$=65535*8bits/20ms=26.2Mbps$</p>
+</li>
+</ol>
+<ol start="6">
+<li><p>【5-31】通信信道带宽为1Gbit/s，端到端传播时延为10ms。TCP的发送窗口为65535字节。试问：可能达到的最大吞吐量是多少？信道的利用率是多少？</p>
+<p>$t=65535*8bits/10^9bit/s=0.524ms$</p>
+<p>最大吞吐量$=65535*8bits/(20+0.524)ms=25.5Mbps$</p>
+<p>信道利用率$=25.5Mbps/1Gbps=2.55%$</p>
+</li>
+</ol>
+<ol start="7">
+<li><p>【5-38】设TCP的ssthresh的初始值为8（单位为报文段）。当拥塞窗口上升到12时网络发生了超时，TCP使用慢开始和拥塞避免。试分别求出第1轮次到第15轮次传输的各拥塞窗口大小。你能说明拥塞窗口每一次变化的原因吗？</p>
+<table>
+<thead>
+<tr>
+<th>轮次</th>
+<th>拥塞窗口</th>
+<th>拥塞窗口变化的原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>11</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td>9</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ol start="8">
+<li><p>【5-39】TCP的拥塞窗口cwnd大小与传输轮次n 的关系如下所示：</p>
+<p><img src="./pics/CN4-5-39.png" alt="5-39"></p>
+<p>（1）试画出如图5-25所示的拥塞窗口与传输轮次的关系曲线。</p>
+<p><img src="./pics/CN525.png" alt="5-25"></p>
+</li>
+</ol>
+<p>   （2）指明TCP工作在慢开始阶段的时间间隔。</p>
+<p>   慢开始阶段的时间间隔：[1, 6]，[23, 26]。</p>
+<p>   （3）指明TCP工作在拥塞避免阶段的时间间隔。</p>
+<p>   拥塞避免阶段的时间间隔：[6, 16]，[17, 22]。</p>
+<p>   （4）在第16轮次和第22轮次之后发送方是通过收到三个重复的确认还是通过超时检测到丢失了报文段？</p>
+<p>   第16轮次发送方是通过收到三个重复的确认检测到丢失了报文段，因为第17轮次的拥塞窗口减半；第22轮次之后发送方是通过超时检测到丢失了报文段，因为第23轮次的拥塞窗口为1。</p>
+<p>   （5）在第1轮次、第18轮次和第24轮次发送时，门限ssthresh分别被设置为多大？</p>
+<p>   第1轮次发送时，门限ssthresh被设置为32，因为从第6轮次开始进入拥塞避免状态；第18轮次发送时，门限ssthresh被设置为21，为发生拥塞时拥塞窗口42的一半；第24轮次发送时，门限ssthresh被设置为13，为发生拥塞时拥塞窗口26的一半。</p>
+<p>   （6）在第几轮次发送出第70个报文段？</p>
+<p>   第1轮次发送第1个报文段；</p>
+<p>   第2轮次发送第2、3个报文段；</p>
+<p>   第3轮次发送第4、5、6、7个报文段；</p>
+<p>   第4轮次发送第8、9、10、11、12、13、14、15个报文段；</p>
+<p>   第5轮次发送第16-31个报文段；</p>
+<p>   第6轮次发送第32-63个报文段；</p>
+<p>   第7轮次发送第64-96个报文段。</p>
+<p>   第70个报文段在第7轮次发送。</p>
+<p>   （7）假定在第26轮次之后收到了三个重复的确认，因而检测出了报文段的丢失，那么拥塞窗口cwnd和门限ssthresh应设置为多大？</p>
+<p>   第26轮次之后收到了三个重复的确认，因而检测出了报文段的丢失，那么拥塞窗口cwnd应设置为4，即拥塞窗口8的一半；门限ssthresh应设置为4，即拥塞窗口8的一半。</p>
+<ol start="9">
+<li><p>【5-41】用TCP传送512字节的数据。设窗口为100字节，而TCP报文段每次也是传送100字节的数据。再设发送方和接收方的起始序号分别选为100和200，试画出类似于图5-28的工作示意图。从连接建立阶段到连接释放都要画上。</p>
+<p><img src="./pics/CN528.png" alt="5-28"></p>
+</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/ComputerScience/"># ComputerScience</a>
+                    
+                        <a href="/tags/ComputerNetwork/"># ComputerNetwork</a>
+                    
+                        <a href="/tags/StudyNote/"># StudyNote</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/11/03/%E8%BD%AF%E4%BB%B6%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0/">软件规格说明技术复习</a>
+            
+            
+            <a class="next" rel="next" href="/2020/10/28/%E4%BD%9C%E4%B8%9A%E4%B8%89/">HOMEWORK | 计算机网络课程作业三</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
