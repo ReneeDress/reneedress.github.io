@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>StudyNote | Software Engineering Lecture 2 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">StudyNote | Software Engineering Lecture 2</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 7, 2020&nbsp;&nbsp;13:05:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8BSoftwareEngineering/">软件工程SoftwareEngineering</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Fundamental-activities"><a href="#Fundamental-activities" class="headerlink" title="Fundamental activities"></a>Fundamental activities</h1><h2 id="Specification"><a href="#Specification" class="headerlink" title="Specification"></a>Specification</h2><h2 id="Design-and-implementation"><a href="#Design-and-implementation" class="headerlink" title="Design and implementation"></a>Design and implementation</h2><h2 id="Validation"><a href="#Validation" class="headerlink" title="Validation"></a>Validation</h2><h2 id="Evolution"><a href="#Evolution" class="headerlink" title="Evolution"></a>Evolution</h2><p>Software process model = An abstract representation of a software process</p>
+<p>software process = A sequence of activities leading to the production of a software product</p>
+<h1 id="Process-descriptions"><a href="#Process-descriptions" class="headerlink" title="Process descriptions"></a>Process descriptions</h1><h2 id="Products"><a href="#Products" class="headerlink" title="Products"></a>Products</h2><h2 id="Roles"><a href="#Roles" class="headerlink" title="Roles"></a>Roles</h2><h2 id="Pre-and-post-conditions"><a href="#Pre-and-post-conditions" class="headerlink" title="Pre- and post- conditions"></a>Pre- and post- conditions</h2><p>Plan-driven processes</p>
+<p>Agile processes</p>
+<h1 id="Software-process-model"><a href="#Software-process-model" class="headerlink" title="Software process model"></a>Software process model</h1><h2 id="Waterfall-model"><a href="#Waterfall-model" class="headerlink" title="Waterfall model"></a>Waterfall model</h2><p>Plan-driven, strict order</p>
+<h3 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h3><h4 id="Requirements-analysis-and-definition"><a href="#Requirements-analysis-and-definition" class="headerlink" title="Requirements analysis and definition"></a>Requirements analysis and definition</h4><h5 id="Requirements-specification-Products"><a href="#Requirements-specification-Products" class="headerlink" title="Requirements specification[Products]"></a>Requirements specification[Products]</h5><h5 id="Customers-Analyst-Roles"><a href="#Customers-Analyst-Roles" class="headerlink" title="Customers, Analyst[Roles]"></a>Customers, Analyst[Roles]</h5><h5 id="Requirements-have-been-approved-by-customer-Post"><a href="#Requirements-have-been-approved-by-customer-Post" class="headerlink" title="Requirements have been approved by customer[Post-]"></a>Requirements have been approved by customer[Post-]</h5><h4 id="System-and-software-design"><a href="#System-and-software-design" class="headerlink" title="System and software design"></a>System and software design</h4><h5 id="Design-specification-Products"><a href="#Design-specification-Products" class="headerlink" title="Design specification[Products]"></a>Design specification[Products]</h5><h5 id="Developer-Analyst-Roles"><a href="#Developer-Analyst-Roles" class="headerlink" title="Developer, Analyst[Roles]"></a>Developer, Analyst[Roles]</h5><h5 id="All-the-requirements-are-included-in-the-design-specification-Post"><a href="#All-the-requirements-are-included-in-the-design-specification-Post" class="headerlink" title="All the requirements are included in the design specification[Post-]"></a>All the requirements are included in the design specification[Post-]</h5><h4 id="Implementation-and-unit-testing"><a href="#Implementation-and-unit-testing" class="headerlink" title="Implementation and unit testing"></a>Implementation and unit testing</h4><h5 id="Verified-components-Products"><a href="#Verified-components-Products" class="headerlink" title="Verified components[Products]"></a>Verified components[Products]</h5><h5 id="Developer-Analyst-Tester-Roles"><a href="#Developer-Analyst-Tester-Roles" class="headerlink" title="Developer, Analyst, Tester[Roles]"></a>Developer, Analyst, Tester[Roles]</h5><h5 id="All-the-components-have-passed-unit-testing-Post"><a href="#All-the-components-have-passed-unit-testing-Post" class="headerlink" title="All the components have passed unit testing[Post-]"></a>All the components have passed unit testing[Post-]</h5><h4 id="Integration-and-system-testing"><a href="#Integration-and-system-testing" class="headerlink" title="Integration and system testing"></a>Integration and system testing</h4><h5 id="Verified-software-system-Products"><a href="#Verified-software-system-Products" class="headerlink" title="Verified software system[Products]"></a>Verified software system[Products]</h5><h5 id="Developer-Analyst-Tester-Roles-1"><a href="#Developer-Analyst-Tester-Roles-1" class="headerlink" title="Developer, Analyst, Tester[Roles]"></a>Developer, Analyst, Tester[Roles]</h5><h5 id="The-software-system-has-passed-the-system-testing-Post"><a href="#The-software-system-has-passed-the-system-testing-Post" class="headerlink" title="The software system has passed the system testing[Post-]"></a>The software system has passed the system testing[Post-]</h5><h4 id="Operation-and-maintenance"><a href="#Operation-and-maintenance" class="headerlink" title="Operation and maintenance"></a>Operation and maintenance</h4><h5 id="Updated-systems-Products"><a href="#Updated-systems-Products" class="headerlink" title="Updated systems[Products]"></a>Updated systems[Products]</h5><h5 id="Developer-Analyst-Customer-Roles"><a href="#Developer-Analyst-Customer-Roles" class="headerlink" title="Developer, Analyst, Customer[Roles]"></a>Developer, Analyst, Customer[Roles]</h5><h5 id="Requirements-and-software-systems-have-been-updated-according-to-customer-or-market-needs-Post"><a href="#Requirements-and-software-systems-have-been-updated-according-to-customer-or-market-needs-Post" class="headerlink" title="Requirements and software systems have been updated according to customer or market needs[Post-]"></a>Requirements and software systems have been updated according to customer or market needs[Post-]</h5><h3 id="Advantages-and-Disadvantages"><a href="#Advantages-and-Disadvantages" class="headerlink" title="Advantages and Disadvantages"></a>Advantages and Disadvantages</h3><p>✓ Helps coordinate the work</p>
+<p>✓ Good requirements improves software quality</p>
+<p>✗ Difficult to deal with changing requirements</p>
+<h3 id="Conidtions"><a href="#Conidtions" class="headerlink" title="Conidtions"></a>Conidtions</h3><p>✓ Large systems </p>
+<p>✓ Requirements are well-understood and unlikely to change radically</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><h4 id="Online-reservation-system-for-meeting-rooms"><a href="#Online-reservation-system-for-meeting-rooms" class="headerlink" title="Online reservation system for meeting rooms"></a>Online reservation system for meeting rooms</h4><ul>
+<li>The requirements are well-studied and unlikely to change</li>
+</ul>
+<h5 id="Requirements-definition"><a href="#Requirements-definition" class="headerlink" title="Requirements definition"></a>Requirements definition</h5><ul>
+<li>User information management</li>
+<li>Conference reservation</li>
+<li>Meeting room management</li>
+<li>Reservation information management</li>
+</ul>
+<h5 id="System-and-software-design-1"><a href="#System-and-software-design-1" class="headerlink" title="System and software design"></a>System and software design</h5><ul>
+<li><p>Flow chart</p>
+</li>
+<li><p>Data source</p>
+</li>
+<li><p>User Interface</p>
+</li>
+</ul>
+<h5 id="Implementation-and-unit-testing-1"><a href="#Implementation-and-unit-testing-1" class="headerlink" title="Implementation and unit testing"></a>Implementation and unit testing</h5><ul>
+<li>Test and result</li>
+</ul>
+<h5 id=""><a href="#" class="headerlink" title="?"></a>?</h5><h5 id="Operation-and-maintenance-1"><a href="#Operation-and-maintenance-1" class="headerlink" title="Operation and maintenance"></a>Operation and maintenance</h5><ul>
+<li>Allowing new features</li>
+</ul>
+<h2 id="Incremental-model"><a href="#Incremental-model" class="headerlink" title="Incremental model"></a>Incremental model</h2><p>Interleaving activities</p>
+<h3 id="Process-1"><a href="#Process-1" class="headerlink" title="Process"></a>Process</h3><p>Analysis - Design - Code - Test = Increment</p>
+<h3 id="Advantages-and-Disadvantages-1"><a href="#Advantages-and-Disadvantages-1" class="headerlink" title="Advantages and Disadvantages"></a>Advantages and Disadvantages</h3><p>✓ Dealing with changes</p>
+<p>✓ Rapid delivery</p>
+<p>✓ Effective feedbacks</p>
+<p>✗ Invisible processes</p>
+<p>✗ Degrading system structure</p>
+<h3 id="Conditions"><a href="#Conditions" class="headerlink" title="Conditions"></a>Conditions</h3><p>✓ Limited time and budget</p>
+<p>✓ Changing requirements</p>
+<h3 id="Agile-methods"><a href="#Agile-methods" class="headerlink" title="Agile methods"></a>Agile methods</h3><h4 id="Traditional-view"><a href="#Traditional-view" class="headerlink" title="Traditional view"></a>Traditional view</h4><h5 id="Achieve-better-software-process"><a href="#Achieve-better-software-process" class="headerlink" title="Achieve better software process(?)"></a>Achieve better software process(?)</h5><ul>
+<li><p>Careful project planning</p>
+</li>
+<li><p>Formalized quality assurance</p>
+</li>
+<li><p>Use of analysis and design methods</p>
+</li>
+<li><p>Manage the process of software development</p>
+</li>
+</ul>
+<h5 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h5><p>doing too much about planning designing documenting</p>
+<h4 id="Agile-manifesto"><a href="#Agile-manifesto" class="headerlink" title="Agile manifesto"></a>Agile manifesto</h4><ul>
+<li><p><strong>Individuals and interactions</strong> over Processes and tools</p>
+</li>
+<li><p><strong>Executive software</strong> over Comprehensive documentation</p>
+</li>
+<li><p><strong>Customer collaboration</strong> over Contract negotiation</p>
+</li>
+<li><p><strong>Responding to change</strong> over Following a plan</p>
+</li>
+</ul>
+<h4 id="Scaling-agile-methods"><a href="#Scaling-agile-methods" class="headerlink" title="Scaling agile methods"></a>Scaling agile methods</h4><h5 id="Scaling-up"><a href="#Scaling-up" class="headerlink" title="Scaling up"></a>Scaling up</h5><ul>
+<li>More up-front design and system documentation</li>
+<li>Cross-team communication mechanisms</li>
+<li>Continuous integration</li>
+</ul>
+<h5 id="Scaling-out"><a href="#Scaling-out" class="headerlink" title="Scaling out"></a>Scaling out</h5><ul>
+<li>Refuse to accept the risk</li>
+<li>Against standard procedures</li>
+<li>A wide range of skills</li>
+<li>Culture resistance</li>
+</ul>
+<h2 id="Reuse-oriented-model"><a href="#Reuse-oriented-model" class="headerlink" title="Reuse-oriented model"></a>Reuse-oriented model</h2><p>Component search and configurations</p>
+<h3 id="Process-2"><a href="#Process-2" class="headerlink" title="Process"></a>Process</h3><p>Requirements Specification - Componment Analysis - Requirements Modification - System Design with Reuse - Development and Integration - System Validation</p>
+<h3 id="Key-words"><a href="#Key-words" class="headerlink" title="Key words"></a>Key words</h3><ul>
+<li>Component selection</li>
+<li>Component filtering</li>
+<li>Component-depentent requirements development</li>
+</ul>
+<h3 id="Advantages-and-Disadvantages-2"><a href="#Advantages-and-Disadvantages-2" class="headerlink" title="Advantages and Disadvantages"></a>Advantages and Disadvantages</h3><p>✓</p>
+<p>✗</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/ComputerScience/"># ComputerScience</a>
+                    
+                        <a href="/tags/SoftwareEngineering/"># SoftwareEngineering</a>
+                    
+                        <a href="/tags/Review/"># Review</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/12/14/SE_L3/">StudyNote | Software Engineering Lecture 3</a>
+            
+            
+            <a class="next" rel="next" href="/2020/11/30/20Winter/">20 Winter Semester</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

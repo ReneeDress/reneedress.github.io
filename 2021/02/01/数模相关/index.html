@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>StudyNote | MCM/ICM Information | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">StudyNote | MCM/ICM Information</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 1, 2021&nbsp;&nbsp;19:03:23</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                                <a href="/categories/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8BMathModels/">数学模型MathModels</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="2020"><a href="#2020" class="headerlink" title="2020"></a>2020</h1><h2 id="C-A-Wealth-of-Data"><a href="#C-A-Wealth-of-Data" class="headerlink" title="C A Wealth of Data"></a>C <a href="http://mathmodels.org/Problems/2020/MCM-C/index.html" target="_blank" rel="noopener">A Wealth of Data</a></h2><h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>In the online marketplace it created, Amazon provides customers with an opportunity to rate and review purchases. Individual ratings - called “<strong>star ratings</strong>“ - allow purchasers to express their level of satisfaction with a product using a scale of 1 (low rated, low satisfaction) to 5 (highly rated, high satisfaction). Additionally, customers can submit text-based messages - called “<strong>reviews</strong>“ - that express further opinions and information about the product. Other customers can submit ratings on these reviews as being helpful or not - called a “<strong>helpfulness rating</strong>“ - towards assisting their own product purchasing decision. Companies use these data to gain insights into the markets in which they participate, the timing of that participation, and the potential success of product design feature choices.</p>
+<p>Sunshine Company is planning to introduce and sell three new products in the online marketplace: a microwave oven, a baby <strong>pacifier</strong>, and a hair dryer. They have hired your team as consultants to identify key patterns, relationships, measures, and parameters in past customer-supplied ratings and reviews associated with other competing products to 1) inform their online sales strategy and 2) identify potentially important design features that would enhance product desirability. Sunshine Company has used data to inform sales strategies in the past, but they have not previously used this particular combination and type of data. Of particular interest to Sunshine Companyare time-based patterns in these data, and whether they interact in ways that will help the company craft successful products.</p>
+<p>To assist you, Sunshine’s data center has provided you with three data files for this project: <strong>hair_dryer.tsv</strong>, <strong>microwave.tsv</strong>, and <strong>pacifier.tsv</strong>. These data represent customer-supplied ratings and reviews for microwave ovens, baby pacifiers, and hair dryers sold in the Amazon marketplace over the time period(s) indicated in the data. A glossary of data label definitions is provided as well. THE DATA FILES PROVIDED CONTAIN THE ONLY DATA YOU SHOULD USE FOR THIS PROBLEM.</p>
+<h3 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h3><p>\1. Analyze the three product data sets provided to identify, describe, and support with mathematical evidence, meaningful quantitative and/or qualitative patterns, relationships, measures, and parameters within and between star ratings, reviews, and helpfulness ratings that will help Sunshine Company succeed in their three new online marketplace product offerings.</p>
+<p>\2. Use your analysis to address the following specific questions and requests from the Sunshine Company Marketing Director:</p>
+<ul>
+<li>Identify data measures based on ratings and reviews that are most informative for Sunshine Company to track, once their three products are placed on sale in the online marketplace.</li>
+<li>Identify and discuss time-based measures and patterns within each data set that might suggest that a product’s reputation is increasing or decreasing in the online marketplace.</li>
+<li>Determine combinations of text-based measure(s) and ratings-based measures that best indicate a potentially successful or failing product.</li>
+<li>Do specific star ratings incite more reviews? For example, are customers more likely to write some type of review after seeing a series of low star ratings?</li>
+<li>Are specific quality descriptors of text-based reviews such as ‘enthusiastic’, ‘disappointed’, and others, strongly associated with rating levels?</li>
+</ul>
+<p>\3. Write a one- to two-page letter to the Marketing Director of Sunshine Company summarizing your team’s analysis and results. Include specific justification(s) for the result that your team most confidently recommends to the Marketing Director.</p>
+<p>Your submission should consist of:</p>
+<ul>
+<li>One-page Summary Sheet</li>
+<li>Table of Contents</li>
+<li>One- to Two-page Letter</li>
+<li>Your solution of no more than 20 pages, for a maximum of 24 pages with your summary sheet, table of contents, and two-page letter.</li>
+</ul>
+<p>Note: Reference List and any appendices do not count toward the page limit and should appear after your completed solution. You should not make use of unauthorized images and materials whose use is restricted by copyright laws. Ensure you cite the sources for your ideas and the materials used in your report.</p>
+<h3 id="Glossary"><a href="#Glossary" class="headerlink" title="Glossary"></a>Glossary</h3><p><strong>Helpfulness Rating:</strong> an indication of how valuable a particular product review is when making a decision whether or not to purchase that product.</p>
+<p><strong>Pacifier:</strong> a rubber or plastic soothing device, often nipple shaped, given to a baby to suck or bite on.</p>
+<p><strong>Review:</strong> a written evaluation of a product.</p>
+<p><strong>Star Rating:</strong> a score given in a system that allows people to rate a product with a number of stars.</p>
+<h3 id="Attachments-The-Problem-Datasets"><a href="#Attachments-The-Problem-Datasets" class="headerlink" title="Attachments: The Problem Datasets"></a>Attachments: The Problem Datasets</h3><h3 id="Data-Set-Definitions"><a href="#Data-Set-Definitions" class="headerlink" title="Data Set Definitions"></a>Data Set Definitions</h3><p><strong>Each row represents data partitioned into the following columns.</strong></p>
+<ul>
+<li>marketplace (string): 2 letter country code of the marketplace where the review was written.</li>
+<li>customer_id (string): Random identifier that can be used to aggregate reviews written by a single author.</li>
+<li>review_id (string): The unique ID of the review.</li>
+<li>product_id (string): The unique Product ID the review pertains to.</li>
+<li>product_parent (string): Random identifier that can be used to aggregate reviews for the same product.</li>
+<li>product_title (string): Title of the product.</li>
+<li>product_category (string): The major consumer category for the product.</li>
+<li>star_rating (int): The 1-5 star rating of the review.</li>
+<li>helpful_votes (int): Number of helpful votes.</li>
+<li>total_votes (int): Number of total votes the review received.</li>
+<li>vine (string): Customers are invited to become Amazon Vine Voices based on the trust that they have earned in the Amazon community for writing accurate and insightful reviews. Amazon provides Amazon Vine members with free copies of products that have been submitted to the program by vendors. Amazon doesn’t influence the opinions of Amazon Vine members, nor do they modify or edit reviews.</li>
+<li>verified_purchase (string): A “Y” indicates Amazon verified that the person writing the review purchased the product at Amazon and didn’t receive the product at a deep discount.</li>
+<li>review_headline (string): The title of the review.</li>
+<li>review_body (string): The review text.</li>
+<li>review_date (bigint): The date the review was written.</li>
+</ul>
+<h2 id="D-Teaming-Strategies"><a href="#D-Teaming-Strategies" class="headerlink" title="D Teaming Strategies"></a>D <a href="http://mathmodels.org/Problems/2020/ICM-D/index.html" target="_blank" rel="noopener">Teaming Strategies</a></h2><h3 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h3><p>As societies become more interconnected, the set of challenges they face have become increasingly complex. We rely on interdisciplinary teams of people with diverse expertise and varied perspectives to address many of the most challenging problems. Our conceptual understanding of team success has advanced significantly over the past 50+ years allowing for better scientific, creative, or physical teams to address these complex issues. Researchers have reported on best strategies for assembling teams, optimal interactions among teammates, and ideal leadership styles. Strong teams across all sectors and domains are able to perform complex tasks unattainable through either individual efforts or a sequence of additive contributions of teammates.</p>
+<p>One of the most informative settings to explore team processes is in competitive team sports. Team sports must conform to strict rules that may include, but are not limited to, the number of players, their roles, allowable contact between players, their location and movement, points earned, and consequences of violations. Team success is much more than the sum of the abilities of individual players. Rather, it is based on many other factors that involve how well the teammates play together. Such factors may include whether the team has a diversity of skills (one person may be fast, while another is precise), how well the team balances between individual versus collective performance (star players may help leverage the skills of all their teammates), and the team’s ability to effectively coordinate over time (as one player steals the ball from an opponent, another player is poised for offense).</p>
+<p>In light of your modeling skills, the coach of the Huskies, your home soccer (known in Europe and other places as football) team, has asked your company, <strong>I</strong>ntrepid <strong>C</strong>hampion <strong>M</strong>odeling (ICM), to help understand the team’s dynamics. In particular, the coach has asked you to explore how the complex interactions among the players on the field impacts their success. The goal is not only to examine the interactions that lead directly to a score, but to explore team dynamics throughout the game and over the entire season, to help identify specific strategies that can improve teamwork next season. The coach has asked ICM to quantify and formalize the structural and dynamical features that have been successful (and unsuccessful) for the team. The Huskies have provided data<strong>[1]</strong> detailing information from last season, including all 38 games they played against their 19 opponents (they played each opposing team twice). Overall, the data covers 23,429 passes between 366 players (30 Huskies players, and 336 players from opposing teams), and 59,271 game events.</p>
+<p>To respond to the Huskie coach’s requests, your team from ICM should use the provided data to address the following:</p>
+<ul>
+<li><p>Create a network for the ball passing between players, where each player is a node and each pass constitutes a link between players. Use your passing network to identify network patterns, such as <strong>dyadic</strong> and <strong>triadic configurations</strong> and team formations. Also consider other structural indicators and network properties across the games. You should explore multiple scales such as, but not limited to, micro (pairwise) to macro (all players) when looking at interactions, and time such as short (minute-to-minute) to long (entire game or entire season).</p>
+</li>
+<li><p>Identify performance indicators that reflect successful teamwork (in addition to points or wins) such as diversity in the types of plays, coordination among players or distribution of contributions. You also may consider other team level processes, such as adaptability, flexibility, tempo, or flow. It may be important to clarify whether strategies are universally effective or dependent on opponents’ counter-strategies. Use the performance indicators and team level processes that you have identified to create a model that captures structural, configurational, and dynamical aspects of teamwork.</p>
+</li>
+<li><p>Use the insights gained from your teamwork model to inform the coach about what kinds of structural strategies have been effective for the Huskies. Advise the coach on what changes the network analysis indicates that they should make next season to improve team success.</p>
+</li>
+<li><p>Your analysis of the Huskies has allowed you to consider group dynamics in a controlled setting of a team sport. Understanding the complex set of factors that make some groups perform better than others is critical for how societies develop and innovate. As our societies increasingly solve problems involving teams, can you generalize your findings to say something about how to design more effective teams? What other aspects of teamwork would need to be captured to develop generalized models of team performance?</p>
+</li>
+</ul>
+<p>Your submission should consist of:</p>
+<ul>
+<li>One-page Summary Sheet</li>
+<li>Table of Contents</li>
+<li>Your solution of no more than 20 pages, for a maximum of 22 pages with your summary and table of contents.</li>
+</ul>
+<p>Note: Reference List and any appendices do not count toward the page limit and should appear after your completed solution. You should not make use of unauthorized images and materials whose use is restricted by copyright laws. Ensure you cite the sources for your ideas and the materials used in your report.</p>
+<h3 id="Attachment"><a href="#Attachment" class="headerlink" title="Attachment"></a>Attachment</h3><p>This data set was processed from a much larger dataset covering nearly 2000 matches from five European national soccer competitions, as well as the 2018 World Cup.</p>
+<h3 id="Glossary-1"><a href="#Glossary-1" class="headerlink" title="Glossary"></a>Glossary</h3><p><strong>Dyadic Configurations:</strong> relationships involving pairs of players.</p>
+<p><strong>Triadic Configurations:</strong> relationships involving groups of three players.</p>
+<h3 id="Cited-Reference"><a href="#Cited-Reference" class="headerlink" title="Cited Reference"></a>Cited Reference</h3><p><strong>[1]</strong> Pappalardo, L., Cintia, P., Rossi, A. <em>et al.</em> <em>A public data set of spatio-temporal match events in soccer competitions</em>. <em>Sci Data</em> 6, 236 (2019).</p>
+<h3 id="Optional-Resources"><a href="#Optional-Resources" class="headerlink" title="Optional Resources"></a>Optional Resources</h3><p>Research in football (soccer) networks has led to many articles that discuss related topics. A few articles are listed below. You are not required to use any of these sample articles in your solution, nor is it a comprehensive list.Â We encourage teams to utilize any journal article that supports their approach to the problem.</p>
+<p>BuldÃº, J.M., Busquets, J., Echegoyen, I. <em>et al.</em> (2019). Defining a historic football team: Using Network Science to analyze Guardiola’s F.C. Barcelona. <em>Sci Rep</em>, 9, 13602.</p>
+<p>Cintia, P., Giannotti, F., Pappalardo, L., Pedreschi, D., &amp; Malvaldi, M. (2015). The harsh rule of the goals: Data-driven performance indicators for football teams<em>.</em> <em>2015 IEEE International Conference on Data Science and Advanced Analytics (DSAA)</em>, 1-10, 7344823.</p>
+<p>Duch J., Waitzman J.S., Amaral L.A.N. (2010). Quantifying the performance of individual players in a team activity. <em>PLoS ONE</em>, 5: e10937.</p>
+<p>GÃœRSAKAL, N., YILMAZ, F., Ã‡OBANOÄžLU, H., Ã‡AÄžLIYOR, S. (2018). Network Motifs in Football. <em>Turkish Journal of Sport and Exercise</em>, 20 (3), 263-272.</p>
+<h2 id="E-Drowning-in-Plastic"><a href="#E-Drowning-in-Plastic" class="headerlink" title="E Drowning in Plastic"></a>E <a href="http://mathmodels.org/Problems/2020/ICM-E/index.html" target="_blank" rel="noopener">Drowning in Plastic</a></h2><h3 id="Problems-1"><a href="#Problems-1" class="headerlink" title="Problems"></a>Problems</h3><p>Since the 1950s, the manufacturing of plastics has grown exponentially because of its variety of uses, such as food packaging, consumer products, medical devices, and construction. While there are significant benefits, the negative implications associated with increased production of plastics are concerning. Plastic products do not readily break down, are difficult to dispose of, and only about 9% of plastics are recycled<strong>[1]</strong>.Â Effects can be seen by the approximately 4-12 million tons of <strong>plastic waste</strong> that enter the oceans each year<strong>[1,2]</strong>. Plastic waste has severe environmental consequences and it is predicted that if our current trends continue, the oceans will be filled with more plastic than fish by 2050<strong>[2]</strong>. The effect on marine life has been studied<strong>[3]</strong>, but the effects on human health are not yet completely understood<strong>[4]</strong>. The rise of <strong>single-use</strong> and <strong>disposable</strong> <strong>plastic products</strong> results in entire industries dedicated to creating plastic waste. It also suggests that the amount of time the product is useful is significantly shorter than the time it takes to properly <strong>mitigate</strong> the plastic waste. Consequently, to solve the plastic waste problem, we need to slow down the flow of plastic production and improve how we manage plastic waste.</p>
+<p>Your team has been hired by the <strong>I</strong>nternational <strong>C</strong>ouncil of Plastic Waste <strong>M</strong>anagement (ICM) to address this escalating environmental crisis. You must develop a plan to significantly reduce, if not eliminate, single-use and disposable plastic product waste.</p>
+<ul>
+<li><p>Develop a model to estimate the maximum levels of single-use or disposable plastic product waste that can safely be mitigated without further environmental damage. You may need to consider, among many factors, the source of this waste, the extent of the current waste problem, and the availability of resources to process the waste.</p>
+</li>
+<li><p>Discuss to what extent plastic waste can be reduced to reach an environmentally safe level. This may involve considering factors impacting the levels of plastic waste to include, but not limited to, sources and uses of single-use or disposable plastics, the availability of alternatives to plastics, the impact on the lives of citizens, or policies of cities, regions, countries, and continents to decrease single-use or disposable plastic and the effectiveness of such policies. These can vary between regions, so considering regional-specific constraints may make some policies more effective than others.</p>
+</li>
+<li><p>Using your model and discussion, set a target for the minimal achievable level of global waste of single-use or disposable plastic products and discuss the impacts for achieving such levels. You may consider ways in which human life is altered, the environmental impacts, or the effects on the multi-trillion-dollar plastic industry.</p>
+</li>
+<li><p>While this is a global problem, the causes and effects are not equally distributed across nations or regions. Discuss the equity issues that arise from the global crisis and your intended solutions. How do you suggest ICM address these issues?</p>
+</li>
+<li><p>Write a two-page memo to the ICM describing a realistic global target minimum achievable level of global single-use or disposable plastic product waste, a timeline to reach this level, and any circumstances that may accelerate or hinder the achievement of your target and timeline.</p>
+</li>
+</ul>
+<p>Your submission should consist of:</p>
+<ul>
+<li>One-page Summary Sheet</li>
+<li>Table of Contents</li>
+<li>Two-page Memo</li>
+<li>Your solution of no more than 20 pages, for a maximum of 24 pages with your summary, table of contents, and two-page memo.</li>
+</ul>
+<p>Note: Reference List and any appendices do not count toward the page limit and should appear after your completed solution. You should not make use of unauthorized images and materials whose use is restricted by copyright laws. Ensure you cite the sources for your ideas and the materials used in your report.</p>
+<h3 id="Glossary-2"><a href="#Glossary-2" class="headerlink" title="Glossary"></a>Glossary</h3><p><strong>Disposable Plastic Products:</strong> plastic materials or products that are not recyclable and become trash.</p>
+<p><strong>Mitigate:</strong> To make less severe, to moderate, to alleviate.</p>
+<p><strong>Plastic Waste:</strong> plastic objects that have not been recycled properly or cannot be recycled; debris made of plastic.</p>
+<p><strong>Single-Use Plastic Products:</strong> products made of plastic intended for one time use before being discarded.</p>
+<h3 id="Cited-References"><a href="#Cited-References" class="headerlink" title="Cited References"></a>Cited References</h3><p><strong>[1]</strong> Geyer, R., Jambeck, J. R., &amp; Law, K. L. (2017). Production, use, and fate of all plastics ever made. <em>Science Advances</em>, 3(7), e1700782.</p>
+<p><strong>[2]</strong> Jambeck, J. R., Geyer, R., Wilcox, C., Siegler, T. R., Perryman, M., Andrady, A., â€¦ &amp; Law, K. L. (2015). Plastic waste inputs from land into the ocean. Science, 347(6223), 768-771.</p>
+<p><strong>[3]</strong> Li, W. C., Tse, H. F., &amp; Fok, L. (2016). Plastic waste in the marine environment: A review of sources, occurrence and effects. <em>Science of the Total Environment</em>, 566, 333-349.</p>
+<p><strong>[4]</strong> Galloway T.S. (2015) Micro- and Nano-plastics and Human Health. In: Bergmann M., Gutow L., Klages M. (eds) <em>Marine Anthropogenic Litter</em>.</p>
+<h2 id="F-The-Place-I-Called-Home"><a href="#F-The-Place-I-Called-Home" class="headerlink" title="F The Place I Called Home"></a>F <a href="http://mathmodels.org/Problems/2020/ICM-F/index.html" target="_blank" rel="noopener">The Place I Called Home</a></h2><h3 id="Problem-1"><a href="#Problem-1" class="headerlink" title="Problem"></a>Problem</h3><p>Researchers have identified several island nations, such as The Maldives, Tuvalu, Kiribati, and The Marshall Islands, as being at risk of completely disappearing due to rising sea levels. What happens, or what should happen, to an island’s population when its nation’s land disappears? Not only do these <strong>environmentally displaced persons</strong> (EDPs) need to relocate, but there is also risk of losing a unique culture, language, and way of life. In this problem, we ask you to look more closely at this issue, in terms of both the need to relocate people and the protection of culture. There are many considerations and questions to address, to include: Where will these EDPs go? What countries will take them? Given various nations’ disproportionate contributions to the green-house gasses both historically and currently that have accelerated climate change linked to the rising seas, should the worst offenders have a higher obligation to address these issues? And, who gets a say in deciding where these nationless EDPs make a new home â€“ the individuals, an intergovernmental organization like the United Nations (UN), or the individual governments of the states absorbing these persons? A more detailed explanation of these issues is given in the <a href="http://mathmodels.org/Problems/2020/ICM-F/2020_ICM_Problem_F-ISSUE.pdf" target="_blank" rel="noopener">Issue Paper</a>.</p>
+<p>As a result of a recent UN ruling that opened the door to the theoretical recognition of EDPs as refugees, the <strong>I</strong>nternational <strong>C</strong>limate <strong>M</strong>igration <strong>F</strong>oundation (ICM-F) has hired you to advise the UN by developing a model and using it to analyze this multifaceted issue of when, why, and how the UN should step into a role of addressing the increasing challenge of EDPs. The ICM-F plans to brief the UN on guidance for how the UN should generate a systemized response for EDPs, especially in consideration of the desire to preserve <strong>cultural heritage</strong>. Your assignment is to develop a model (or set of models) and use your model(s) to provide the analysis to support this briefing. The ICM-F is especially interested in understanding the scope of the issue of EDPs. For example, how many people are currently at risk of becoming EDPs<strong>[1]</strong>; what is the value of the cultures of at-risk nations; how are those answers likely to change over time? Furthermore, how should the world respond with an international policy that specifically focuses on protecting the rights of persons whose nations have disappeared in the face of climate change while also aiming to preserve culture? Based on your analysis, what recommendations can you offer on this matter, and what are the implications of accepting or rejecting your recommendations?</p>
+<p>This problem is extremely complex. We understand that your submission will not be able to fully consider all of the aspects described in the Issue Paper beginning on page 3. However, considering the aspects that you address, synthesize your work into a cohesive answer to the ICM-F as they advise the UN. At a minimum, your team’s paper should include:</p>
+<ul>
+<li>An analysis of the scope of the issue in terms of both the number of people at risk and the risk of loss of culture;</li>
+<li>Proposed policies to address EDPs in terms of both human rights (being able to resettle and participate fully in life in their new home) and cultural preservation;</li>
+<li>A description of the development of a model used to measure the potential impact of proposed policies;</li>
+<li>An explanation of how your model was used to design and/or improve your proposed policies;</li>
+<li>An explanation, backed by your analysis, of the importance of implementing your proposed policies.</li>
+</ul>
+<p>The ICM-F consists of interdisciplinary judges including mathematicians, climate scientists, and experts in refugee migration to review your work. Therefore, your paper should be written for a scientifically literate yet diverse audience.</p>
+<p>Your submission should consist of:</p>
+<ul>
+<li>One-page Summary Sheet</li>
+<li>Table of Contents</li>
+<li>Your solution of no more than 20 pages, for a maximum of 22 pages with your summary and table of contents.</li>
+</ul>
+<p>NOTE: Reference List and any appendices do not count toward the page limit and should appear after your completed solution. You should not make use of unauthorized images and materials whose use is restricted by copyright laws. Ensure you cite the sources for your ideas and the materials used in your report.</p>
+<h3 id="Glossary-3"><a href="#Glossary-3" class="headerlink" title="Glossary"></a>Glossary</h3><p><strong>Environmentally displaced persons (EDPs):</strong> people who must relocate as their homeland becomes uninhabitable due to climate change events</p>
+<p><strong>Cultural heritage:</strong> the ways of living of a group or society passed through generations to include customs, practices, art, and values.</p>
+<h1 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h1><h2 id="C-The-Opioid-Crisis"><a href="#C-The-Opioid-Crisis" class="headerlink" title="C The Opioid Crisis"></a>C <a href="http://mathmodels.org/Problems/2019/MCM-C/2019_MCM_Problem_C.pdf" target="_blank" rel="noopener">The Opioid Crisis</a></h2><h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>The United States is experiencing a national crisis regarding the use of synthetic and nonsynthetic opioids, either for the treatment and management of pain (legal, prescription use) or for recreational purposes (illegal, non-prescription use). Federal organizations such as the Centers for Disease Control (CDC) are struggling to “save lives and prevent negative health effects of this epidemic, such as opioid use disorder, hepatitis, and HIV infections, and neonatal abstinence syndrome.”1 Simply enforcing existing laws is a complex challenge for the Federal Bureau of Investigation (FBI), and the U.S. Drug Enforcement Administration (DEA), among others. </p>
+<p>There are implications for important sectors of the U.S. economy as well. For example, if the opioid crisis spreads to all cross-sections of the U.S. population (including the college-educated and those with advanced degrees), businesses requiring precision labor skills, high technology component assembly, and sensitive trust or security relationships with clients and customers might have difficulty filling these positions. Further, if the percentage of people with opioid addiction increases within the elderly, health care costs and assisted living facility staffing will also be affected. </p>
+<p>The DEA/National Forensic Laboratory Information System (NFLIS), as part of the Drug Enforcement Administration’s (DEA) Office of Diversion Control, publishes a data-heavy annual report addressing “drug identification results and associated information from drug cases analyzed by federal, state, and local forensic laboratories.” The database within NFLIS includes data from crime laboratories that handle over 88% of the nation’s estimated 1.2 million annual state and local drug cases. For this problem, we focus on the individual counties located in five (5) U.S. states: Ohio, Kentucky, West Virginia, Virginia, and Tennessee. In the U.S., a county is the next lower level of government below each state that has taxation authority. </p>
+<p>Supplied with this problem description are several data sets for your use. The first file (MCM_NFLIS_Data.xlsx) contains drug identification counts in years 2010-2017 for narcotic analgesics (synthetic opioids) and heroin in each of the counties from these five states as reported to the DEA by crime laboratories throughout each state. A drug identification occurs when evidence is submitted to crime laboratories by law enforcement agencies as part of a criminal investigation and the laboratory’s forensic scientists test the evidence. Typically, when law enforcement organizations submit these samples, they provide location data (county) with their incident reports. When evidence is submitted to a crime laboratory and this location data is not provided, the crime laboratory uses the location of the city/county/state investigating law enforcement organization that submitted the case. For the purposes of this problem, you may assume that the county location data are correct as provided. </p>
+<p>The additional seven (7) files are zipped folders containing extracts from the U.S. Census Bureau that represent a common set of socio-economic factors collected for the counties of these five states during each of the years 2010-2016 (ACS_xx_5YR_DP02.zip). (Note: The same data were not available for 2017.) </p>
+<p>A code sheet is present with each data set that defines each of the variables noted. While you may use other resources for research and background information, THE DATA SETS PROVIDED CONTAIN THE ONLY DATA YOU SHOULD USE FOR THIS PROBLEM.</p>
+<h3 id="Problem-2"><a href="#Problem-2" class="headerlink" title="Problem"></a>Problem</h3><p><strong>Part 1.</strong> Using the NFLIS data provided, build a mathematical model to describe the spread and characteristics of the reported synthetic opioid and heroin incidents (cases) in and between the five states and their counties over time. Using your model, identify any possible locations where specific opioid use might have started in each of the five states. If the patterns and characteristics your team identified continue, are there any specific concerns the U.S. government should have? At what drug identification threshold levels do these occur? Where and when does your model predict they will occur in the future? </p>
+<p><strong>Part 2.</strong> Using the U.S. Census socio-economic data provided, address the following questions: There are a good number of competing hypotheses that have been offered as explanations as to how opioid use got to its current level, who is using/abusing it, what contributes to the growth in opioid use and addiction, and why opioid use persists despite its known dangers. Is use or trends-in-use somehow associated with any of the U.S. Census socio-economic data provided? If so, modify your model from <strong>Part 1</strong> to include any important factors from this data set. </p>
+<p><strong>Part 3.</strong> Finally, using a combination of your <strong>Part 1</strong> and <strong>Part 2</strong> results, identify a possible strategy for countering the opioid crisis. Use your model(s) to test the effectiveness of this strategy; identifying any significant parameter bounds that success (or failure) is dependent upon. In addition to your main report, include a 1-2 page memo to the Chief Administrator, DEA/NFLIS Database summarizing any significant insights or results you identified during this modeling effort. </p>
+<p>Your submission should consist of: </p>
+<ul>
+<li>One-page Summary Sheet, </li>
+<li>One- to Two-page memo, </li>
+<li>Your solution of no more than 20 pages, for a maximum of 23 pages with your summary and memo. </li>
+<li>Note: <u>Reference list and any appendices do not count toward the 23-page limit and should appear after your completed solution.</u></li>
+</ul>
+<h3 id="Attachments"><a href="#Attachments" class="headerlink" title="Attachments"></a>Attachments</h3><h3 id="Glossary-4"><a href="#Glossary-4" class="headerlink" title="Glossary"></a>Glossary</h3><p><strong>analgesic</strong> – pain relieving medication </p>
+<p>county – (in the U.S.) an administrative or political subdivision of a state; a region having specific boundaries and some level of governmental authority. </p>
+<p><strong>heroin</strong> – an illegal, euphoria producing, highly addictive analgesic drug processed from morphine (a naturally occurring substance extracted from the seed pods of certain varieties of poppy plants). </p>
+<p>non-synthetic opioids – a class of drugs made from extracting chemicals in opium leaves, e.g. morphine, codeine, heroin.</p>
+<p><strong>opioids</strong> – pain relieving drugs that are often highly addictive </p>
+<p>socio-economic factors – factors within a society that describe the relationship between social and economic status and class such as education, income, occupation, and employment. </p>
+<p><strong>synthetic opioid</strong> – man-made opioids</p>
+<h2 id="D-Time-to-leave-the-Louvre"><a href="#D-Time-to-leave-the-Louvre" class="headerlink" title="D Time to leave the Louvre"></a>D <a href="http://mathmodels.org/Problems/2019/ICM-D/index.html" target="_blank" rel="noopener">Time to leave the Louvre</a></h2><h3 id="Problem-3"><a href="#Problem-3" class="headerlink" title="Problem"></a>Problem</h3><p>The increasing number of terror attacks in France<strong>[1]</strong> requires a review of the emergency evacuation plans at many popular destinations. Your ICM team is helping to design evacuation plans at the Louvre in Paris, France. In general, the goal of evacuation is to have all occupants leave the building as quickly and safely as possible. Upon notification of a required evacuation, individuals egress to and through an optimal exit in order to empty the building as quickly as possible.</p>
+<p>The Louvre is one of the world’s largest and most visited art museum, receiving more than 8.1 million visitors in 2017<strong>[2]</strong>. The number of guests in the museum varies throughout the day and year, which provides challenges in planning for regular movement within the museum. The diversity of visitors – speaking a variety of languages, groups traveling together, and disabled visitors – makes evacuation in an emergency even more challenging.</p>
+<p>The Louvre has five floors, two of which are underground.</p>
+<p><img src="http://mathmodels.org/Problems/2019/ICM-D/Problem_D_Image.jpg" alt="Figure 1: Floor plan of Louvre[3]"></p>
+<p>The 380,000 exhibits located on these five floors cover approximately 72,735 square meters, with building wings as long as 480 meters or 5 city blocks<strong>[3]</strong>. The pyramid entrance is the main and most used public entrance to the museum. However, there are also three other entrances usually reserved for groups and individuals with museum memberships: the Passage Richelieu entrance, the Carrousel du Louvre entrance, and the Portes Des Lions entrance. The Louvre has an online application, “Affluences” (<a href="https://www.affluences.com/louvre.php" target="_blank" rel="noopener">https://www.affluences.com/louvre.php</a>), that provides real-time updates on the estimated waiting time at each of these entrances to help facilitate entry to the museum. Your team might consider how technology, to include apps such as Affluences, or others could be used to facilitate your evacuation plan.</p>
+<p>Only <em>emergency personnel</em> and museum officials know the actual number of total available exit points (service doors, employee entrances, VIP entrances, emergency exits, and old secret entrances built by the monarchy, etc.). While public awareness of these exit points could provide additional strength to an evacuation plan, their use would simultaneously cause security concerns due to the lower or limited security postures at these exits compared with level of security at the four main entrances. Thus, when creating your model, your team should consider carefully when and how any additional exits might be utilized.</p>
+<p>Your supervisor wants your ICM team to develop an emergency evacuation model that allows the museum leaders to explore a range of options to evacuate visitors from the museum, while also allowing emergency personnel to enter the building as quickly as possible. It is important to identify potential <em>bottlenecks</em> that may limit movement towards the exits. The museum emergency planners are especially interested in an adaptable model that can be designed to address a broad set of considerations and various types of potential threats. Each threat has the potential to alter or remove segments of possible routes to safety that may be essential in a single optimized route. Once developed, validate your model(s) and discuss how the Louvre would implement it.</p>
+<p>Based on the results of your work, propose policy and procedural recommendations for emergency management of the Louvre. Include any applicable crowd management and control procedures that your team believes are necessary for the safety of the visitors. Additionally, discuss how you could adapt and implement your model(s) for other large, crowded structures.</p>
+<p>Your submission should consist of:</p>
+<ul>
+<li>One-page Summary Sheet,</li>
+<li>Your solution of no more than 20 pages, for a maximum of 21 pages with your summary.</li>
+<li>Judges expect a complete list of references with in-text citations, but may not consider appendices in the judging process.</li>
+<li>Note: Reference list and any appendices do not count toward the 21-page limit and should appear after your completed solution.</li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><strong>[1]</strong> Reporters, Telegraph. “Terror Attacks in France: From Toulouse to the Louvre.” <em>The Telegraph, Telegraph Media Group</em>, 24 June 2018, <a href="https://www.telegraph.co.uk/news/0/terror-attacks-france-toulouse-louvre/" target="_blank" rel="noopener">www.telegraph.co.uk/news/0/terror-attacks-france-toulouse-louvre/</a>.</p>
+<p><strong>[2]</strong> “8.1 Million Visitors to the Louvre in 2017.” <em>Louvre Press Release</em>, 25 Jan. 2018, <a href="http://presse.louvre.fr/8-1-million-visitors-to-the-louvre-in-2017/" target="_blank" rel="noopener">presse.louvre.fr/8-1-million-visitors-to-the-louvre-in-2017/</a>.</p>
+<p><strong>[3]</strong> “Interactive Floor Plans.” <em>Louvre - Interactive Floor Plans | Louvre Museum | Paris</em>, 30 June 2016, <a href="https://www.louvre.fr/en/plan" target="_blank" rel="noopener">www.louvre.fr/en/plan</a>.</p>
+<p><strong>[4]</strong> “Pyramid” Project Launch e The Musee du Louvre is improving visitor reception (2014-2016).” <em>Louvre Press Kit</em>, 18 Sept. 2014, [<a href="http://www.louvre.fr/sites/default/files/dp_pyramide%2028102014_en.pdf]" target="_blank" rel="noopener">www.louvre.fr/sites/default/files/dp_pyramide%2028102014_en.pdf]</a>(<a href="https://www.louvre.fr/sites/default/files/dp_pyramide" target="_blank" rel="noopener">https://www.louvre.fr/sites/default/files/dp_pyramide</a> 28102014_en.pdf).</p>
+<p><strong>[5]</strong> “The ‘Pyramid’ Project - Improving Visitor Reception (2014-2016).” <em>Louvre Press Release,</em> 6 July 2016, <a href="http://presse.louvre.fr/the-pyramid-project/" target="_blank" rel="noopener">presse.louvre.fr/the-pyramid-project/</a>.</p>
+<h3 id="Glossary-5"><a href="#Glossary-5" class="headerlink" title="Glossary"></a>Glossary</h3><p><strong>Bottlenecks</strong> - places where movement is dramatically slowed or even stopped.</p>
+<p><strong>Emergency personnel</strong> - people who help in an emergency, such as guards, fire fighters, medics, ambulance crews, doctors, and police.</p>
+<h2 id="E-What-is-the-Cost-of-Environment-Degradation"><a href="#E-What-is-the-Cost-of-Environment-Degradation" class="headerlink" title="E What is the Cost of Environment Degradation?"></a>E <a href="http://mathmodels.org/Problems/2019/ICM-E/index.html" target="_blank" rel="noopener">What is the Cost of Environment Degradation?</a></h2><h3 id="Problem-4"><a href="#Problem-4" class="headerlink" title="Problem"></a>Problem</h3><p>Economic theory often disregards the impact of its decisions on the <em>biosphere</em> or assumes unlimited resources or capacity for its needs. There is a flaw in this viewpoint, and the environment is now facing the consequences. The biosphere provides many natural processes to maintain a healthy and sustainable environment for human life, which are known as <em>ecosystem</em> <em>services</em>. Examples include turning waste into food, water filtration, growing food, pollinating plants, and converting carbon dioxide into oxygen. However, whenever humans alter the ecosystem, we potentially limit or remove ecosystem services. The impact of local small-scale changes in land use, such as building a few roads, sewers, bridges, houses, or factories may seem negligible. Add to these small projects, large-scale projects such as building or relocating a large corporate headquarters, building a pipeline across the country, or expanding or altering waterways for extended commercial use. Now think about the impact of many of these projects across a region, country, and the world. While individually these activities may seem inconsequential to the total ability of the biosphere’s functioning potential, cumulatively they are directly impacting the <em>biodiversity</em> and causing <em>environmental degradation</em>.</p>
+<p>Traditionally, most land use projects do not consider the impact of, or account for changes to, ecosystem services. The economic costs to <em>mitigate</em> negative results of land use changes: polluted rivers, poor air quality, hazardous waste sites, poorly treated waste water, climate changes, etc., are often not included in the plan. Is it possible to put a value on the environmental cost of land use development projects? How would environmental degradation be accounted for in these project costs? Once ecosystem services are accounted for in the cost-benefit ratio of a project, then the true and comprehensive <em>valuation</em> of the project can be determined and assessed.<br>Your ICM team has been hired to create an ecological services valuation model to understand the true economic costs of land use projects when ecosystem services are considered. Use your model to perform a cost benefit analysis of land use development projects of varying sizes, from small community-based projects to large national projects. Evaluate the effectiveness of your model based on your analyses and model design. What are the implications of your modeling on land use project planners and managers? How might your model need to change over time?<br>Your submission should consist of:</p>
+<ul>
+<li>One-page Summary Sheet,</li>
+<li>Your solution of no more than 20 pages, for a maximum of 21 pages with your summary.</li>
+<li>Judges expect a complete list of references with in-text citations, but may not consider appendices in the judging process.</li>
+<li>Note: Reference list and any appendices do not count toward the 21-page limit and should appear after your completed solution.</li>
+</ul>
+<h3 id="References-1"><a href="#References-1" class="headerlink" title="References"></a>References</h3><p>Chee, Y., 2004. An ecological perspective on the valuation of ecosystem services. Biological Conservation 120, 549-565.</p>
+<p>Costanza, R., d’Arge, R., de Groot, R., Farber, S., Grasso, M., Hannon, B., Limburg, K., Naeem, S., O’Neill, R.V., Paruelo, J., Raskin, R.G., Sutton, P., van den Belt, M., 1997. The value of the world’s ecosystem services and natural capital. Nature 387, 253-260.</p>
+<p>GÃ³mez-Baggethuna, E., de Groot, R., Lomas, P., Montesa, C., 1 April 2010. The history of ecosystem services in economic theory and practice: From early notions to markets and payment schemes. Ecological Economics 69 (6), 1209-1218.</p>
+<p>Norgaard, R., 1 April 2010. Ecosystem services: From eye-opening metaphor to complexity blinder. Ecological Economics 69 (6), 1219-1227.</p>
+<p>Richmond, A., Kaufmann R., Myneni, R., 2007, Valuing ecosystem services: A shadow price for net primary production. Ecological Economics 64, 454-462.</p>
+<p>Yang, Q., Liu, G., Casazza, M., Campbell, E., Giannettia, B., Brown, M., December 2018. Development of a new framework for non-monetary accounting on ecosystem services valuation. Ecosystem Services 34A, 37-54.</p>
+<h3 id="Data-Sources"><a href="#Data-Sources" class="headerlink" title="Data Sources"></a>Data Sources</h3><p>US based data: <a href="https://www.data.gov/ecosystems/" target="_blank" rel="noopener">https://www.data.gov/ecosystems/</a><br>Satellite data: <a href="https://www.ncdc.noaa.gov/data-access/satellite-data/satellite-data-access-datasets" target="_blank" rel="noopener">https://www.ncdc.noaa.gov/data-access/satellite-data/satellite-data-access-datasets</a></p>
+<h3 id="Glossary-6"><a href="#Glossary-6" class="headerlink" title="Glossary"></a>Glossary</h3><p><strong>Biodiversity</strong> - refers to the variety of life in an ecosystem; all of the living organisms within a given area.</p>
+<p><strong>Biosphere</strong> - the part of the Earth that is occupied by living organisms and generally includes the interaction between these organisms and their physical environment.</p>
+<p><strong>Ecosystem</strong> - a subset of the biosphere that primarily focuses on the interaction between living things and their physical environment.</p>
+<p><strong>Ecosystem Services</strong> - the many benefits and assets that humans receive freely from our natural environment and a fully functioning ecosystem.</p>
+<p><strong>Environmental Degradation</strong> - the deterioration or compromise of the natural environment through consumption of assets either by natural processes or human activities.</p>
+<p><strong>Mitigate</strong> - to make less severe, painful, or impactful.</p>
+<p><strong>Valuation</strong> - refers to the estimating or determining the current worth of something.</p>
+<h2 id="F-Universal-Decentralized-Digital-Currency-Is-it-possible"><a href="#F-Universal-Decentralized-Digital-Currency-Is-it-possible" class="headerlink" title="F Universal, Decentralized, Digital Currency: Is it possible?"></a>F <a href="http://mathmodels.org/Problems/2019/ICM-F/index.html" target="_blank" rel="noopener">Universal, Decentralized, Digital Currency: Is it possible?</a></h2><h3 id="Problems-2"><a href="#Problems-2" class="headerlink" title="Problems"></a>Problems</h3><p><em>Digital currency</em> can be used like traditional currencies to buy and sell goods, except that it is digital and has no physical representation. Digital currency enables its users to make transactions instantaneously and without any concern for national borders. <em>Cryptocurrency</em> is a subset of digital currency with unique features of privacy, decentralization, security and encryption. Cryptocurrencies have exploded in popularity in various parts of the world; moving from an <em>underground cult</em> interest to a globally accepted phenomenon. Bitcoin and Ethereum, both cryptocurrencies, have grown in value, while investors are projecting rapid growth for other cryptocurrencies such as Dogecoin or Ripple. In addition to digital and cryptocurrencies, there are also new digital methods for financial transactions that enable users to instantaneously exchange money with nothing more than an email address or a thumbprint. Peer-to-peer payment systems offered by companies like PayPal, Stripe, Venmo, Zelle, Apple Pay, Square Cash, and Google Pay offer virtual movement of money across the globe in seconds without ever having to verify the transaction through a bank or currency exchange. Digital transactions outpace cash and check transactions because they are not delayed by banking policies, national borders, citizenship, debts, or other social-economic factors. These new currency systems decentralize financial transactions, leaving many to consider a world where traditional banking may become obsolete.</p>
+<p>Concerns about security of cryptocurrencies worry both citizens and economic analysts. These concerns have constrained its growth in some communities. On the other hand, much of the popularity of cryptocurrency is due to its departure from traditional overly-restrictive security and debt measures that rely on oversight by large banks and governments. These oversight institutions are often expensive, deeply bureaucratic, and sometimes corrupt. Some experts believe that a universal, decentralized, digital currency with internal security like <em>blockchain</em> can make markets more efficient by eliminating barriers to the flow of money. This is particularly important in countries where the majority of citizens do not have bank accounts and are unable to invest in regional or global financial markets. Some governments, however, view the lack of regulation around these currencies and their <em>anonymity</em> as too risky because of how easily they can be used in <em>illicit</em> transactions, such as tax sheltering or purchasing illegal merchandise. Others feel that a secure digital currency offers a more convenient and safer form of financial exchange. For instance, a universally accepted currency would enable truly global financial markets and would protect individual assets against regional inflation <em>fluctuations</em> and artificial manipulation of currency by regional governments. If alternative digital systems become more established, there will be many questions about how digital currency will affect current banking systems and <em>nation-based currencies</em>.</p>
+<p>Your team’s submission should consist of:</p>
+<ul>
+<li>One-page Summary Sheet,</li>
+<li>One-page policy recommendation for national leaders,</li>
+<li>Your solution of no more than 20 pages, for a maximum of 22 pages with your summary and policy recommendation.</li>
+<li>Judges expect a complete list of references with in-text citations, but may not consider appendices in the judging process.</li>
+<li>Note: Reference list and any appendices do not count toward the 22-page limit and should appear after your completed solution.</li>
+</ul>
+<h3 id="References-2"><a href="#References-2" class="headerlink" title="References"></a>References</h3><p>Paul Krugman, “O Canada: A neglected nation gets its Nobel”. <em>Slate</em>, Oct 19, 1999.<br><a href="https://slate.com/business/1999/10/o-canada.html" target="_blank" rel="noopener">https://slate.com/business/1999/10/o-canada.html</a></p>
+<p>Stephanie Lo and J. Christina Wang, “Bitcoin as Money?” <em><a href="https://www.bostonfed.org/publications/current-policy-perspectives.aspx" target="_blank" rel="noopener">Current Policy Perspectives</a></em>,</p>
+<p>Federal Reserve Bank of Boston, 2014.<br><a href="https://www.bostonfed.org/publications/current-policy-perspectives/2014/bitcoin-as-money.aspx" target="_blank" rel="noopener">https://www.bostonfed.org/publications/current-policy-perspectives/2014/bitcoin-as-money.aspx </a>or <a href="https://www.bostonfed.org/-/media/Documents/Workingpapers/PDF/cpp1404.pdf" target="_blank" rel="noopener">https://www.bostonfed.org/-/media/Documents/Workingpapers/PDF/cpp1404.pdf</a></p>
+<h3 id="Glossary-7"><a href="#Glossary-7" class="headerlink" title="Glossary"></a>Glossary</h3><p><strong>Anonymity -</strong> the state of being unnamed or unidentified; the state of being anonymous.</p>
+<p><strong>Blockchain -</strong> the record keeping technology that can document transactions between two parties in a verifiable and permanent way; a digital database containing information that can be shared and simultaneously used across a large publicly accessible and decentralized network.</p>
+<p><strong>Cryptocurrency -</strong> a digital or virtual currency that uses cryptography (protecting information through the use of codes) for security.</p>
+<p><strong>Digital Currency -</strong> [digital money, electronic money, electronic currency] is a type of currency in digital (electronic) versus physical (coins, paper) form.</p>
+<p><strong>Illicit -</strong> illegal or dishonest.</p>
+<p><strong>Fluctuations -</strong> variations or oscillations; rises and falls. .</p>
+<p><strong>Monetary -</strong>relating to money or finances, or to the mechanisms by which money is supplied to and circulates in the economy.</p>
+<p><strong>Nation-based currencies - [national currencies]</strong> a system of money issued by a central bank and in common use within a particular nation or group of nations; examples are United States dollar (USD), Chinese renminbi (RMB or CNY), European Euro (EUR), British pound sterling (GBP), and Japanese yen (JPY).</p>
+<p><strong>Underground cult -</strong> hidden or mysterious group of people sharing an excessive devotion toward a particular person, belief, or thing.</p>
+<h1 id="2018"><a href="#2018" class="headerlink" title="2018"></a>2018</h1><h2 id="C-Energy-Production"><a href="#C-Energy-Production" class="headerlink" title="C Energy Production"></a>C <a href="http://mathmodels.org/Problems/2018/MCM-C/index.html" target="_blank" rel="noopener">Energy Production</a></h2><h3 id="Problem-5"><a href="#Problem-5" class="headerlink" title="Problem"></a>Problem</h3><p><strong>Background:</strong> Energy production and usage are a major portion of any economy. In the United States, many aspects of energy policy are decentralized to the state level. Additionally, the varying geographies and industries of different states affect energy usage and production. In 1970, 12 western states in the U.S. formed the Western Interstate Energy Compact (WIEC), whose mission focused on fostering cooperation between these states for the development and management of nuclear energy technologies. An interstate compact is a contractual arrangement made between two or more states in which these states agree on a specific policy issue and either adopt a set of standards or cooperate with one another on a particular regional or national matter.</p>
+<p><strong>Problem:</strong> Along the U.S. border with Mexico, there are four states – California (CA), Arizona (AZ), New Mexico (NM), and Texas (TX) â€“ that wish to form a realistic new energy compact focused on increased usage of cleaner, renewable energy sources. Your team has been asked by the four governors of these states to perform data analysis and modeling to inform their development of a set of goals for their interstate energy compact.<br>The attached data file “<a href="http://mathmodels.org/Problems/2018/MCM-C/ProblemCData.xlsx" target="_blank" rel="noopener">ProblemCData.xlsx</a>“ provides in the first worksheet (“seseds”) 50 years of data in 605 variables on each of these four states’ energy production and consumption, along with some demographic and economic information. The 605 variable names used in this dataset are defined in the second worksheet (“msncodes”).</p>
+<p><strong>Part I:<br>A.</strong> Using the data provided, create an energy profile for each of the four states.</p>
+<p><strong>B.</strong> Develop a model to characterize how the energy profile of each of the four states has evolved from 1960 – 2009. Analyze and interpret the results of your model to address the four statesâ€™ usage of cleaner, renewable energy sources in a way that is easily understood by the governors and helps them to understand the similarities and difference between the four states. Include in your discussion possible influential factors of the similarities and differences (e.g. geography, industry, population, and climate).</p>
+<p><strong>C.</strong> Determine which of the four states appeared to have the “best” profile for use of cleaner, renewable energy in 2009. Explain your criteria and choice.</p>
+<p><strong>D.</strong> Based on the historical evolution of energy use in these states, and your understanding of the differences between the state profiles you established, predict the energy profile of each state, as you have defined it, for 2025 and 2050 in the absence of any policy changes by each governor’s office.</p>
+<p><strong>Part II:<br>**</strong>A.** Based on your comparison between the four states, your criteria for “best” profile, and your predictions, determine renewable energy usage targets for 2025 and 2050 and state them as goals for this new four-state energy compact.</p>
+<p><strong>B.</strong> Identify and discuss at least three actions the four states might take to meet their energy compact goals.</p>
+<p>*<em>Part III:<br>*</em>Prepare a one-page memo to the group of Governors summarizing the state profiles as of 2009, your predictions with regard to energy usage absent any policy changes, and your recommended goals for the energy compact to adopt.</p>
+<p>Your submission should consist of:<br>  ● One-page Summary Sheet,<br>  ● One-page memo,<br>  ● Your solution of no more than 20 pages, for a maximum of 22 pages with your summary and memo.<br>  ● Note: Reference list and any appendices do not count toward the 22-page limit and should appear after your completed solution.</p>
+<h3 id="Attachments-1"><a href="#Attachments-1" class="headerlink" title="Attachments"></a>Attachments</h3><p><a href="http://mathmodels.org/Problems/2018/MCM-C/ProblemCData.xlsx" target="_blank" rel="noopener">ProblemCData.xlsx</a> Includes two worksheets seseds and msncodes.</p>
+<h3 id="References-3"><a href="#References-3" class="headerlink" title="References"></a>References</h3><p>State Energy Data System (SEDS) Complete Dataset through 2009 (All 50 states) <a href="https://catalog.data.gov/dataset/state-energy-data-system-seds-complete-dataset-through-2009#sec-dates" target="_blank" rel="noopener">https://catalog.data.gov/dataset/state-energy-data-system-seds-complete-dataset-through-2009#sec-dates</a></p>
+<h2 id="D-Out-of-Gas-and-Driving-on-E-for-electric-not-empty"><a href="#D-Out-of-Gas-and-Driving-on-E-for-electric-not-empty" class="headerlink" title="D Out of Gas and Driving on E (for electric, not empty)"></a>D <a href="http://mathmodels.org/Problems/2018/ICM-D/index.html" target="_blank" rel="noopener">Out of Gas and Driving on E (for electric, not empty)</a></h2><h3 id="Problem-6"><a href="#Problem-6" class="headerlink" title="Problem"></a>Problem</h3><p>For both environmental and economic reasons, there is global interest in reducing the use of fossil fuels, including gasoline for cars. Whether motivated by the environment or by the economics, consumers are starting to migrate to electric vehicles. Several countries are seeing early signs of the potential for rapid growth in the adoption of electric vehicles. In the US and other countries, the release of the more affordable all-electric Tesla Model 3 has resulted in record numbers of pre-orders and long wait lists (<a href="https://www.wired.com/story/tesla-model-3-delivery-timeline/" target="_blank" rel="noopener">https://www.wired.com/story/tesla-model-3-delivery-timeline/</a>). To further accelerate the switch to electric vehicles, some countries, including China, have announced that they will ban gasoline and diesel cars in the coming years (<a href="http://money.cnn.com/2017/09/11/news/china-gas-electric-car-ban/index.html" target="_blank" rel="noopener">http://money.cnn.com/2017/09/11/news/china-gas-electric-car-ban/index.html</a>).</p>
+<p>Eventually, when a ban goes into effect, there needs to be a sufficient number of vehicle charging stations in all the right places so that people can use their vehicles for their daily business, as well as make occasional long-distance trips. The migration from gasoline and diesel cars to electric vehicles, however, is not simple and canâ€™t happen overnight. In a fantasy world, we would wake up one day with every gas vehicle replaced by an electric one, and every gas station replaced with a charging station. In reality, there are limited resources, and it will take time for consumers to make the switch. In fact, the location and convenience of charging stations is critical as early adopters and eventually mainstream consumers volunteer to switch (<a href="http://www.govtech.com/fs/Building-Out-Electric-Vehicle-Infrastructure-Where-Are-the-Best-Locations-for-Charging-Stations.html" target="_blank" rel="noopener">http://www.govtech.com/fs/Building-Out-Electric-Vehicle-Infrastructure-Where-Are-the-Best-Locations-for-Charging-Stations.html</a>).</p>
+<p>As nations plan this transition, they need to consider the final network of charging stations (the number of stations, where they will be located, the number of chargers at the stations, and the differences in the needs of rural areas, suburban areas, and urban areas), as well as the growth and evolution of the network of charging stations over time. For example, what should the network look like when electric vehicles represent 10% of all cars, 30% of all cars, 50% of all cars, and 90% of all cars?</p>
+<p>As nations seek to develop policies that promote the migration towards electric vehicles, they will need to design a plan that works best for their individual country. Before they can begin, they would like your teamâ€™s help in determining the final architecture of the charging network to support the full adoption of all-electric vehicles. Additionally, they would like you to identify the key factors that will be important as they plan their timeline for an eventual ban or dramatic reduction of gasoline and diesel vehicles.</p>
+<p>To help your team manage the scope of this problem, we ask that you focus only on personal passenger vehicles (i.e. cars, vans, and light trucks used for passengers). At the end of your report, you may briefly comment on the relevance of your findings and conclusions on commercial vehicles to include heavy trucks and busses.</p>
+<p><strong>Your tasks are the following:</strong></p>
+<p><strong>Task 1:</strong> Explore the current and growing network of Tesla charging stations in the United States. Tesla currently offers two types of charging stations: (1) destination charging designed for charging for several hours at a time or even overnight <a href="http://mathmodels.org/Problems/2018/ICM-D/(https://www.tesla.com/destination-charging)" target="_blank" rel="noopener">(https://www.tesla.com/destination-charging</a>; and (2) supercharging designed for longer road trips to provide up to 170 miles of range in as little as 30 minutes of charging (<a href="https://www.tesla.com/supercharger" target="_blank" rel="noopener">https://www.tesla.com/supercharger</a>). These stations are in addition to at-home charging used by many Tesla owners who have a personal garage or a driveway with power. Is Tesla on track to allow a complete switch to all-electric in the US? If everyone switched to all-electric personal passenger vehicles in the US, how many charging stations would be needed, and how should they be distributed between urban, suburban, and rural areas?</p>
+<p><strong>Task 2:</strong> Select one of the following nations (South Korea, Ireland, or Uruguay).</p>
+<p><strong>2a.</strong> Determine the optimal number, placement, and distribution of charging stations if your country could migrate all their personal passenger vehicles to all-electric vehicles instantaneously (no transition time required). What are the key factors that shaped the development of your plan?</p>
+<p><strong>2b.</strong> While these countries have already started installing chargers, you get to start with a clean slate. Present a proposal for evolving the charging network of your chosen country from zero chargers to a full electric-vehicle system. How do you propose the country invest in chargers? Should the country build all city-based chargers first, or all rural chargers, or a mix of both? Will you build the chargers first and hope people buy the cars, or will you build chargers in response to car purchases? What are the key factors that shaped your proposed charging station plan?</p>
+<p><strong>2c.</strong> Based on your growth plan, what is the timeline you propose for the full evolution to electric vehicles in your country? To get started, you may wish to consider how long it will take for there to be 10% electric vehicles, 30% electric vehicles, 50% electric vehicles, or 100% electric vehicles on your selected countryâ€™s roads. What are the key factors that shaped your proposed growth plan timeline?</p>
+<p><strong>Task 3:</strong> Now consider countries with very different geographies, population density distributions, and wealth distributions, such as Australia, China, Indonesia, Saudi Arabia, and Singapore. Would your proposed plan for growing and evolving the network of chargers still apply to each of these countries? What are the key factors that trigger the selection of different approaches to growing the network? Discuss the feasibility of creating a classification system that would help a nation determine the general growth model they should follow in order for them to successfully migrate away from gasoline and diesel vehicles to all electric cars.</p>
+<p><strong>Task 4:</strong> The technological world continues to change and is impacting transportation options such as car-share and ride-share services, self-driving cars, rapid battery-swap stations for electric cars, and even flying cars and a Hyperloop. Comment on how these technologies might impact your analyses of the increasing use of electric vehicles.</p>
+<p><strong>Task 5:</strong> Prepare a one-page handout written for the leaders of a wide range of countries who are attending an international energy summit. The handout should identify the key factors the leaders should consider as they return to their home country to develop a national plan to migrate personal transportation towards all-electric cars and set a gas vehicle-ban date.</p>
+<p>Your submission should consist of:<br>  ● One-page Summary Sheet,<br>  ● One-page handout,<br>  ● Your solution of no more than 20 pages, for a maximum of 22 pages with your summary and handout.<br>  ● Note: Reference list and any appendices do not count toward the 22-page limit and should appear after your completed solution.</p>
+<h2 id="E-How-does-climate-change-influence-regional-instability"><a href="#E-How-does-climate-change-influence-regional-instability" class="headerlink" title="E How does climate change  influence regional instability?"></a>E <a href="http://mathmodels.org/Problems/2018/ICM-E/index.html" target="_blank" rel="noopener">How does climate change  influence regional instability?</a></h2><h3 id="Problem-7"><a href="#Problem-7" class="headerlink" title="Problem"></a>Problem</h3><p>The effects of Climate Change, to include increased droughts, shrinking glaciers, changing animal and plant ranges, and sea level rise, are already being realized and vary from region to region. The Intergovernmental Panel on Climate Change suggests that the net damage costs of climate change are likely to be significant. Many of these effects will alter the way humans live, and may have the potential to cause the weakening and breakdown of social and governmental structures. Consequently, destabilized governments could result in fragile states.</p>
+<p>A fragile state is one where the state government is not able to, or chooses not to, provide the basic essentials to its people. For the purpose of this problem â€œstateâ€ refers to a sovereign state or country. Being a fragile state increases the vulnerability of a country’s population to the impact of such climate shocks as natural disasters, decreasing arable land, unpredictable weather, and increasing temperatures. Non-sustainable environmental practices, migration, and resource shortages, which are common in developing states, may further aggravate states with weak governance (Schwartz and Randall, 2003; Theisen, Gleditsch, and Buhaug, 2013). Arguably, drought in both Syria and Yemen further exacerbated already fragile states. Environmental stress alone does not necessarily trigger violent conflict, but evidence suggests that it enables violent conflict when it combines with weak governance and social fragmentation. This confluence can enhance a spiral of violence, typically along latent ethnic and political divisions (Krakowka, Heimel, and Galgano 2012).</p>
+<p>Your tasks are the following:</p>
+<p><strong>Task 1:</strong> Develop a model that determines a country’s fragility and simultaneously measures the impact of climate change. Your model should identify when a state is fragile, vulnerable, or stable. It should also identify how climate change increases fragility through direct means or indirectly as it influences other factors and indicators.</p>
+<p><strong>Task 2:</strong> Select one of the top 10 most fragile states as determined by the Fragile State Index (<a href="http://fundforpeace.org/fsi/data/" target="_blank" rel="noopener">http://fundforpeace.org/fsi/data/</a>) and determine how climate change may have increased fragility of that country. Use your model to show in what way(s) the state may be less fragile without these effects.</p>
+<p><strong>Task 3:</strong> Use your model on another state not in the top 10 list to measure its fragility, and see in what way and when climate change may push it to become more fragile. Identify any definitive indicators. How do you define a tipping point and predict when a country may reach it?</p>
+<p><strong>Task 4:</strong> Use your model to show which state driven interventions could mitigate the risk of climate change and prevent a country from becoming a fragile state. Explain the effect of human intervention and predict the total cost of intervention for this country.</p>
+<p><strong>Task 5:</strong> Will your model work on smaller “states” (such as cities) or larger “states” (such as continents)? If not, how would you modify your model?</p>
+<p>Your submission should consist of:<br>  ● One-page Summary Sheet,<br>  ● Your solution of no more than 20 pages, for a maximum of 21 pages with your summary.<br>  ● Note: Reference list and any appendices do not count toward the 21-page limit and should appear after your completed solution.</p>
+<h3 id="References-4"><a href="#References-4" class="headerlink" title="References"></a>References</h3><p>Krakowka, A.R., Heimel, N., and Galgano, F. “Modeling Environmenal Security in Sub-Sharan Africa â€“ ProQuest.” The Geographical Bulletin, 2012, 53 (1): 21-38.</p>
+<p>Schwartz, P. and Randall, D. “An Abrupt Climate Change Scenario and Its Implications for United States National Security”, October 2003. <a href="http://eesc.columbia.edu/courses/v1003/readings/Pentagon.pdf" target="_blank" rel="noopener">http://eesc.columbia.edu/courses/v1003/readings/Pentagon.pdf</a></p>
+<p>Theisen, O.M., Gleditsch, N.P., and Buhaug, H. “Is climate change a driver of armed conflict?” Climate Change, April 2013, V117 (3), 613-625.</p>
+<h3 id="Helpful-Links"><a href="#Helpful-Links" class="headerlink" title="Helpful Links"></a>Helpful Links</h3><p>Fragile States Index: <a href="http://fundforpeace.org/fsi/" target="_blank" rel="noopener">http://fundforpeace.org/fsi/</a></p>
+<p>The World Bank: <a href="http://www.worldbank.org/en/topic/fragilityconflictviolence/brief/harmonized-list-of-fragile-situati" target="_blank" rel="noopener">http://www.worldbank.org/en/topic/fragilityconflictviolence/brief/harmonized-list-of-fragile-situati</a></p>
+<h2 id="F-Cost-of-Privacy"><a href="#F-Cost-of-Privacy" class="headerlink" title="F Cost of Privacy"></a>F <a href="http://mathmodels.org/Problems/2018/ICM-F/index.html" target="_blank" rel="noopener">Cost of Privacy</a></h2><h3 id="Problem-8"><a href="#Problem-8" class="headerlink" title="Problem"></a>Problem</h3><p>Pervasiveness of, and reliance on, electronic communication and social media have become widespread. One result is that some people seem willing to share private information (PI) about their personal interactions, relationships, purchases, beliefs, health, and movements, while others hold their privacy in these areas as very important and valuable. There are also significant differences in privacy choices across various domains. For example, some people are quick to give away the protection of their purchasing information for a quick price reduction, but at the same time are unlikely to share information about their disease conditions or health risks. Similarly, some populations or subgroups may be less willing to give up particular types of personal information if they perceive it posing a personal or community risk. The risk may involve loss of safety, money, valuable items, intellectual property (IP), or the person’s electronic identity. Other risks include professional embarrassment, loss of a position or job, social loss (friendships), social stigmatization, or marginalization. While a government employee who has voiced political dissent against the government might be willing to pay to keep their social media data private, a young college student may feel no pressure to restrict their posting of political opinion or social information. It seems that individual choices on PI protection and internet and system security in cyber space can create risks and rewards in elements of freedom, privacy, convenience, social standing, financial benefits, and medical treatment.</p>
+<p>Is private information (PI) similar to private personal property (PP) and intellectual property (IP)? Once lawfully obtained, can PI be sold or given to others who then have the right or ownership of the information? As detailed information and meta-data of human activity becomes more and more valuable to society, specifically in the areas of medical research, disease spread, disaster relief, businesses (e.g. marketing, insurance, and income), records of personal behaviors, statements of beliefs, and physical movement, these data and detailed information may become a valuable and quantifiable commodity. Trading in one’s own private data comes with a set of risks and benefits that may differ by the domain of information (e.g. purchasing, social media, medical) and by subgroup (e.g. citizenship, professional profile, age).</p>
+<p>Can we quantify the cost of privacy of electronic communications and transactions across society? That is, what is the monetary value of keeping PI protected, or how much would it cost for others to have or use PI? Should the government regulate this information or is it better left to privacy industry or the individual? Are these information and privacy issues merely personal decisions that individuals must evaluate to make their own choices and provide their own protection?</p>
+<p>There are several things to consider when evaluating the cost of privacy. First, is data sharing a public good? For example, Center for Disease Control may use the data to trace the spread of disease in order to prevent further outbreak. Other examples include managing at risk populations, such as children under 16, people at risk of suicide, and the elderly. Moreover, consider groups of extremists who seek to hide their activities. Should their data be trackable by the government for national security concerns? Consider a person’s browser, phone system, and internet feed with their personalized advertisements; how much is this customization worth?</p>
+<p>Overall, when evaluating cost of privacy we need to consider all of these tradeoffs. What is the potential gain from keeping data private and what is lost by doing so?</p>
+<p>As a policy analysis team for a national decision maker, your team’s tasks are:</p>
+<p><strong>Task 1:</strong> Develop a price point for protecting one’s privacy and PI in various applications. To evaluate this, you may want to categorize individuals into subgroups with reasonably similar levels of risk or into related domains of the data. What are the set of parameters and measures that would need to be considered to accurately model risk to account for both 1) characteristics of the individuals, and 2) characteristics of the specific domain of information?</p>
+<p><strong>Task 2:</strong> Given the set of parameters and measures from <strong>Task 1</strong>, model for cost of privacy across at least three domains (social media, financial transactions, and health/medical records). In your base model consider how the tradeoffs and risks of keeping data protected affect your model. You may consider giving some of the tradeoffs and risks more weight than others as well as stratifying weights by subgroup or category. Consider how different basic elements of the data (e.g. name, date of birth, gender, social security or citizenship number) contribute to your model. Are some of these elements worth more than others? For example, what is the value of a name alone compared with value of a name with the person’s picture attached? Your model should design a pricing structure for PI.</p>
+<p><strong>Task 3:</strong> Not long ago, people had no knowledge about which agencies had purchased their PI, how much their PI was worth, or how PI was being used. New proposals are being put forth which would turn PI into a commodity. With the pricing structure you generated in <strong>Task 2</strong>, establish a pricing system for individuals, groups, and entire nations. With data becoming a commodity subject to market fluctuations, is it appropriate to consider forces of supply and demand for PI? Assuming people have control to sell to their own data, how does this change the model?</p>
+<p><strong>Task 4:</strong> What are the assumptions and constraints of your model? Assumptions and constraints should address issues such as government regulations (e.g. price regulations, specific data protections such as certain records that may not be subject to the economic system) and cultural and political issues. Based on your model and the political and cultural issues, consider if information privacy should be made a basic human right when thinking about policy recommendations. Consider introducing a dynamic element to your model by introducing the variations over time in human decision-making given changing personal beliefs about the worth of their own data (e.g. personal data such as name, address, picture), transaction data (e.g. on-line purchases, search history), and social media data (e.g. posts, pictures).</p>
+<p><strong>Task 5:</strong> Are there generational differences in perceptions of the risk-to-benefit ratio of PI and data privacy? As generations age, how does this change the model? How is PI different or similar to PP and IP?</p>
+<p><strong>Task 6:</strong> What are the ways to account for the fact that human data is highly linked and often each individual’s behaviors are highly correlated with others? Data on one person can provide information about others whom they are socially, professionally, economically, or demographically connected. Therefore, personal decisions to share one’s own data can affect countless others. Are there good ways to capture the network effects of data sharing? Does that effect the price system for individuals, subgroups, and entire communities and nations? If communities have shared privacy risks, is it the responsibility of the communities to protect citizens’ PI?</p>
+<p><strong>Task 7:</strong> Consider the effects of a massive data breach where millions of people’s PI are stolen and sold on the dark web, sold as part of an identity theft ring, or used as ransom. How does such a PI loss or cascade event impact your model? Now that you have a pricing system that quantifies the value of data per individual or loss type, are agencies that are to blame for the data breach responsible to pay individuals directly for misuse or loss of PI?</p>
+<p><strong>Task 8:</strong> Write a two-page policy memo to the decision maker on the utility, results, and recommendations based your policy modeling on this issue. Be sure to specify what types of PI are included in your recommendations.</p>
+<p>Your submission should consist of:<br>  ● One-page Summary Sheet,<br>  ● Two-page memo,<br>  ● Your solution of no more than 20 pages, for a maximum of 23 pages with your summary and memo.<br>  ● Note: Reference list and any appendices do not count toward the 23-page limit and should appear after your completed solution.</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/StudyNote1/"># StudyNote1</a>
+                    
+                        <a href="/tags/MathModels/"># MathModels</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/01/18/SE_L8/">StudyNote | Software Engineering Lecture 8</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

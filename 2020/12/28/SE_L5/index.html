@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>StudyNote | Software Engineering Lecture 5 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">StudyNote | Software Engineering Lecture 5</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 28, 2020&nbsp;&nbsp;13:05:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8BSoftwareEngineering/">软件工程SoftwareEngineering</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="Software-Requirement-Specification-SRS"><a href="#Software-Requirement-Specification-SRS" class="headerlink" title="Software Requirement Specification(SRS)"></a>Software Requirement Specification(SRS)</h2><h3 id="Selection-1-Natural-Language"><a href="#Selection-1-Natural-Language" class="headerlink" title="Selection 1 Natural Language"></a>Selection 1 Natural Language</h3><p>Function</p>
+<p>Description</p>
+<p>Inputs</p>
+<p>Source</p>
+<p>Outputs</p>
+<p>Destination</p>
+<p>Action</p>
+<p>Requirements</p>
+<p>Pre-condition</p>
+<p>Post-condition</p>
+<p>Side effects</p>
+<p>If the requirements say about the solution of errors or exceptions, detailed solution shoule be provided.</p>
+<p>Requirements don’t care about the options that ‘shall not do’.</p>
+<p>If there are risks occurring in functions or options we require users to confirm.</p>
+<h3 id="Selection-2-Graphical-models"><a href="#Selection-2-Graphical-models" class="headerlink" title="Selection 2 Graphical models"></a>Selection 2 Graphical models</h3><h3 id="Selection-3-Formal-specification"><a href="#Selection-3-Formal-specification" class="headerlink" title="Selection 3 Formal specification"></a>Selection 3 Formal specification</h3><h4 id="Before-sth-about-Formal-Method"><a href="#Before-sth-about-Formal-Method" class="headerlink" title="Before: sth about Formal Method"></a>Before: sth about Formal Method</h4><p>60s Program Prove</p>
+<p>80s Model Checking - Start of industrial use (reachability, dead lock)</p>
+<p>Z, B, VDM, SOFL</p>
+<h5 id="Formal-verification"><a href="#Formal-verification" class="headerlink" title="Formal verification"></a>Formal verification</h5><ul>
+<li>Theorem Proving</li>
+<li>Model Checking</li>
+</ul>
+<h5 id="Formal-Specification"><a href="#Formal-Specification" class="headerlink" title="Formal Specification"></a>Formal Specification</h5><p>come from requirements</p>
+<p>Language and construction method</p>
+<h4 id="Data-Definition"><a href="#Data-Definition" class="headerlink" title="Data Definition"></a>Data Definition</h4><h5 id="Primitive-Data-Elements"><a href="#Primitive-Data-Elements" class="headerlink" title="Primitive Data Elements"></a>Primitive Data Elements</h5><p>No further decomposition is possible or necessary</p>
+<h5 id="Composition"><a href="#Composition" class="headerlink" title="Composition"></a>Composition</h5><p>Multiple data items</p>
+<h5 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration"></a>Iteration</h5><p>Multiple instances of one item</p>
+<h5 id="Selection"><a href="#Selection" class="headerlink" title="Selection"></a>Selection</h5><p>Limited number of discrete values</p>
+<h4 id="From-B-Z-VDM-to-SOFL"><a href="#From-B-Z-VDM-to-SOFL" class="headerlink" title="From B, Z, VDM, to SOFL"></a>From B, Z, VDM, to SOFL</h4><blockquote>
+<p>if the pre-condition can not be satisfied, any outputs are acceptable.</p>
+<p>Once pre-condition are satisfied, post-condition must be satisfied.</p>
+</blockquote>
+<p>Problem: Difficult to understand and use.</p>
+<p>Solution: Formal Engineering Method.</p>
+<h4 id="SOFL-Structured-Object-oriented-Formal-Language"><a href="#SOFL-Structured-Object-oriented-Formal-Language" class="headerlink" title="SOFL - Structured Object-oriented Formal Language"></a>SOFL - Structured Object-oriented Formal Language</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">module</span><br><span class="line">const&#x2F;&#x2F;a&#x3D;1</span><br><span class="line">process 1</span><br><span class="line">process 2</span><br><span class="line">...</span><br><span class="line">process n</span><br></pre></td></tr></table></figure>
+
+<h4 id="CDFD"><a href="#CDFD" class="headerlink" title="CDFD"></a>CDFD</h4>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/ComputerScience/"># ComputerScience</a>
+                    
+                        <a href="/tags/SoftwareEngineering/"># SoftwareEngineering</a>
+                    
+                        <a href="/tags/Review/"># Review</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/01/04/SE_L6/">StudyNote | Software Engineering Lecture 6</a>
+            
+            
+            <a class="next" rel="next" href="/2020/12/21/SE_L4/">StudyNote | Software Engineering Lecture 4</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

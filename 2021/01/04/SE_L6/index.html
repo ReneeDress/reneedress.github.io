@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>StudyNote | Software Engineering Lecture 6 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">StudyNote | Software Engineering Lecture 6</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 4, 2021&nbsp;&nbsp;13:05:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8BSoftwareEngineering/">软件工程SoftwareEngineering</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="Software-Requirement-Specification-SRS"><a href="#Software-Requirement-Specification-SRS" class="headerlink" title="Software Requirement Specification(SRS)"></a>Software Requirement Specification(SRS)</h2><h4 id="SOFL-Structured-Object-oriented-Formal-Language"><a href="#SOFL-Structured-Object-oriented-Formal-Language" class="headerlink" title="SOFL - Structured Object-oriented Formal Language"></a>SOFL - Structured Object-oriented Formal Language</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module</span><br><span class="line">const&#x2F;&#x2F;a&#x3D;1</span><br><span class="line">process 1</span><br><span class="line">process 2</span><br><span class="line">...</span><br><span class="line">process n</span><br><span class="line">end_module</span><br></pre></td></tr></table></figure>
+
+<h4 id="CDFD"><a href="#CDFD" class="headerlink" title="CDFD"></a>CDFD</h4><h1 id="Validation"><a href="#Validation" class="headerlink" title="Validation"></a>Validation</h1><h2 id="Software-Prototype"><a href="#Software-Prototype" class="headerlink" title="Software Prototype"></a>Software Prototype</h2><p>√ Making it alive</p>
+<p>√ Easy yo be understood by non-experts</p>
+<h3 id="helps"><a href="#helps" class="headerlink" title="helps"></a>helps</h3><ul>
+<li>Fast</li>
+<li>Closes gaps in customers’ understanding of the requirements</li>
+<li>Stimulates customers’ thinking</li>
+<li>Early feedbacks</li>
+<li>Deals with variability</li>
+</ul>
+<p>Prototype</p>
+<h3 id="By-Description"><a href="#By-Description" class="headerlink" title="By Description"></a>By Description</h3><h4 id="Horizontal"><a href="#Horizontal" class="headerlink" title="Horizontal"></a>Horizontal</h4><ul>
+<li>Does <strong>Not</strong> dive into all the layers or into system details</li>
+<li>Demonstrate how the user interacts with the target system</li>
+</ul>
+<h4 id="Vertical"><a href="#Vertical" class="headerlink" title="Vertical"></a>Vertical</h4><ul>
+<li>Touches in all levels of the system implementation</li>
+<li>Looks like a subsystem of target software</li>
+</ul>
+<h3 id="By-Purpose"><a href="#By-Purpose" class="headerlink" title="By Purpose"></a>By Purpose</h3><h4 id="Throwaway"><a href="#Throwaway" class="headerlink" title="Throwaway"></a>Throwaway</h4><ul>
+<li>For answering questions and resolving uncertainties </li>
+<li>Discard or being integrated into the final system</li>
+</ul>
+<h4 id="Evolutionary"><a href="#Evolutionary" class="headerlink" title="Evolutionary"></a>Evolutionary</h4><ul>
+<li>A solid architectural foundation</li>
+<li>must be built with robust, production-quality code</li>
+<li>Takes longer time</li>
+</ul>
+<h3 id="Building-tool"><a href="#Building-tool" class="headerlink" title="Building tool"></a>Building tool</h3><ul>
+<li>Paper or software</li>
+<li>after requirements analysis</li>
+</ul>
+<h4 id="Paper"><a href="#Paper" class="headerlink" title="Paper"></a>Paper</h4><ul>
+<li>Cheap</li>
+<li>Fast</li>
+<li>Anytime</li>
+<li>Hardly any interaction</li>
+<li>Throw away</li>
+</ul>
+<h4 id="Software"><a href="#Software" class="headerlink" title="Software"></a>Software</h4><ul>
+<li><p>Software without interface</p>
+</li>
+</ul>
+<p>Animation</p>
+<p>Evolutionary Prototype</p>
+<p>Environment</p>
+<p>Risks</p>
+<p>Misunderstanding in performance</p>
+<p>Away from requirements analysis</p>
+<p>Misunderstanding in progress</p>
+<h3 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h3><h4 id="peer-deskcheck"><a href="#peer-deskcheck" class="headerlink" title="peer deskcheck"></a>peer deskcheck</h4><h4 id="passaround"><a href="#passaround" class="headerlink" title="passaround"></a>passaround</h4><h4 id="walkthrough"><a href="#walkthrough" class="headerlink" title="walkthrough"></a>walkthrough</h4><h4 id="Inspection-formal-peer-review"><a href="#Inspection-formal-peer-review" class="headerlink" title="Inspection - formal peer review"></a>Inspection - formal peer review</h4><p>Author</p>
+<p>Moderator</p>
+<p>Reader</p>
+<p>Recorder</p>
+<p>The reader describes each requirements in his or her own words</p>
+<p>The inspectors brings up defects</p>
+<p>The recorder captures the information</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/ComputerScience/"># ComputerScience</a>
+                    
+                        <a href="/tags/SoftwareEngineering/"># SoftwareEngineering</a>
+                    
+                        <a href="/tags/Review/"># Review</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/01/11/SE_L7/">StudyNote | Software Engineering Lecture 7</a>
+            
+            
+            <a class="next" rel="next" href="/2020/12/28/SE_L5/">StudyNote | Software Engineering Lecture 5</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
