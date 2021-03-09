@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yijun Lin">
+
+
+    <meta name="subtitle" content="Yijun Lin">
+
+
+
+
+<title>Review | 操作系统(2)实验 | Yijun&#39;s Studio | Welcome!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Yijun&#39;s Studio</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Yijun&#39;s Studio</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Review | 操作系统(2)实验</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yijun Lin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 9, 2021&nbsp;&nbsp;23:15:35</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SHU/">SHU</a>
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AFComputerScience/">计算机科学与技术ComputerScience</a>
+                            
+                                <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FOperatingSystem/">操作系统OperatingSystem</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="7-进程环境"><a href="#7-进程环境" class="headerlink" title="7 进程环境"></a>7 进程环境</h1><h2 id="7-8-存储空间分配-20201201"><a href="#7-8-存储空间分配-20201201" class="headerlink" title="7.8 存储空间分配 [20201201]"></a>7.8 存储空间分配 [20201201]</h2><h3 id="malloc"><a href="#malloc" class="headerlink" title="malloc"></a>malloc</h3><p>分配指定字节数的存储区。此存储区中的初始值不确定。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">malloc</span><span class="params">(<span class="keyword">size_t</span> <span class="built_in">size</span>)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回非空指针；若出错，返回NULL</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">free</span><span class="params">(<span class="keyword">void</span> *ptr)</span></span>;</span><br><span class="line"><span class="comment">// 函数free释放ptr指向的存储空间。</span></span><br><span class="line"><span class="comment">// 被释放的空间通常被送入可用存储区池，以后，可在调用上述3个分配函数时再分配。</span></span><br></pre></td></tr></table></figure>
+
+<p>大多数实现所分配的存储空间比所要求的要稍大一些，额外的空间用来记录管理信息——分配块的长度、指向下一个分配块的指针等。这就意味着，如果超过一个已分配区的尾端或者在已分配区起始位置之前进行写操作，则会改写另一块的管理记录信息。这种类型的错误是灾难性的，但是因为这种错误不会很快就暴露出来，所以也就很难发现。</p>
+<p>在动态分配的缓冲区前或后进行写操作，破坏的可能不仅仅是该区的管理记录信息。在动态分配的缓冲区前后的存储空间很可能用于其他动态分配的对象。这些对象与破坏它们的代码可能无关，这造成寻求信息破坏的源头更加困难。</p>
+<p>其他可能产生的致命性的错误是：释放一个已经释放了的块；调用free时所用的指针不是3个alloc函数的返回值等。如若一个进程调用malloc函数，但却忘记调用free函数，那么该进程占用的存储空间就会连续增加，这被称为泄漏（leakage）。如果不调用free函数释放不再使用的空间，那么进程地址空间长度就会慢慢增加，直至不再有空闲空间。此时，由于过度的换页开销，会造成性能下降。</p>
+<p>因为存储空间分配出错很难跟踪，所以某些系统提供了这些函数的另一种实现版本。每次调用这3个分配函数中的任意一个或free时，它们都进行附加的检错。在调用连接编辑器时指定一个专用库，在程序中就可使用这种版本的函数。此外还有公共可用的资源，在对其进行编译时使用一个特殊标志就会使附加的运行时检查生效。</p>
+<h1 id="3-文件I-O"><a href="#3-文件I-O" class="headerlink" title="3 文件I/O"></a>3 文件I/O</h1><h2 id="3-2-文件描述符"><a href="#3-2-文件描述符" class="headerlink" title="3.2 文件描述符"></a>3.2 文件描述符</h2><p>对于内核而言，所有打开的文件都通过文件描述符引用。文件描述符是一个非负整数。当打开一个现有文件或创建一个新文件时，内核向进程返回一个文件描述符。当读、写一个文件时，使用open或creat返回的文件描述符标识该文件，将其作为参数传送给read或write。</p>
+<p>按照惯例，UNIX系统shell把文件描述符0与进程的标准输入关联，文件描述符1与标准输出关联，文件描述符2与标准错误关联。这是各种 shell以及很多应用程序使用的惯例，与UNIX内核无关。尽管如此，如果不遵循这种惯例，很多UNIX系统应用程序就不能正常工作。</p>
+<p>在符合POSIX.1的应用程序中，幻数0、1、2虽然已被标准化，但应当把它们替换成符号常量STDIN_FILENO、STDOUT_FILENO和STDERR_FILENO以提高可读性。这些常量都在头文件&lt;unistd.h&gt;中定义。</p>
+<p>文件描述符的变化范围是0～OPEN_MAX-1。早期的UNIX系统实现采用的上限值是19（允许每个进程最多打开20个文件），但现在很多系统将其上限值增加至63。</p>
+<h2 id="3-3-函数open和openat-20201208"><a href="#3-3-函数open和openat-20201208" class="headerlink" title="3.3 函数open和openat [20201208]"></a>3.3 函数open和openat [20201208]</h2><h3 id="open"><a href="#open" class="headerlink" title="open"></a>open</h3><p>打开或创建一个文件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">open</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *path, <span class="keyword">int</span> oflag, ... <span class="comment">/* mode_t mode */</span>)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回文件描述符；若出错，返回−1</span></span><br><span class="line"><span class="comment">// path参数是要打开或创建文件的名字。</span></span><br><span class="line"><span class="comment">// oflag参数可用来说明此函数的多个选项。</span></span><br><span class="line"><span class="comment">// 用下列一个或多个常量进行“或”运算构成oflag参数（这些常量在头文件&lt;fcntl.h&gt;</span></span><br><span class="line"><span class="comment">// O_RDONLY　　　 只读打开。</span></span><br><span class="line"><span class="comment">// O_WRONLY　　　 只写打开。</span></span><br><span class="line"><span class="comment">// O_RDWR　　　　 读、写打开。</span></span><br><span class="line"><span class="comment">// ......</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-6-函数lseek-20201208"><a href="#3-6-函数lseek-20201208" class="headerlink" title="3.6 函数lseek [20201208]"></a>3.6 函数lseek [20201208]</h2><h3 id="lseek"><a href="#lseek" class="headerlink" title="lseek"></a>lseek</h3><p>显式地为一个打开文件设置偏移量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">off_t</span> <span class="title">lseek</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">off_t</span> offset, <span class="keyword">int</span> whence)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回新的文件偏移量；若出错，返回为−1</span></span><br><span class="line"><span class="comment">// 对参数offset的解释与参数whence的值有关。</span></span><br><span class="line"><span class="comment">// • 若whence是SEEK_SET，则将该文件的偏移量设置为距文件开始处offset个字节。</span></span><br><span class="line"><span class="comment">// • 若whence是SEEK_CUR，则将该文件的偏移量设置为其当前值加offset，offset可为正或负。</span></span><br><span class="line"><span class="comment">// • 若whence是SEEK_END，则将该文件的偏移量设置为文件长度加offset，offset可正可负。</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以确定打开文件的当前偏移量。</li>
+<li>可以确定所涉及的文件是否可以设置偏移量。</li>
+</ul>
+<p>通常，文件的当前偏移量应当是一个非负整数，但是，某些设备也可能允许负的偏移量。但对于普通文件，其偏移量必须是非负值。因为偏移量可能是负值，所以在比较 lseek 的返回值时应当谨慎，不要测试它是否小于0，而要测试它是否等于−1。</p>
+<p>因为偏移量（off_t）是带符号数据类型（见图2-21），所以文件的最大长度会减少一半。例如，若off_t是32位整型，则文件最大长度是$2^{31} －1$个字节。</p>
+<p>lseek仅将当前的文件偏移量记录在内核中，它并不引起任何I/O操作。然后，该偏移量用于下一个读或写操作。</p>
+<p>文件偏移量可以大于文件的当前长度，在这种情况下，对该文件的下一次写将加长该文件，并在文件中构成一个空洞，这一点是允许的。位于文件中但没有写过的字节都被读为0。</p>
+<h2 id="3-7-函数read-20201208"><a href="#3-7-函数read-20201208" class="headerlink" title="3.7 函数read [20201208]"></a>3.7 函数read [20201208]</h2><h3 id="read"><a href="#read" class="headerlink" title="read"></a>read</h3><p>从打开文件中读数据。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> nbytes)</span></span>;</span><br><span class="line"><span class="comment">// 读到的字节数；若已到文件尾，返回0；若出错，返回−1</span></span><br></pre></td></tr></table></figure>
+
+<p>read 从文件中读 但是由文件标识符标识 读到进程地址空间 中间从内核地址空间转手</p>
+<ul>
+<li>读普通文件时，在读到要求字节数之前已到达了文件尾端。例如，若在到达文件尾端之前有30个字节，而要求读100个字节，则read返回30。下一次再调用read时，它将返回0（文件尾端）。</li>
+<li>当从终端设备读时，通常一次最多读一行。</li>
+<li>当从网络读时，网络中的缓冲机制可能造成返回值小于所要求读的字节数。</li>
+<li>当从管道或FIFO读时，如若管道包含的字节少于所需的数量，那么read将只返回实际可用的字节数。</li>
+<li>当从某些面向记录的设备（如磁带）读时，一次最多返回一个记录。</li>
+<li>当一信号造成中断，而已经读了部分数据量时。读操作从文件的当前偏移量处开始，在成功返回之前，该偏移量将增加实际读到的字节数。</li>
+</ul>
+<h2 id="3-10-文件共享-20210112"><a href="#3-10-文件共享-20210112" class="headerlink" title="3.10 文件共享 [20210112]"></a>3.10 文件共享 [20210112]</h2><p>内核使用3种数据结构表示打开文件，它们之间的关系决定了在文件共享方面一个进程对另一个进程可能产生的影响。</p>
+<ol>
+<li>每个进程在进程表中都有一个记录项，记录项中包含一张打开文件描述符表，可将其视为一个矢量，每个描述符占用一项。与每个文件描述符相关联的是：<ol>
+<li>文件描述符标志（close_on_exec）；</li>
+<li>指向一个文件表项的指针。</li>
+</ol>
+</li>
+<li>内核为所有打开文件维持一张文件表。每个文件表项包含：<ol>
+<li>文件状态标志（读、写、添写、同步和非阻塞等）；</li>
+<li>当前文件偏移量；</li>
+</ol>
+</li>
+<li>指向该文件v节点表项的指针。每个打开文件（或设备）都有一个 v 节点（v-node）结构。v 节点包含了文件类型和对此文件进行各种操作函数的指针。对于大多数文件，v节点还包含了该文件的i节点（i-node，索引节点）。这些信息是在打开文件时从磁盘上读入内存的，所以，文件的所有相关信息都是随时可用的。例如，i 节点包含了文件的所有者、文件长度、指向文件实际数据块在磁盘上所在位置的指针等。</li>
+</ol>
+<p>创建v节点结构的目的是对在一个计算机系统上的多文件系统类型提供支持。</p>
+<p>Linux没有将相关数据结构分为i节点和v节点，而是采用了一个与文件系统相关的i节点和一个与文件系统无关的i节点。</p>
+<p>假定第一个进程在文件描述符3上打开该文件，而另一个进程在文件描述符4上打开该文件。打开该文件的每个进程都获得各自的一个文件表项，但对一个给定的文件只有一个v节点表项。之所以每个进程都获得自己的文件表项，是因为这可以使每个进程都有它自己的对该文件的当前偏移量。</p>
+<p>可能有多个文件描述符项指向同一文件表项。在3.12 节中讨论dup函数时，我们就能看到这一点。在fork后也发生同样的情况，此时父进程、子进程各自的每一个打开文件描述符共享同一个文件表项（见8.3节）。</p>
+<h3 id="dup"><a href="#dup" class="headerlink" title="dup"></a>dup</h3><p>复制一个现有的文件描述符。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dup</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回新的文件描述符；若出错，返回-1</span></span><br><span class="line"><span class="comment">// 由dup返回的新文件描述符一定是当前可用文件描述符中的最小数值。</span></span><br><span class="line"><span class="comment">// 返回的新文件描述符与参数fd共享同一个文件表项，共享同一文件状态标志（读、写、追加等）以及同一当前文件偏移量。</span></span><br><span class="line"><span class="comment">// 每一个文件描述符都有它自己的一套文件描述符标志。</span></span><br></pre></td></tr></table></figure>
+
+<p>保存文件打开状态以便之后还可以恢复</p>
+<h1 id="14-高级I-O"><a href="#14-高级I-O" class="headerlink" title="14 高级I/O"></a>14 高级I/O</h1><h2 id="14-8-存储映射I-O-20201215"><a href="#14-8-存储映射I-O-20201215" class="headerlink" title="14.8 存储映射I/O [20201215]"></a>14.8 存储映射I/O [20201215]</h2><h3 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h3><p>将一个磁盘文件映射到存储空间中的一个缓冲区上，于是，当从缓冲区中取数据时，就相当于读文件中的相应字节。与此类似，将数据存入缓冲区时，相应字节就自动写入文件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">mmap</span><span class="params">(<span class="keyword">void</span> *addr, <span class="keyword">size_t</span> len, <span class="keyword">int</span> prot, <span class="keyword">int</span> flag, <span class="keyword">int</span> fd, <span class="keyword">off_t</span> off)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回映射区的起始地址；若出错，返回MAP_FAILED</span></span><br><span class="line"><span class="comment">// addr参数用于指定映射存储区的起始地址。通常将其设置为0，表示由系统选择该映射区的起始地址。此函数的返回值是该映射区的起始地址。</span></span><br><span class="line"><span class="comment">// fd参数是指定要被映射文件的描述符。在文件映射到地址空间之前，必须先打开该文件。len参数是映射的字节数，off是要映射字节在文件中的起始偏移量。</span></span><br><span class="line"><span class="comment">// prot参数指定了映射存储区的保护要求，PROT_READ/PROT_WRITE/PROT_EXEC/PROT_NONE。</span></span><br><span class="line"><span class="comment">// flag</span></span><br><span class="line"><span class="comment">// MAP_FIXED 返回值必须等于addr。因为这不利于可移植性，所以不鼓励使用此标志。如果未指定此标志，而且addr非0，则内核只把addr视为在何处设置映射区的一种建议，但是不保证会使用所要求的地址。将addr指定为0可获得最大可移植性。</span></span><br><span class="line"><span class="comment">// MAP_SHARED 这一标志描述了本进程对映射区所进行的存储操作的配置。此标志指定存储操作修改映射文件，也就是，存储操作相当于对该文件的 write。必须指定本标志或下一个标志（MAP_PRIVATE），但不能同时指定两者。</span></span><br><span class="line"><span class="comment">// MAP_PRIVATE 本标志说明，对映射区的存储操作导致创建该映射文件的一个私有副本。所有后来对该映射区的引用都是引用该副本。（此标志的一种用途是用于调试程序，它将程序文件的正文部分映射至存储区，但允许用户修改其中的指令。任何修改只影响程序文件的副本，而不影响原文件。）</span></span><br><span class="line"><span class="comment">// off的值和addr的值（如果指定了MAP_FIXED）通常被要求是系统虚拟存储页长度的倍数。</span></span><br></pre></td></tr></table></figure>
+
+<p>映射文件的起始偏移量受系统虚拟存储页长度的限制，如果映射区的长度不是页长的整数倍时：假定文件长为 12 字节，系统页长为 512 字节，则系统通常提供 512字节的映射区，其中后500字节被设置为0。可以修改后面的这500字节，但任何变动都不会在文件中反映出来。于是，不能用mmap将数据添加到文件中，我们必须先加长该文件。</p>
+<p>与mmap和memcpy相比，read和write执行了更多的系统调用，并做了更多的复制。read和write将数据从内核缓冲区中复制到应用缓冲区（read），然后再把数据从应用缓冲区复制到内核缓冲区（write）。而mmap和memcpy则直接把数据从映射到地址空间的一个内核缓冲区复制到另一个内核缓冲区。当引用尚不存在的内存页时，这样的复制过程就会作为处理页错误的结果而出现（每次错页读发生一次错误，每次错页写发生一次错误）。如果系统调用和额外的复制操作的开销和页错误的开销不同，那么这两种方法中就会有一种比另一种表现更好。</p>
+<p>两个进程共享</p>
+<ul>
+<li>在共享存储区中需要创建ID标识</li>
+<li>mmap不需要</li>
+</ul>
+<p>方便做权限管理</p>
+<ul>
+<li>文件的权限就是映射区的权限</li>
+</ul>
+<p>调试程序便利</p>
+<ul>
+<li>程序崩溃可检查</li>
+</ul>
+<p>理解存储扩充</p>
+<ul>
+<li>文件是对内存的扩充？×</li>
+<li>内存对文件做了缓冲？√</li>
+<li>现代操作系统需要吗？×</li>
+</ul>
+<h2 id="14-3-记录锁-20201222"><a href="#14-3-记录锁-20201222" class="headerlink" title="14.3 记录锁 [20201222]"></a>14.3 记录锁 [20201222]</h2><p>记录锁（record locking）的功能是：当第一个进程正在读或修改文件的某个部分时，使用记录锁可以阻止其他进程修改同一文件区。对于 UNIX 系统而言，“记录”这个词是一种误用，因为 UNIX 系统内核根本没有使用文件记录这种概念。一个更适合的术语可能是字节范围锁（byte-range locking），因为它锁定的只是文件中的一个区域（也可能是整个文件）。</p>
+<h3 id="flock"><a href="#flock" class="headerlink" title="flock"></a>flock</h3><p>对整个文件加锁，不能对文件中的一部分加锁。</p>
+<h1 id="4-文件和目录"><a href="#4-文件和目录" class="headerlink" title="4 文件和目录"></a>4 文件和目录</h1><h2 id="4-3-文件类型-20201229"><a href="#4-3-文件类型-20201229" class="headerlink" title="4.3 文件类型 [20201229]"></a>4.3 文件类型 [20201229]</h2><p>!!!Linux下有许多文件（文件类型）：正规文件 目录文件 管道 符号连接 块设备 字符设备 Socket接口…</p>
+<h3 id="普通文件-regular-file"><a href="#普通文件-regular-file" class="headerlink" title="普通文件 regular file"></a>普通文件 regular file</h3><ul>
+<li>最常用的文件类型；</li>
+<li>包含了某种形式的数据；</li>
+<li>至于这种数据是文本还是二进制数据，对于UNIX内核而言并无区别；</li>
+<li>对普通文件内容的解释由处理该文件的应用程序进行。</li>
+</ul>
+<p>一个值得注意的例外是二进制可执行文件。为了执行程序，内核必须理解其格式。所有二进制可执行文件都遵循一种标准化的格式，这种格式使内核能够确定程序文本和数据的加载位置。</p>
+<h3 id="目录文件-directory-file"><a href="#目录文件-directory-file" class="headerlink" title="目录文件 directory file"></a>目录文件 directory file</h3><ul>
+<li>包含了其他文件的名字以及指向与这些文件有关信息的指针。</li>
+</ul>
+<p>对于一个目录文件，具有读权限的任一进程都可以读该目录的内容，但只有内核可以直接写目录文件。</p>
+<h3 id="块特殊文件-block-special-file-（块设备）"><a href="#块特殊文件-block-special-file-（块设备）" class="headerlink" title="块特殊文件 block special file （块设备）"></a>块特殊文件 block special file （块设备）</h3><ul>
+<li>提供对设备带缓冲的访问；</li>
+<li>每次访问长度固定。</li>
+</ul>
+<h3 id="字符特殊文件-character-special-file-（字符设备）"><a href="#字符特殊文件-character-special-file-（字符设备）" class="headerlink" title="字符特殊文件 character special file （字符设备）"></a>字符特殊文件 character special file （字符设备）</h3><ul>
+<li>提供对设备不带缓冲的访问；</li>
+<li>每次访问长度可变。</li>
+</ul>
+<h3 id="命名管道-named-pipe-FIFO"><a href="#命名管道-named-pipe-FIFO" class="headerlink" title="命名管道 named pipe/FIFO"></a>命名管道 named pipe/FIFO</h3><ul>
+<li>用于进程间通信。</li>
+</ul>
+<h3 id="套接字-socket"><a href="#套接字-socket" class="headerlink" title="套接字 socket"></a>套接字 socket</h3><ul>
+<li>用于进程间的网络通信；</li>
+<li>用于在一台宿主机上进程之间的非网络通信。</li>
+</ul>
+<h3 id="符号链接-symbolic-link"><a href="#符号链接-symbolic-link" class="headerlink" title="符号链接 symbolic link"></a>符号链接 symbolic link</h3><ul>
+<li>指向另一个文件的文件。</li>
+</ul>
+<p>系统中的所有设备要么是块特殊文件，要么是字符特殊文件。</p>
+<h2 id="4-15-函数link、linkat、unlink、unlinkat和remove-20201229"><a href="#4-15-函数link、linkat、unlink、unlinkat和remove-20201229" class="headerlink" title="4.15 函数link、linkat、unlink、unlinkat和remove [20201229]"></a>4.15 函数link、linkat、unlink、unlinkat和remove [20201229]</h2><h3 id="link"><a href="#link" class="headerlink" title="link"></a>link</h3><p>创建一个指向现有文件的链接。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">link</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *existingpath, <span class="keyword">const</span> <span class="keyword">char</span> *newpath)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回0；若出错，返回-1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="使用link重命名文件"><a href="#使用link重命名文件" class="headerlink" title="使用link重命名文件"></a>使用link重命名文件</h4><h3 id="unlink"><a href="#unlink" class="headerlink" title="unlink"></a>unlink</h3><p>删除一个现有的目录项。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">unlink</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回0；若出错，返回-1</span></span><br></pre></td></tr></table></figure>
+
+<p>删除目录项，并将由pathname所引用文件的链接计数减1。如果对该文件还有其他链接，则仍可通过其他链接访问该文件的数据。如果出错，则不对该文件做任何更改。</p>
+<p>为了解除对文件的链接，必须对包含该目录项的目录具有写和执行权限。正如4.10节所述，如果对该目录设置了粘着位，则对该目录必须具有写权限，并且具备下面三个条件之一：</p>
+<ul>
+<li>拥有该文件；</li>
+<li>拥有该目录；</li>
+<li>具有超级用户权限。</li>
+</ul>
+<p>只有当链接计数达到0时，该文件的内容才可被删除。另一个条件也会阻止删除文件的内容——只要有进程打开了该文件，其内容也不能删除。关闭一个文件时，内核首先检查打开该文件的进程个数；如果这个计数达到0，内核再去检查其链接计数；如果计数也是0，那么就删除该文件的内容。</p>
+<p>unlink的这种特性经常被程序用来确保即使是在程序崩溃时，它所创建的临时文件也不会遗留下来。进程用open或creat创建一个文件，然后立即调用unlink，因为该文件仍旧是打开的，所以不会将其内容删除。只有当进程关闭该文件或终止时（在这种情况下，内核关闭该进程所打开的全部文件），该文件的内容才被删除。</p>
+<p>如果pathname是符号链接，那么unlink删除该符号链接，而不是删除由该链接所引用的文件。给出符号链接名的情况下，没有一个函数能删除由该链接所引用的文件。</p>
+<p>如果文件系统支持的话，超级用户可以调用unlink，其参数pathname指定一个目录，但是通常应当使用rmdir函数，而不使用unlink这种方式。</p>
+<h3 id="remove"><a href="#remove" class="headerlink" title="remove"></a>remove</h3><p>解除对一个文件或目录的链接。</p>
+<p>对于文件，remove 的功能与unlink相同。对于目录，remove的功能与rmdir相同。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回0；若出错，返回-1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-18-创建和读取符号链接-20201229"><a href="#4-18-创建和读取符号链接-20201229" class="headerlink" title="4.18 创建和读取符号链接 [20201229]"></a>4.18 创建和读取符号链接 [20201229]</h2><h3 id="symlink"><a href="#symlink" class="headerlink" title="symlink"></a>symlink</h3><p>创建一个符号链接。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">symlink</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *actualpath, <span class="keyword">const</span> <span class="keyword">char</span> *sympath)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回0；若出错，返回-1</span></span><br></pre></td></tr></table></figure>
+
+<p>函数创建了一个指向actualpath的新目录项sympath。在创建此符号链接时，并不要求actualpath已经存在。并且，actualpath和sympath并不需要位于同一文件系统中。</p>
+<p>创建特殊类型的文件</p>
+<h2 id="4-21-函数mkdir、mkdirat和rmdir"><a href="#4-21-函数mkdir、mkdirat和rmdir" class="headerlink" title="4.21 函数mkdir、mkdirat和rmdir"></a>4.21 函数mkdir、mkdirat和rmdir</h2><h3 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h3><p>创建一个新的空目录。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mkdir</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">mode_t</span> mode)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回0；若出错，返回-1</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，.和..目录项是自动创建的。所指定的文件访问权限mode由进程的文件模式创建屏蔽字修改。常见的错误是指定与文件相同的mode（只指定读、写权限）。但是，对于目录通常至少要设置一个执行权限位，以允许访问该目录中的文件名。</p>
+<h3 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h3><p>删除一个空目录。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rmdir</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回0；若出错，返回-1</span></span><br></pre></td></tr></table></figure>
+
+<p>如果调用此函数使目录的链接计数成为 0，并且也没有其他进程打开此目录，则释放由此目录占用的空间。如果在链接计数达到0时，有一个或多个进程打开此目录，则在此函数返回前删除最后一个链接及.和..项。另外，在此目录中不能再创建新文件。但是在最后一个进程关闭它之前并不释放此目录。</p>
+<h3 id="mknod"><a href="#mknod" class="headerlink" title="mknod"></a>mknod</h3><p>在早期版本中，进程要调用mknod函数创建一个新目录，但是只有超级用户进程才能使用mknod函数。</p>
+<h2 id="4-22-读目录"><a href="#4-22-读目录" class="headerlink" title="4.22 读目录"></a>4.22 读目录</h2><h3 id="opendir-20201229"><a href="#opendir-20201229" class="headerlink" title="opendir  [20201229]"></a>opendir  [20201229]</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;dirent.h&gt;</span></span></span><br><span class="line"><span class="function">DIR *<span class="title">opendir</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname)</span></span>;</span><br><span class="line"><span class="function">DIR *<span class="title">fdopendir</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回指针；若出错，返回NULL</span></span><br></pre></td></tr></table></figure>
+
+<p>fdopendir可以把打开文件描述符转换成目录处理函数需要的DIR结构。</p>
+<h3 id="readdir-20210105"><a href="#readdir-20210105" class="headerlink" title="readdir [20210105]"></a>readdir [20210105]</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;dirent.h&gt;</span></span></span><br><span class="line"><span class="function">struct dirent *<span class="title">readdir</span><span class="params">(DIR *dp)</span></span>;</span><br><span class="line"><span class="comment">// 若成功，返回指针；若在目录尾或出错，返回NULL</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>由opendir和fdopendir返回的指向DIR结构的指针由另外5个函数使用。opendir执行初始化操作，使第一个readdir返回目录中的第一个目录项。DIR结构由fdopendir创建时，readdir返回的第一项取决于传给fdopendir函数的文件描述符相关联的文件偏移量。注意，目录中各目录项的顺序与实现有关。它们通常并不按字母顺序排列。</p>
+<h1 id="0-其它"><a href="#0-其它" class="headerlink" title="0 其它"></a>0 其它</h1><h2 id="mount与umount-20201208"><a href="#mount与umount-20201208" class="headerlink" title="mount与umount [20201208]"></a>mount与umount [20201208]</h2><p>多文件系统支持。</p>
+<h3 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h3><p>挂载一个文件系统。</p>
+<p>使用权限是超级用户或/etc/fstab中允许的使用者。</p>
+<p>在Linux和Unix系统上，所有文件都是作为一个大型树（以/为根）的一部分访问的。要访问<br>CD-ROM上的文件，需要将CD-ROM设备挂装在文件树中的某个挂装点。如果发行版安装了自动<br>挂装包，那么这个步骤可自动进行。在Linux中，如果要使用硬盘、光驱等储存设备，就得<br>先将它加载，当储存设备挂上了之后，就可以把它当成一个目录来访问。挂上一个设备使用<br>mount命令。在使用mount这个指令时，至少要先知道下列三种信息：要加载对象的文件系统<br>类型、要加载对象的设备名称及要将设备加载到哪个目录下。</p>
+<h3 id="umount"><a href="#umount" class="headerlink" title="umount"></a>umount</h3><p>卸载一个文件系统。</p>
+<p>使用权限是超级用户或/etc/fstab中允许的使用者。</p>
+<p>umount命令是mount命令的逆操作，它的参数和使用方法和mount命令是一样的。Linux挂装<br>CD-ROM后，会锁定CD—ROM，这样就不能用CD-ROM面板上的Eject按钮弹出它。但是，当不再<br>需要光盘时，如果已将/cdrom作为符号链接，请使用umount/cdrom来卸装它。仅当无用户正<br>在使用光盘时，该命令才会成功。该命令包括了将带有当前工作目录当作该光盘中的目录的<br>终端窗口。</p>
+<h2 id="proc文件系统"><a href="#proc文件系统" class="headerlink" title="proc文件系统"></a>proc文件系统</h2><p>与其它常见的文件系统不同的是，/proc是一种伪文件系统（也即虚拟文件系统），存储的是当前内核运行状态的一系列特殊文件，用户可以通过这些文件查看有关系统硬件及当前正在运行进程的信息，甚至可以通过更改其中某些文件来改变内核的运行状态。</p>
+<p>基于/proc文件系统如上所述的特殊性，其内的文件也常被称作虚拟文件，并具有一些独特的特点。例如，其中有些文件虽然使用查看命令查看时会返回大量信息，但文件本身的大小却会显示为0字节。此外，这些特殊文件中大多数文件的时间及日期属性通常为当前系统时间和日期，这跟它们随时会被刷新（存储于RAM中）有关。</p>
+<h2 id="ptrace"><a href="#ptrace" class="headerlink" title="ptrace"></a>ptrace</h2><p><a href="https://www.jianshu.com/p/b1f9d6911c90" target="_blank" rel="noopener">ptrace使用简介</a></p>
+<p>ptrace 提供了一种机制使得父进程可以观察和控制子进程的执行过程，ptrace 还可以检查和修改子进程的可执行文件在内存中的image及子进程所使用的寄存器中的值。通常来说，主要用于实现对进程插入断点和跟踪子进程的系统调用。</p>
+<p>文件名构成 路径名路径分割符</p>
+<p>link unlink symlink 文件连接<br>mount umount 安装</p>
+<p>目录操作</p>
+<p>[20201229] 今天实验要求掌握的内容:<br>1.文件类型:正规文件，目录文件，块设备，字符设备，管道，符号连接，socket<br>2.文件名相关操作:link,unlink,symlink。如何删除文件，如何利用link给文件换名。<br>3.多文件系统支持:mount,umount</p>
+<h1 id="8-进程控制"><a href="#8-进程控制" class="headerlink" title="8 进程控制"></a>8 进程控制</h1><h2 id="8-3-函数fork-20210112"><a href="#8-3-函数fork-20210112" class="headerlink" title="8.3 函数fork [20210112]"></a>8.3 函数fork [20210112]</h2><h3 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h3><p>现有的进程创建一个新进程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">pid_t fork(void);</span><br><span class="line">&#x2F;&#x2F; 子进程返回0，父进程返回子进程ID；若出错，返回-1</span><br></pre></td></tr></table></figure>
+
+<p>fork函数被调用一次，但返回两次。两次返回的区别是子进程的返回值是 0，而父进程的返回值则是新建子进程的进程 ID。将子进程ID返回给父进程的理由是：因为一个进程的子进程可以有多个，并且没有一个函数使一个进程可以获得其所有子进程的进程 ID。fork 使子进程得到返回值 0 的理由是：一个进程只会有一个父进程，所以子进程总是可以调用 getppid 以获得其父进程的进程 ID（进程ID 0总是由内核交换进程使用，所以一个子进程的进程ID不可能为0）。</p>
+<p>子进程和父进程继续执行fork调用之后的指令。子进程是父进程的副本。例如，子进程获得父进程数据空间、堆和栈的副本。注意，这是子进程所拥有的副本。父进程和子进程并不共享这些存储空间部分。父进程和子进程共享正文段。</p>
+<p>在重定向父进程的标准输出时，子进程的标准输出也被重定向。实际上，fork的一个特性是父进程的所有打开文件描述符都被复制到子进程中。我们说“复制”是因为对每个文件描述符来说，就好像执行了dup函数。父进程和子进程每个相同的打开描述符共享一个文件表项。</p>
+<p>重要的一点是，父进程和子进程共享同一个文件偏移量。考虑下述情况：一个进程fork了一个子进程，然后等待子进程终止。假定，作为普通处理的一部分，父进程和子进程都向标准输出进行写操作。如果父进程的标准输出已重定向（很可能是由 shell 实现的），那么子进程写到该标准输出时，它将更新与父进程共享的该文件的偏移量。在这个例子中，当父进程等待子进程时，子进程写到标准输出；而在子进程终止后，父进程也写到标准输出上，并且知道其输出会追加在子进程所写数据之后。如果父进程和子进程不共享同一文件偏移量，要实现这种形式的交互就要困难得多，可能需要父进程显式地动作。</p>
+<p>如果父进程和子进程写同一描述符指向的文件，但又没有任何形式的同步（如使父进程等待子进程），那么它们的输出就会相互混合（假定所用的描述符是在fork之前打开的）。</p>
+<p>在fork之后处理文件描述符有以下两种常见的情况：</p>
+<ol>
+<li>父进程等待子进程完成。在这种情况下，父进程无需对其描述符做任何处理。当子进程终止后，它曾进行过读、写操作的任一共享描述符的文件偏移量已做了相应更新。</li>
+<li>父进程和子进程各自执行不同的程序段。在这种情况下，在fork之后，父进程和子进程各自关闭它们不需使用的文件描述符，这样就不会干扰对方使用的文件描述符。这种方法是网络服务进程经常使用的。</li>
+</ol>
+<p>父进程和子进程之间的具体区别：</p>
+<ul>
+<li>fork的返回值不同；</li>
+<li>进程ID不同；</li>
+<li>父进程ID不同：子进程的父进程ID是创建它的进程的ID，父进程的父进程ID不变；</li>
+<li>子进程的tms_utime、tms_stime、tms_cutime和tms_ustime的值设置为0；</li>
+<li>子进程不继承父进程设置的文件锁；</li>
+<li>子进程的未处理闹钟被清除；</li>
+<li>子进程的未处理信号集设置为空集。</li>
+</ul>
+<p>fork的两种用法：</p>
+<ol>
+<li>一个父进程希望复制自己，使父进程和子进程同时执行不同的代码段。这在网络服务进程中是常见的—父进程等待客户端的服务请求。当这种请求到达时，父进程调用fork，使子进程处理此请求。父进程则继续等待下一个服务请求。</li>
+<li>一个进程要执行一个不同的程序。这对 shell 是常见的情况。在这种情况下，子进程从fork返回后立即调用exec。</li>
+</ol>
+<h1 id="上机程序"><a href="#上机程序" class="headerlink" title="上机程序"></a>上机程序</h1><h2 id="20201215"><a href="#20201215" class="headerlink" title="20201215"></a>20201215</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//p1.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> fd=<span class="built_in">open</span>(<span class="string">"./p1.c"</span>, <span class="number">0</span>, RDONLY);</span><br><span class="line">	<span class="keyword">off_t</span> len=lseek(fd, <span class="number">0</span>, SEEK_END);</span><br><span class="line">	<span class="keyword">char</span> *p=mmap(<span class="literal">NULL</span>, len, PROT_READ, MAP_SHARED, fd, <span class="number">0</span>);	<span class="comment">// 建立映射</span></span><br><span class="line">	prinf(<span class="string">"%s"</span>, p);		<span class="comment">// 打印映射区域</span></span><br><span class="line">	munmap(p, len);		<span class="comment">// 断开映射</span></span><br><span class="line">	<span class="built_in">close</span>(fd);			<span class="comment">// 关闭文件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//p2_read.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> fd=<span class="built_in">open</span>(<span class="string">"./my_share.dat"</span>, O_RDWR);</span><br><span class="line">	<span class="keyword">off_t</span> len=lseek(fd, <span class="number">0</span>, SEEK_END);</span><br><span class="line">	<span class="keyword">void</span> *p=mmap(<span class="literal">NULL</span>, len, PROT_READ|PROT_WRITE, MAP_SHARED, fd, <span class="number">0</span>);	<span class="comment">// 建立映射</span></span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">100</span>; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> <span class="keyword">volatile</span> *p_int=p;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d:%d\n"</span>, i, *p_int);</span><br><span class="line">		sleep(<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	munmap(p, len);		<span class="comment">// 断开映射</span></span><br><span class="line">	<span class="built_in">close</span>(fd);			<span class="comment">// 关闭文件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//p2_write.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> fd=<span class="built_in">open</span>(<span class="string">"./my_share.dat"</span>, O_RDWR);</span><br><span class="line">	<span class="keyword">off_t</span> len=lseek(fd, <span class="number">0</span>, SEEK_END);</span><br><span class="line">	<span class="keyword">void</span> *p=mmap(<span class="literal">NULL</span>, len, PROT_READ|PROT_WRITE, MAP_SHARED, fd, <span class="number">0</span>);	<span class="comment">// 建立映射</span></span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> <span class="keyword">volatile</span> *p_int=p;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Input x[%d]:"</span>, i);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, p_int);</span><br><span class="line">	&#125;</span><br><span class="line">	munmap(p, len);		<span class="comment">// 断开映射</span></span><br><span class="line">	<span class="built_in">close</span>(fd);			<span class="comment">// 关闭文件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//my_share.dat</span><br></pre></td></tr></table></figure>
+
+<h2 id="20201222"><a href="#20201222" class="headerlink" title="20201222"></a>20201222</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/file.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,fd;</span><br><span class="line">	<span class="keyword">if</span>(fork()==<span class="number">0</span>)&#123;</span><br><span class="line">		fd=<span class="built_in">open</span>(<span class="string">"./lock.dat"</span>, O_RDWR);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;;i++)&#123;</span><br><span class="line">			flock(fd,LOCK_EX);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,i);</span><br><span class="line">			flock(fd,LOCK_UN);</span><br><span class="line">			sleep(<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		fd=<span class="built_in">open</span>(<span class="string">"./lock.dat"</span>, O_RDWR);</span><br><span class="line">		<span class="keyword">for</span>(;;)&#123;</span><br><span class="line">			getchar();</span><br><span class="line">			flock(fd,LOCK_EX);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"Child process pause\n"</span>);</span><br><span class="line">			getchar();</span><br><span class="line">			flock(fd,LOCK_UN);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"Child process continue\n"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="20210105"><a href="#20210105" class="headerlink" title="20210105"></a>20210105</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">char</span> *my_dir_name, <span class="keyword">int</span> space_number)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">char</span> my_file_name[<span class="number">256</span>];</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">dirent</span> *<span class="title">dir_entry</span>;</span></span><br><span class="line">	DIR *my_dir=opendir(my_dir_name);</span><br><span class="line">	<span class="keyword">if</span>(my_dir==<span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">while</span>((dir_entry=readdir(my_dir))!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;space_number;i++)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, dir_entry-&gt;d_name);</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">strcpy</span>(my_file_name,my_dir_name);</span><br><span class="line">		<span class="built_in">strcat</span>(my_file_name,<span class="string">"/"</span>);</span><br><span class="line">		<span class="built_in">strcat</span>(my_file_name,dir_entry-&gt;d_name);</span><br><span class="line">		<span class="keyword">if</span>(dir_entry-&gt;d_name[<span class="number">0</span>]!=<span class="string">'.'</span>)</span><br><span class="line">			f(my_file_name,space_number+<span class="number">4</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	closedir(my_dir);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	f(argv[<span class="number">1</span>],<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yijun Lin</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2020 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Prepare for the WORST & Do the BEST.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/ComputerScience/"># ComputerScience</a>
+                    
+                        <a href="/tags/Review/"># Review</a>
+                    
+                        <a href="/tags/OperatingSystem/"># OperatingSystem</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/03/08/SE_L10/">StudyNote | Software Engineering Lecture 10</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yijun Lin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
